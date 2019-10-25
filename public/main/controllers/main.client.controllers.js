@@ -1,6 +1,10 @@
 angular.module('Main')
     .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', function ($scope, BgMask, SearchBarState) {
         $scope.isDialogOpen = false;
+        
+    $scope.$on('$routeChangeSuccess', function(e, current, previous) {
+        $scope.currentRoute =  current;
+    });
 
         $scope.closeAccountDialog = function () {
             if ($scope.isDialogOpen === false) return;
@@ -37,6 +41,7 @@ angular.module('Main')
             $scope.gadget = selectedGadget;
             $scope.gadgets = [selectedGadget];
             $scope.similarGadgets = [];
+            alert(currentRoute);
 
             self.likeGadget = function() {
                 ++$scope.gadget.likes;

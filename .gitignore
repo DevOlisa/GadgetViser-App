@@ -4,4 +4,4 @@ node_modules
 # public static files
 public/lib
 
-.public/.
+.public
