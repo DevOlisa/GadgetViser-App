@@ -24,10 +24,16 @@ angular.module('Main').service('BgMask', [function () {
         if (self.isSearchBarHidden === true) self.isSearchBarHidden = false;
     });
 }])
-.service('ObjectStateService', [function() {
+.factory('ObjectStateService', [function() {
     let self = this;
-    self.state = null;
+    self.state = {};
     self.getState = function() {
         return self.state;
     };
+    return self;
+}])
+.factory('RouteStateService', [function() {
+    let service = [];
+
+    return service;
 }])

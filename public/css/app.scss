@@ -869,103 +869,6 @@ button {
 
     // End Call to action
 
-    // Begin News Styles
-    .news-container {
-        margin-bottom: 30px;
-        overflow: hidden;
-
-        .news-wrapper {
-            margin: 22px 0;
-
-            &~button {
-                float: right;
-            }
-
-            .news-list {
-                display: grid;
-                width: 100%;
-                height: auto;
-                grid-template-rows: repeat(3, 185px);
-                grid-template-columns: repeat(2, 1fr);
-                grid-gap: 10px;
-                list-style: none;
-                padding: 0;
-                margin: auto;
-
-                grid-template-areas:
-                    "imp imp"
-                    "box2 box3"
-                    "box4 box5";
-
-                @include responsify($break-tablet) {
-                    grid-gap: 15px;
-                    grid-template-rows: repeat(2, 1fr);
-                    grid-template-columns: repeat(12, 1fr);
-                    height: 418px;
-                    grid-template-areas:
-                        "imp imp imp imp box2 box2 box2 box2 box3 box3 box3 box3"
-                        "imp imp imp imp box4 box4 box4 box4 box5 box5 box5 box5";
-                }
-
-                .important {
-                    grid-area: imp;
-                    background: url('../public/images/127399_adapted_1440x2560.jpg') center no-repeat;
-                    background-size: cover;
-                }
-
-                .news-item:nth-child(2) {
-                    grid-area: box2;
-                    background: url('../public/images/129485_adapted_1440x2560.jpg') center center no-repeat;
-                    background-size: cover;
-                }
-
-                .news-item:nth-child(3) {
-                    grid-area: box3;
-                    background: url('../public/images/121644_adapted_1440x2560\ \(2\).jpg') center center no-repeat;
-                    background-size: cover;
-                }
-
-                .news-item:nth-child(4) {
-                    grid-area: box4;
-                    background: url('../public/images/127422_adapted_1440x2560.jpg') center center no-repeat;
-                    background-size: cover;
-                }
-
-                .news-item:nth-child(5) {
-                    grid-area: box5;
-                    background: url('../public/images/129644_adapted_1440x2560.jpg') center center no-repeat;
-                    background-size: cover;
-                }
-
-                .news-item {
-                    display: table;
-                    height: 100%;
-
-                    &>div {
-                        display: table-cell;
-                        padding: 10px;
-                        vertical-align: bottom;
-
-                    }
-
-                    .headline {
-                        font-family: 'Fira Sans Semibold';
-                        font-size: 16px;
-
-                        @include responsify($break-mobile) {
-                            @include font-size(3);
-                        }
-
-                        color: $bg;
-                        text-shadow: 0px 2px 5px #333;
-                        line-height: 1.25;
-                    }
-                }
-            }
-        }
-    }
-
-    // End News Styles
 
     // Begin Recent Devices Styles
     .recent-devices-container {
@@ -991,7 +894,7 @@ button {
             .image {
                 position: relative;
                 height: 192px;
-                background: url('../public/img/129644_adapted_1440x2560.jpg') center no-repeat;
+                background: url('./img/129644_adapted_1440x2560.jpg') center no-repeat;
                 background-size: cover;
                 transition: 300ms ease-in;
             }
@@ -1099,7 +1002,7 @@ button {
 
         .image {
             height: 95px;
-            background: url('../public/images/129644_adapted_1440x2560.jpg') center no-repeat;
+            background: url('./images/129644_adapted_1440x2560.jpg') center no-repeat;
             background-size: cover;
             background-attachment: scroll;
             filter: sepia(0.7) brightness(0.7);

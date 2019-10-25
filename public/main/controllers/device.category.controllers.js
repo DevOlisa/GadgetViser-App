@@ -1,8 +1,9 @@
 angular.module('Main')
-.controller('GadgetCategoryController', ['$scope', '$location', function( $scope, $location) {
+.controller('GadgetCategoryController', ['$scope', '$location', 'RouteStateService', 'GadgetBuilder', 
+function( $scope, $location, RouteStateService, GadgetBuilder) {
     var self = this;
-    alert(currentRoute.categoy);
-    self.latestDevices
+    self.category = RouteStateService.currentRoute.category;
+    self.fetchLatestDevices
 }])
 .controller('TrendingNewsController', ['$scope', function($scope) {
     var self = this;
