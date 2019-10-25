@@ -11,6 +11,12 @@ let GadgetSchema = new Schema({
         type: String,
         trim: true
     },
+    fullname: {
+        type: String,
+        get: function (name, oem) {
+            return oem + ' ' + name;
+        }
+    },
     image: {
         type: String,
         trim: true,
@@ -24,6 +30,14 @@ let GadgetSchema = new Schema({
     category: [],
     link: {
         type: String
+    },
+    released: {
+        type: Boolean,
+        default: true
+    },
+    releaseDate: {
+        type: Date,
+        default: Date.now
     },
     likes: {
         type: Number,
@@ -47,17 +61,17 @@ let GadgetSchema = new Schema({
         ref: 'Question'
     }]
 }, {
-        toObject: {
-            virtuals: true
-        },
-        toJSON: {
-            virtuals: true
-        }
-    });
+    toObject: {
+        virtuals: true
+    },
+    toJSON: {
+        virtuals: true
+    }
+});
 
 // Add Static Methods
-GadgetSchema.statics.findOneByName = function(name, callback) {
-    this.findOne({name: new RegExp(name, 'i')}, callback);
+GadgetSchema.statics.findOneByName = function (name, callback) {
+    this.findOne({ name: new RegExp(name, 'i') }, callback);
 };
 
 //********  Middleware functions**********//

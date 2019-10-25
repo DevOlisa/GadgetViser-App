@@ -13,22 +13,73 @@ exports.create = (req, res, next) => {
 };
 
 exports.list = (req, res, next) => {
-    console.log(req.query)
-    Gadget.find(req.query, "", {
-        limit: 10
-    },
-        (err, gadgets) => {
-            if (err) {
-                next(err);
-            } else {
-                res.json(gadgets);
-            }
-        });
+    if (!req.query.function) {
+        console.log('Simple List Request');
+        Gadget.find(req.query, "", {
+            limit: 10
+        },
+            (err, gadgets) => {
+                if (err) {
+                    next(err);
+                } else {
+                    res.json(gadgets);
+                }
+            });
+    } else {
+        next();
+    }
+};
+
+exports.fetchLatest = (req, res, next) => {
+    if (req.query.function === "latest") {
+        console.log('fetching latest')
+
+        Gadget.find({}, "", {
+            limit: 10
+        },
+            (err, gadgets) => {
+                if (err) {
+                    next(err);
+                } else {
+                    res.json(gadgets);
+                }
+            }).sort({ added: -1 });
+    } else {
+        next();
+    }
+};
+
+exports.fetchUpcoming = (req, res, next) => {
+    if (req.query.function === "upcoming") {
+        console.log('fetching upcoming')
+
+        Gadget.find({
+            released: false
+        }, "", {
+            limit: 10
+        },
+            (err, gadgets) => {
+                if (err) {
+                    next(err);
+                } else {
+                    res.json(gadgets);
+                }
+            }).sort({ added: -1 });
+    } else {
+        next();
+    }
+};
+
+exports.fetchOem = (req, res, next) => {
+    if (req.query.function === "oem") {
+        console.log('fetching oem devices');
+
+    }
 };
 
 exports.fetchList = (req, res, next, params) => {
     console.log('Got here in list function');
-    Gadget.find( req.params, "", {
+    Gadget.find(req.params, "", {
         limit: req.params.limit
     },
         (err, gadgets) => {

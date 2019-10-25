@@ -41,14 +41,19 @@ angular.module('Main')
             $scope.gadget = selectedGadget;
             $scope.gadgets = [selectedGadget];
             $scope.similarGadgets = [];
-            alert(currentRoute);
 
             self.likeGadget = function() {
                 ++$scope.gadget.likes;
             };
 
             self.getOemDevice = function() {
-                return GadgetFactory.getGadgets({type: selectedGadget.type, oem: selectedGadget.oem})
+                var opt = {};
+                opt.type = selectedGadget.type;
+                opt.oem= selectedGadget.oem;
+                // opt.sort = -1;
+                // opt.limit = 6;
+                // console.log(opt);
+                return GadgetFactory.getGadgets(opt)
                 .then(function(gadgets) {
                     $scope.similarGadgets = gadgets;
                 }, function(error) {

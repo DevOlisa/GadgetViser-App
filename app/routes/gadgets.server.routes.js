@@ -3,7 +3,7 @@ const gadgets = require('../controllers/gadgets.server.controller');
 module.exports = (app) => {
 
     app.route('/gadgets')
-        .get(gadgets.list)
+        .get(gadgets.list, gadgets.fetchLatest, gadgets.fetchOem)
         .post(gadgets.create);
 
     app.route('/gadget/:gadgetUrl')
