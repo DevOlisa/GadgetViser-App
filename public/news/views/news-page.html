@@ -1,0 +1,6 @@
+<div id="news" class="page" ng-controller="NewsController">
+    <h3>LATEST STORIES</h3>
+    <ul class="news-list">
+            <news-item ng-repeat="article in news" ng-click="selectArticle()"></news-item>
+    </ul>
+</div>

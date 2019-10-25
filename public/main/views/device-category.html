@@ -1,0 +1,113 @@
+<!------------------------------------------ BEGIN DEVICE CATEGORY HTML ----------------------------------------->
+<div id="device-category" class="page">
+    <div class="featured-news-wrapper" ng-controller="FeaturedArticleController as fCtrl">
+        <h3>FEATURED NEWS</h3>
+        <div class="featured-news-carousel">
+            <div class="image" style="background-image: url({{fCtrl.currentFeaturedArticle.image}})">
+                <span class="slide-indicator-wrapper">
+                    <slide-indicator class="slide-indicator" ng-click="showLinkedItem()" ng-repeat="item in fCtrl.FeaturedArticles" 
+                    ng-class="{'selected': fCtrl.currentFeaturedArticle._id === item._id}"></slide-indicator>
+                </span>
+            </div>
+            <article class="content">
+                <header>
+                    <h3>{{fCtrl.currentFeaturedArticle.title}}</h3>
+                    <div class="stats">
+                        <span class="posted">
+                            12 hrs
+                        </span>
+                        <span class="views">
+                            3.4k views
+                        </span>
+                    </div>
+                </header>
+            </article>
+
+        </div>
+    </div>
+
+    <div class="coming-soon" ng-controller="PhoneController as pCtrl">
+        <h3>LATEST</h3>
+        <div class="devices-row">
+            <!-- Begin Item Wrapper -->
+            <div class="devices-row-wrapper">
+                <!-- Begin Item Wrapper -->
+                <div class="item-wrapper" ng-repeat="gadget in pCtrl.gadgets">
+                    <gadget-shell></gadget-shell>
+                </div>
+                <!-- End Item Wrapper -->
+            </div>
+            <!-- End Device Row Wrapper -->
+        </div>
+    </div>
+
+    <div class="new-release" ng-controller="PhoneController as pCtrl">
+        <h3>TOP CHOICE</h3>
+        <div class="devices-row">
+            <!-- Begin Item Wrapper -->
+            <div class="devices-row-wrapper">
+                <!-- Begin Item Wrapper -->
+                <div class="item-wrapper" ng-repeat="gadget in pCtrl.gadgets">
+                    <gadget-shell></gadget-shell>
+                </div>
+                <!-- End Item Wrapper -->
+            </div>
+            <!-- End Device Row Wrapper -->
+        </div>
+    </div>
+
+    <div class="new-release" ng-controller="PhoneController as pCtrl">
+        <h3>UPCOMING</h3>
+        <div class="devices-row">
+            <!-- Begin Item Wrapper -->
+            <div class="devices-row-wrapper">
+                <!-- Begin Item Wrapper -->
+                <div class="item-wrapper" ng-repeat="gadget in pCtrl.gadgets">
+                    <gadget-shell></gadget-shell>
+                </div>
+                <!-- End Item Wrapper -->
+            </div>
+            <!-- End Device Row Wrapper -->
+        </div>
+    </div>
+
+    <div id="questions" class="new-release">
+        <h3>TRENDING QUESTIONS</h3>
+        <question-panel></question-panel>
+        <question-panel></question-panel>
+
+    </div>
+
+    <!-- 
+    <div class="manufacturer">
+        <h2>Manufacturers</h2>
+        <div class="manufacturer-list">
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Huawei</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Motorola</div>
+            <div class="oem">Microsoft</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Samsung</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            <div class="oem">Apple</div>
+            
+        </div>
+    </div> -->
+</div>
+<!------------------------------------------ END DEVICE CATEGORY HTML ----------------------------------------->
+
+<!------------------------------------------ BEGIN SIDEBAR HTML ----------------------------------------->
+<div class="gad-shell-sidebar" ng-include="'./main/views/sidebar.html'"></div>

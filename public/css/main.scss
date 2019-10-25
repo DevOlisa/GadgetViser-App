@@ -1,0 +1,185 @@
+ /* Main Application Stylesheet */
+ // Setting Default Variables
+
+
+ // border width
+ $bw : 0.2px;
+
+ // border radius
+ $br : 6px;
+
+ //border color
+ $bc : rgb(255, 199, 210);
+
+ /*########### COLORS ###############*/
+
+
+ // /**** Colors *****/
+ $orange : #ff7933;
+ $dp_orange : #cb5b20;
+ $lt_orange : #ffdbc8;
+
+ $pri :rgb(236, 0, 51);
+ $sec :rgb(0, 179, 255);
+ $ter :rgb(255, 247, 0);
+
+
+ //bg_color
+ $bg : #ffffff;
+ $main_bg: #ffffff;
+
+ //font color
+ $blk : #cfcfcf;
+ $blk1 : #aeadad;
+ $blk2 : #707070;
+ $blk3 : #3b3b3b;
+
+ /*########### END COLORS ############*/
+
+ //base font-size
+ $base-font-size : 12px;
+ $gr : 1.65;
+
+ //Font Sizes Defaults
+ @mixin font-size($size) {
+     @if ($size==1) {
+         font-size: $base-font-size;
+     }
+
+     @else if ($size==2) {
+         font-size: 14 + px;
+     }
+
+     @else if ($size==3) {
+         font-size: 20px;
+     }
+
+     @else if ($size==4) {
+         font-size: 32px;
+     }
+ }
+
+
+ // Font styles
+ $font1: 'Fira Sans';
+ $font2: 'Fira sans';
+ $font3: 'Fira Sans';
+
+ // Resuable Code
+ %header {
+     font-family: 'Fira Sans';
+ }
+
+ %ffL {
+    font-family: 'Fira Sans Light';
+}
+
+%ffR {
+    font-family: 'Fira Sans';
+}
+ 
+%ffM {
+    font-family: 'Fira Sans Medium';
+}
+
+ %ffB {
+    font-family: 'Fira Sans';
+    font-weight: bold;
+}
+
+ %ffEB {
+    font-family: 'Fira Sans Extrabold';
+}
+
+ html {
+     width: 100%;
+     height: 100%;
+ }
+
+ /*########### MEDIA QUERY DEPENDENT STYLES ###############*/
+
+ // Media Query BreakPoints
+ $break-smobile : 360px;
+ $break-mobile : 640px;
+ $break-tablet : 800px;
+ $break-desktop : 1024px;
+ $break-desktop-large : 1400px;
+
+ //Mixin for inserting Media Queries
+ @mixin responsify($breakPoint) {
+     @media (min-width: $breakPoint) {
+         @content;
+     }
+ }
+
+/*########### END MEDIA QUERY DEPENDENT STYLES ############*/
+
+ // Scroll Bar Style
+ ::-webkit-scrollbar {
+     width: 10px;
+ }
+
+ ::-webkit-scrollbar-track {
+     background: transparent;
+     box-shadow: inset 0 0 5px 5px transparent;
+     border: 3px solid transparent;
+ }
+
+ ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px 5px #afa6a1;
+    border: 3px solid transparent;
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+     // background: $pri;
+     transition: 400ms;
+ }
+
+ //Profile pic style
+ %profile-pics {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid white;
+    border-radius: 13px;
+ }
+
+ /*########### Animation Keyframe ###############*/
+
+ @keyframes slideIn {
+    from {
+        transform: translate(30px, 0px);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOut {
+    to {
+        transform:  translate(60px, 0);
+        opacity: 0;
+    }
+}
+ /*########### END Animation Keyframe ###############*/
+ 
+ /*########### NGVIEW ANIMATION STYLES ###############*/
+main[ng-view] {
+}
+
+main[ng-view] .ng-enter, main[ng-view] .ng-leave {
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+main[ng-view] .ng-enter { left: 100%;}
+main[ng-view] .ng-enter-active { left: 0;}
+main[ng-view] .ng-leave { left: 0;}
+main[ng-view] .ng-leave-active { left: -100%;}
+
+
+ /*########### NGVIEW ANIMATION STYLES ###############*/

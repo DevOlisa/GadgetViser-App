@@ -1,0 +1,2001 @@
+//Import Default Variables
+@import 'main';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: $font3;
+    @include font-size(2);
+}
+
+h2 {
+    @extend %header;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
+    @include font-size(1);
+}
+
+label {
+    @include font-size(1);
+    color: $blk1;
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-family: inherit;
+}
+
+button {
+    height: 42px;
+    font-family: 'Fira Sans';
+    font-weight: bold;
+    background-color: $bg;
+    outline: none;
+    cursor: pointer;
+}
+
+// Generic Classes Definition
+
+.centertext {
+    text-align: center;
+}
+
+.page {
+    margin: 10px;
+
+    @include responsify($break-tablet) {
+        margin: 20px 50px;
+    }
+}
+
+.orange {
+    color: $orange;
+}
+
+.blur {
+    filter: blur(3px) saturate(0.6) brightness(0.7)
+}
+
+.ng-move {
+    position: absolute;
+    left: -10px;
+    opacity: 0;
+    transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) all;
+}
+
+.ng-move-active {
+    left: 0;
+    opacity: 1;
+    transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) all;
+}
+
+
+// Layout Styles
+#gad {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.gad-shell {
+
+    &-header,
+    &-main,
+    &-header-searchbar,
+    &-header-account,
+    &-sidenav,
+    &-sidenav-footer,
+    &-modal,
+    &-sidebar,
+    &-mask {
+        position: absolute;
+        overflow: hidden;
+    }
+}
+
+.gad-shell-mask {
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    transition: 300ms;
+}
+
+.gad-shell-header {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    z-index: 3;
+    border-bottom: 1px solid rgb(255, 171, 188);
+    overflow: initial;
+
+
+    &-logo {
+        position: absolute;
+        width: 115px;
+        height: 100%;
+
+        .burger {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+
+            img {
+                display: block;
+                margin: 3px auto;
+            }
+
+            @include responsify($break-mobile) {
+                display: none;
+            }
+        }
+
+        a {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0px;
+            width: 50%;
+            text-indent: -20000px;
+            cursor: pointer;
+
+            @include responsify($break-mobile) {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
+
+            #logo {
+                position: absolute;
+                top: 7px;
+                left: calc(50% - 20px);
+                //left: 38px;
+                height: 40px;
+            }
+        }
+    }
+
+    &-searchbar {
+        position: absolute;
+        top: -100px;
+        left: 10px;
+        right: 10px;
+        padding: 0 7px;
+        border-width: 0 0 $bw 0;
+        z-index: 3;
+        opacity: 0;
+        transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        @include responsify($break-desktop) {
+            display: initial;
+            left: 115px;
+            right: 240px;
+            opacity: 1;
+        }
+
+        &>table {
+            width: 100%;
+        }
+
+        & .main-search {
+            height: 50px;
+
+            & input {
+                font-family: $font1;
+                @include font-size(2);
+                background: url(../Icons/search.png) left center no-repeat;
+                background-size: 30px;
+                text-indent: 40px;
+                outline: none;
+            }
+        }
+
+        & .search-control {
+            width: 30px;
+
+            img {
+                width: 24px
+            }
+
+            @include responsify($break-desktop) {
+                display: none;
+            }
+        }
+
+        //When on mobile and expanded
+        &.expanded {
+            display: block;
+            top: 58px;
+            right: 7px;
+            left: 7px;
+            background: white;
+            box-shadow: 0px 2px 10px rgba($color: #4e1f1f, $alpha: 0.16);
+            border-radius: 3px;
+            opacity: 1;
+            z-index: 12;
+        }
+
+        .search-results-wrapper {
+            margin: 0 0 7px;
+
+            h3 {
+                margin: 4px 0 2px;
+
+                &:after {
+                    display: inline-block;
+                    width: 50%;
+                    height: 1px;
+                    margin-left: 10px;
+                    margin-bottom: 5px;
+                    background: linear-gradient(90deg, rgb(166, 167, 168), rgb(240, 242, 245));
+                    content: "";
+                }
+            }
+
+            .device-search-result {
+
+                &-item {
+                    padding: 5px 10px;
+                    height: 39px;
+                    margin: 5px 0;
+                    overflow: hidden;
+
+                    &-image {
+                        float: left;
+                        width: 35px;
+                        height: 35px;
+                        margin-right: 10px;
+                        background: url(../img/phone_pics/sony-xperia-1.jpg) center no-repeat;
+                        background-size: cover;
+                    }
+
+                    &-name {
+                        float: left;
+                        transform: translate(0, 10px);
+                        @extend %ffM;
+                    }
+                }
+            }
+
+            .news-search-result {
+                &-item {
+                    padding: 10px;
+                    border-bottom: 1px solid $blk;
+
+                    &:last-of-type {
+                        border-bottom: none;
+                    }
+
+                    &-title {
+                        @extend %ffM;
+                        color: $blk2;
+                        word-break: break-all;
+                    }
+                }
+            }
+
+            .questions-search-result {
+                &-item {
+                    padding: 10px;
+
+                    &-title {
+                        @extend %ffM;
+                        color: $blk2;
+                    }
+                }
+            }
+
+        }
+    }
+
+    &-primarylinks {
+        display: none;
+        position: absolute;
+        right: 119px;
+        top: 0;
+        height: 100%;
+        width: auto;
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            float: right;
+
+            a {
+                display: block;
+                padding: 17px 10px;
+            }
+        }
+
+        @include responsify($break-mobile) {
+            display: initial;
+        }
+
+    }
+
+    &-account {
+        display: block;
+        top: 0;
+        right: 0;
+        width: 54px;
+        height: 100%;
+        border: $bw solid $bc;
+        border-width: 0 0 0 $bw;
+
+        button {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        button img {
+            position: absolute;
+            top: 7px;
+            left: 5px;
+        }
+
+        div {
+            display: none;
+            position: absolute;
+            left: 50px;
+            top: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @include responsify($break-mobile) {
+            display: initial;
+            width: 119px;
+
+            div {
+                display: initial;
+            }
+        }
+    }
+
+    &-notification {
+        display: none;
+        @extend .gad-shell-header-account;
+        width: 54px;
+        right: 119px;
+
+        a img {
+            left: 7px;
+        }
+    }
+
+    &-toggle {
+        position: absolute;
+        right: 54px;
+        top: 0;
+        bottom: 0;
+        width: 54px;
+        padding: auto;
+
+        &-button {
+            width: 54px;
+            height: 100%;
+            padding-top: 4px;
+
+            img {
+                width: 40px;
+            }
+        }
+
+        @include responsify($break-mobile) {
+            display: none;
+        }
+    }
+}
+
+.gad-shell-sidenav {
+    position: fixed;
+    width: 0%;
+    left: 0;
+    top: 54px;
+    bottom: 0;
+    z-index: 5;
+    background-color: #fff;
+    transition: 200ms ease-in;
+
+    &.extended {
+        width: 80%;
+        transition: 300ms ease;
+    }
+
+    @include responsify($break-mobile) {
+        width: 115px;
+    }
+
+    border: $bw solid $bc;
+    border-width: 0 0.2px 0 0;
+
+    &-navlist {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 400px;
+
+        .nav-items {
+            display: block;
+            float: right;
+            width: 100%;
+            padding: 3px 0;
+            text-align: center;
+            color: $blk2;
+            @include font-size(1);
+
+            &::before {
+                content: '';
+                display: block;
+                clear: both;
+            }
+        }
+
+        .nav-items img {
+            display: block;
+            margin: auto;
+            width: 38px;
+        }
+
+        .nav-items a {
+            overflow: hidden;
+        }
+    }
+
+    &-footer {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 230px;
+
+        .social-connect {
+            position: absolute;
+            bottom: 137px;
+            left: 50%;
+            right: 0;
+        }
+
+        .main-social-links {
+            display: table-cell;
+            width: 30px;
+
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        .footer-links {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            padding: 20px 14px;
+
+            .copy {
+                margin-top: 12px;
+                font-size: 12px;
+                color: $blk1
+            }
+        }
+
+        .footer-links div {
+            padding: 4px 0;
+            text-align: right;
+            color: $blk;
+            font-size: 14px;
+        }
+    }
+
+}
+
+/***** Main Content Styles *****/
+
+.gad-shell-main {
+    top: 54px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $main_bg;
+    overflow-y: auto;
+
+    @include responsify($break-desktop) {
+        left: 115px;
+        right: 300px;
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+    }
+}
+
+/***********************************
+               Side Bar Styles
+************************************/
+.gad-shell-sidebar {
+    position: initial;
+    width: 300px;
+    padding: 20px;
+
+    @include responsify($break-desktop) {
+        display: initial;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 54px;
+    }
+
+    .popular-container {
+        height: 300px;
+
+        h3::after {
+            position: relative;
+            display: inline-block;
+            top: 4px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: url(../Icons/hot-24px.png) center center no-repeat;
+            background-size: 24px;
+            content: "";
+        }
+    }
+
+    .categories-container {
+        h3::after {
+            position: relative;
+            top: 4px;
+            left: 3px;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: url(../Icons/categories-24px.png) center center no-repeat;
+            background-size: 24px;
+            content: "";
+        }
+
+
+
+        .categories-list ul {
+            margin-top: 30px;
+            list-style: none;
+
+            li {
+                margin-bottom: 13px;
+                padding: 0;
+            }
+
+            li a>* {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .category-image {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+    }
+
+    .category-name {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+// End of SideBar Styles
+
+/*****Sign In Modal  Styles *******/
+.gad-shell-dialog {
+    position: fixed;
+    top: 20px;
+    right: 0px;
+    left: 0;
+    bottom: 0;
+    background: $bg;
+    border: $bw solid $bc;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    box-shadow: 0 -10px 30px rgba($color: #3f1e1e, $alpha: 0.16);
+    z-index: 10;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: 400ms;
+
+    @include responsify($break-smobile) {
+        top: 5%;
+    }
+
+    &-close {
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 11;
+    }
+
+    &.ng-hide-remove {
+        top: 100%;
+    }
+
+    // &.ng-hide-add-remove-active,
+    // &.ng-hide-add {
+    //     top: 10%;
+    // }
+
+    &.ng-hide-add {
+        transition: 300ms;
+    }
+
+    &.ng-hide-add-active {
+        top: 100%;
+    }
+
+    .signup-content {
+
+        &.ng-enter {
+            transform: translate(100%, 0) rotateZ(-90deg);
+            opacity: 0;
+            transition: 400ms;
+
+            .button-sec span:before {
+                transform: rotateX(90deg);
+                transition: 400ms;
+            }
+        }
+
+        &.ng-enter-active {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        &.ng-leave {
+            transform: translate(0, 0);
+            transition: 1000ms;
+            opacity: 1;
+        }
+
+        &.ng-leave-active {
+            transform: translate(100%, 0) rotateZ(45deg);
+            opacity: 0;
+        }
+
+        .button-sec span:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: "";
+            height: 40px;
+            width: 40px;
+            transform: rotateY(180deg);
+            transition: 200ms;
+            background: url(../Icons/arrow-r-48px.png) 0px -4px no-repeat;
+        }
+    }
+
+    .signin-content {
+        &.ng-enter {
+            transform: translate(-100%, 0) rotateZ(90deg);
+            opacity: 0;
+            transition: 400ms;
+
+            .button-sec span:after {
+                transform: rotateX(90deg);
+                transition: 400ms;
+            }
+        }
+
+        &.ng-enter-active {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        &.ng-leave {
+            transform: translate(0, 0);
+            opacity: 1;
+            transition: 1000ms;
+        }
+
+        &.ng-leave-active {
+            transform: translate(-100%, 0) rotateZ(-45deg);
+            opacity: 0;
+        }
+
+        .button-sec span:after {
+            display: inline-block;
+            vertical-align: middle;
+            content: "";
+            height: 40px;
+            width: 40px;
+            transition: 200ms;
+            background: url(../Icons/arrow-r-48px.png) 0px -4px no-repeat;
+        }
+    }
+
+    &-content {
+        position: absolute;
+        top: 0;
+        bottom: 81px;
+        left: 0;
+        right: 0;
+
+        .button-sec {
+            display: block;
+            height: 30px;
+            margin: auto;
+            @include font-size(2);
+            color: $blk2;
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: 0;
+            padding: 5px 15px;
+            transform: translate(0, -50%);
+        }
+
+        .oauth-action {
+            position: relative;
+            left: 50%;
+            display: inline-block;
+            transform: translate(-50%, 0);
+
+            .action {
+                float: left;
+                width: 40px;
+                margin: 5px 10px;
+
+                @include responsify($break-smobile) {
+                    width: 55px;
+                    margin: 10px 15px;
+                }
+
+                button {
+                    width: auto;
+                    border: none;
+
+                    img {
+                        width: 40px;
+
+                        @include responsify($break-smobile) {
+                            width: 55px;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .seperator {
+            display: block;
+            margin-bottom: 14px;
+            color: #707070;
+            text-align: center;
+            @extend %ffB;
+        }
+
+        .seperator::after {
+            display: inline-block;
+            width: 30%;
+            height: 1px;
+            margin-left: 10px;
+            margin-bottom: 4px;
+            background: linear-gradient(90deg, #777, #eee);
+            content: "";
+        }
+
+        .seperator::before {
+            display: inline-block;
+            width: 30%;
+            height: 1px;
+            margin-bottom: 4px;
+            margin-right: 10px;
+            background: linear-gradient(-90deg, #777, #eee);
+            content: "";
+        }
+
+        h2 {
+            margin-top: 15px;
+            text-align: center;
+        }
+    }
+}
+
+* {
+    border: none;
+}
+
+/****************************************
+                    HomePage Sytles
+*****************************************/
+#home {
+    height: 100%;
+    overflow-y: auto;
+
+    // Begin Call To Acton
+    .forum-cta-container {
+        width: 100%;
+        height: 200px;
+        text-align: center;
+
+    }
+
+    .forum-cta {
+        display: block;
+        height: 100%;
+
+        h1 {
+            font-family: 'Fira Sans Extralight';
+        }
+
+        p {
+            margin: 3px auto 14px;
+        }
+
+        button {
+            height: 36px;
+            width: 150px;
+            border-radius: 6px;
+            font-family: 'Fira Sans';
+            font-weight: bold;
+        }
+    }
+
+    // End Call to action
+
+    // Begin News Styles
+    .news-container {
+        margin-bottom: 30px;
+        overflow: hidden;
+
+        .news-wrapper {
+            margin: 22px 0;
+
+            &~button {
+                float: right;
+            }
+
+            .news-list {
+                display: grid;
+                width: 100%;
+                height: auto;
+                grid-template-rows: repeat(3, 185px);
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 10px;
+                list-style: none;
+                padding: 0;
+                margin: auto;
+
+                grid-template-areas:
+                    "imp imp"
+                    "box2 box3"
+                    "box4 box5";
+
+                @include responsify($break-tablet) {
+                    grid-gap: 15px;
+                    grid-template-rows: repeat(2, 1fr);
+                    grid-template-columns: repeat(12, 1fr);
+                    height: 418px;
+                    grid-template-areas:
+                        "imp imp imp imp box2 box2 box2 box2 box3 box3 box3 box3"
+                        "imp imp imp imp box4 box4 box4 box4 box5 box5 box5 box5";
+                }
+
+                .important {
+                    grid-area: imp;
+                    background: url('../public/images/127399_adapted_1440x2560.jpg') center no-repeat;
+                    background-size: cover;
+                }
+
+                .news-item:nth-child(2) {
+                    grid-area: box2;
+                    background: url('../public/images/129485_adapted_1440x2560.jpg') center center no-repeat;
+                    background-size: cover;
+                }
+
+                .news-item:nth-child(3) {
+                    grid-area: box3;
+                    background: url('../public/images/121644_adapted_1440x2560\ \(2\).jpg') center center no-repeat;
+                    background-size: cover;
+                }
+
+                .news-item:nth-child(4) {
+                    grid-area: box4;
+                    background: url('../public/images/127422_adapted_1440x2560.jpg') center center no-repeat;
+                    background-size: cover;
+                }
+
+                .news-item:nth-child(5) {
+                    grid-area: box5;
+                    background: url('../public/images/129644_adapted_1440x2560.jpg') center center no-repeat;
+                    background-size: cover;
+                }
+
+                .news-item {
+                    display: table;
+                    height: 100%;
+
+                    &>div {
+                        display: table-cell;
+                        padding: 10px;
+                        vertical-align: bottom;
+
+                    }
+
+                    .headline {
+                        font-family: 'Fira Sans Semibold';
+                        font-size: 16px;
+
+                        @include responsify($break-mobile) {
+                            @include font-size(3);
+                        }
+
+                        color: $bg;
+                        text-shadow: 0px 2px 5px #333;
+                        line-height: 1.25;
+                    }
+                }
+            }
+        }
+    }
+
+    // End News Styles
+
+    // Begin Recent Devices Styles
+    .recent-devices-container {
+        // @extend .news-container;
+        height: auto;
+    }
+
+    // End Recent Devcices Styles
+}
+
+/********* End of Homepage Styles ********/
+
+/********* Begin Device Category Page Styles  ********/
+
+
+#device-category {
+    .featured-news-wrapper {
+
+        .featured-news-carousel {
+            margin: 15px 0px;
+            border: 1px solid #ececec;
+
+            .image {
+                position: relative;
+                height: 192px;
+                background: url('../public/img/129644_adapted_1440x2560.jpg') center no-repeat;
+                background-size: cover;
+                transition: 300ms ease-in;
+            }
+
+            .content {
+                height: auto;
+                padding: 14px 10px 0;
+
+                header {
+                    position: relative;
+                    height: 90px;
+
+                    .stats {
+                        position: absolute;
+                        bottom: 8px;
+                    }
+
+                    span {
+                        font-size: 10px;
+                        color: $blk1;
+                    }
+                }
+            }
+        }
+    }
+
+    .manufacturer {
+        &-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e7e7e7;
+            justify-content: space-between;
+
+            .oem {
+                flex: 0 0 300px;
+                padding: 7px;
+                text-align: center;
+                font-family: 'Fira Sans Medium';
+                font-style: italic;
+                color: $pri;
+            }
+        }
+    }
+}
+
+
+/********* End of Device Category Page Styles ********/
+
+
+/********* Begin Device Sub-Category Page Styles ********/
+#sub-category {
+    .sub-category-intro {
+        position: relative;
+        height: 194px;
+        width: 868px;
+        margin-bottom: 50px;
+
+        .text-box {
+            position: absolute;
+            bottom: 0;
+            display: inline-block;
+
+            ul {
+                list-style: none;
+                margin: 0;
+
+                p {
+                    line-height: 1.65;
+                    font-weight: bold;
+                    color: $blk1;
+                }
+            }
+        }
+
+        .image {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            background: url(../Icons/gaming-art.png) center right no-repeat;
+            background-size: cover;
+        }
+    }
+}
+
+/********* End of Device Sub-Category Page Styles ********/
+
+
+/********* Begin News CSS Styles ********/
+#news {
+
+    .news-list,
+    .news-list-item {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .news-list-item {
+        margin: 10px 0;
+        border: 1px solid #ececec;
+
+        .image {
+            height: 95px;
+            background: url('../public/images/129644_adapted_1440x2560.jpg') center no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            filter: sepia(0.7) brightness(0.7);
+            transition: 400ms;
+        }
+
+        .content {
+            height: auto;
+            padding: 14px 10px;
+
+            header {
+                span {
+                    display: inline-block;
+                    margin: 8px 10px 5px 0;
+                    font-size: 10px;
+                    color: $blk1;
+                }
+            }
+
+            section {
+                display: none;
+                line-height: 1.538461538461538;
+
+                p {
+                    font-size: 14px;
+                    color: $blk3;
+                }
+
+                .social-share-article {
+                    button {
+                        margin-right: 10px;
+                        color: $sec;
+                    }
+                }
+            }
+        }
+
+        &.expand {
+            .image {
+                height: 197px;
+                transition: 400ms;
+                filter: none;
+            }
+
+            .content section {
+                display: initial;
+            }
+        }
+    }
+}
+
+
+/********* End News CSS Styles ********/
+
+/********* Begin View Device Page Styles ********/
+.device-page {
+
+    &-main {}
+
+    h1 {
+        padding-top: 9px;
+        font-family: 'Fira Sans';
+    }
+
+    .stats-pane {
+        padding: 5px 0;
+
+        .stat {
+            float: left;
+            display: block;
+            width: 46px;
+            height: 60px;
+            color: $blk1;
+            text-align: center;
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        :nth-child(3) {
+            float: right;
+        }
+
+        .watch-btn {
+            margin: 7px 0;
+            width: 100%;
+            color: grey;
+            border: 1px solid $blk;
+            border-radius: 3px;
+
+            & span,
+            & img {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    header.main {
+        position: relative;
+        right: 0;
+        left: 0;
+        background-color: #fff;
+        overflow: hidden;
+        border: none;
+        border-bottom: 1px solid #ececec;
+
+        @include responsify($break-desktop) {
+            right: 300px;
+        }
+
+        nav {
+            padding: 14px auto;
+
+            ul {
+                list-style: none;
+                overflow: hidden;
+
+                li {
+                    float: left;
+                    width: 33.3333333333333%;
+
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 15px 8px;
+                        font-weight: bold;
+                        color: #707070;
+
+                        &>* {
+                            display: inline-block;
+                            vertical-align: middle
+                        }
+
+                        object {
+                            width: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-main {
+        // display: flex;
+        // margin-top: 30px;
+        // flex-wrap: wrap;
+        // justify-content: center;
+
+        &-image {
+            width: 33.33333%;
+            min-width: 300px;
+            margin: 10px auto;
+            padding: 15px;
+
+            img {
+                display: block;
+                max-height: 190px;
+                margin: auto;
+            }
+        }
+
+        &-content {
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+
+            @include responsify($break-tablet) {
+                width: 62%;
+            }
+
+
+            /************ Begin Prices Style ****************/
+            #prices {
+                .controls {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    border-collapse: collapse;
+
+                    td {
+                        width: 50%;
+
+                        button {
+                            width: 100%;
+                            height: 54px;
+                        }
+                    }
+
+                    &-modal {
+                        display: block;
+                        position: fixed;
+                        top: calc(50vh - 200px);
+                        width: 90%;
+                        height: auto;
+                        margin: auto;
+                        padding-bottom: 62px;
+                        border-radius: 3px;
+                        box-shadow: 0px 2px 99px rgba($color: #4e1f1f, $alpha: 0.16);
+                        z-index: 100;
+
+                        .modal-title {
+                            @include font-size(3);
+                            position: relative;
+                            left: 15px;
+                            top: 25px;
+                            margin-bottom: 40px;
+                        }
+
+                        table {
+                            position: relative;
+                            right: 15px;
+                            left: 15px;
+                            width: 100%;
+
+                            .label {
+                                height: 42px;
+                                width: 30%;
+                                @extend %ffB;
+                                color: $blk1;
+                            }
+                        }
+
+                        &.ng-show {}
+
+                        footer {
+                            position: absolute;
+                            bottom: 10px;
+                            right: 14px;
+                            left: 0;
+                            overflow: hidden;
+
+                            button {
+                                float: right;
+                                height: 42px;
+                                width: 90px;
+                            }
+                        }
+                    }
+                }
+
+                .store-list {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+
+                    .store-item {
+                        padding: 10px;
+                        margin-bottom: 15px;
+                        // border: 1px solid #afafaf;
+                        border-radius: 3px;
+
+                        &-unit {
+                            width: 100%;
+                            height: 140px;
+                            // margin: 10px;
+                            border-collapse: collapse;
+
+                            .img {
+                                width: 40%;
+                                padding: 10px;
+                                max-width: 200px;
+
+                                img {
+                                    display: block;
+                                    width: 80%;
+                                    margin: auto;
+                                }
+                            }
+
+                            .detail {
+                                position: relative;
+
+                                span {
+                                    display: block;
+                                    margin: 2px 0;
+                                }
+
+                                &-name {
+                                    @include font-size(2);
+                                    @extend %ffB;
+                                }
+
+                                &-condition {
+                                    @include font-size(1);
+                                    @extend %ffL;
+                                }
+
+                                &-seller {
+                                    @include font-size(1);
+                                    @extend %ffR;
+                                    text-decoration: underline;
+                                }
+
+                                &-shipping {
+                                    @include font-size(1);
+                                    @extend %ffB;
+                                }
+
+                                &-price {
+                                    @include font-size(3);
+                                    @extend %ffEB;
+                                }
+
+                                &-store {
+                                    position: absolute;
+                                    bottom: 7px;
+                                    right: 10px;
+                                    width: 40px;
+                                    height: 30px;
+                                    background: #303030;
+                                    background: center no-repeat;
+                                    background-size: contain;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            /************ End Prices Style ****************/
+
+
+            #pictures {
+                .gallery {
+                    &-list {
+                        list-style: none;
+                        margin: 0;
+
+                        &-thumbnail {
+                            display: block;
+                            float: left;
+                            margin: 10px;
+                            cursor: pointer;
+
+                            &-image {
+                                padding: 10px;
+                                border: 1px solid #a8a8a8;
+                            }
+
+                            .selected {
+                                border: 1px solid $pri;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #specifications {
+            width: 100%;
+
+            .specs-category {
+                min-width: 320px;
+                margin: auto;
+                margin-bottom: 10px;
+                border: 1px solid $blk;
+
+                h4 {
+                    margin: 10px;
+                    color: $blk2;
+                    font-size: 12px;
+                }
+
+                &-main {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+
+                    &-item {
+                        margin: 10px;
+                        flex: 0 1 120px;
+
+                        table {
+                            margin: 4px auto;
+                            padding: 10px;
+                            text-align: center;
+                            border-spacing: 0;
+                            border-collapse: collapse;
+
+                            h3 {
+                                @extend h2;
+                                margin-bottom: 3px;
+                            }
+
+                            span {
+                                font-family: 'Fira Sans Medium';
+                                font-size: 12px;
+                                color: $blk1;
+                            }
+                        }
+                    }
+
+                    button {
+                        flex: 1 0 100%;
+                        color: #303030;
+                        font-size: 12px;
+                        background: linear-gradient(#ffffff, #bdbdbd24);
+                        border: none;
+                        border-radius: 0px;
+                    }
+                }
+            }
+
+        }
+
+        #questions {
+            .new-question {
+                width: 100%;
+
+                img {
+                    display: block;
+                    margin: auto;
+                    width: 200px;
+                }
+
+                table {
+                    height: 42px;
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 3;
+                    table-layout: fixed;
+
+                    td:nth-child(2) {
+                        width: 37px;
+                    }
+                }
+
+                &-input {
+                    border: 2px solid grey;
+                    border-radius: 3px;
+
+                    textarea {
+                        width: 100%;
+                        padding: 11px 8px;
+                        @extend %ffEB;
+                        font-size: 18px;
+                        outline: none;
+                        overflow-y: hidden;
+                        box-sizing: border-box;
+                    }
+
+                    input[type=submit] {
+                        width: 37px;
+                        height: 42px;
+                        margin: 0;
+                        background: url(../Icons/arrow-r-48px.png) center no-repeat;
+                        text-indent: -10000000px;
+                    }
+
+                }
+            }
+
+
+        }
+
+        .devices-row {
+            width: 100%;
+            margin-top: 20px;
+
+            h3 {
+                margin-bottom: 12px;
+            }
+        }
+    }
+}
+
+/********* End View Device Page Styles ********/
+
+
+/*############# INDEPENDENT STYLES ###########*/
+
+/*************** Begin Gadget Item List Styles ***************/
+.devices-row {
+    margin: 22px 0;
+
+    &-wrapper {
+        height: auto;
+        width: auto;
+        overflow: auto;
+        white-space: nowrap;
+        background-color: transparent;
+
+        @include responsify($break-mobile) {
+            width: auto;
+        }
+
+        &::-webkit-scrollbar {
+            height: 3px;
+        }
+    }
+
+    .item-wrapper {
+        display: inline-block;
+    }
+
+    .item {
+        width: 123px;
+        height: 177px;
+        margin: 0 10px 10px 0;
+        border-collapse: collapse;
+        border-radius: 3px;
+
+
+        &-image {
+            height: 80%;
+
+            img {
+                display: block;
+                height: 90px;
+                margin: 0 auto;
+            }
+        }
+
+        &-name {
+            height: 20%;
+            font-family: 'Fira Sans Medium';
+            font-size: 12px;
+            text-align: center;
+            white-space: initial;
+        }
+    }
+}
+
+/*************** End Gadget Item List Styles ***************/
+
+/*************** Begin Question Panel List Styles ***************/
+#questions {
+    .main {
+        height: auto;
+        margin: 16px auto;
+
+        &-controls {
+            width: 100%;
+            overflow: hidden;
+
+            &-category {
+                float: left;
+
+                &-btn {
+                    padding: 1px 10px;
+                    border: 1px solid $blk;
+                    border-radius: 3px;
+
+                    &.selected {
+                        background-color: $pri;
+                        color: white;
+                    }
+                }
+            }
+
+            &-sort {
+                float: right;
+
+                &-btn {
+                    width: 60px;
+                    vertical-align: middle;
+
+                    span,
+                    img {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+
+        &-content {
+            overflow: hidden;
+
+            &-question {
+                position: relative;
+                margin: 15px 0;
+                padding: 15px 10px 8px;
+                border: 1px solid #ececec;
+                border-radius: 3px;
+
+                h2 {
+                    @extend %ffB;
+                    font-size: 18px;
+                }
+
+                .label {
+                    @include font-size(1);
+                    @extend %ffB;
+                }
+
+                .tag {
+                    padding: 1px 4px;
+                    background-color: $blk1;
+                    color: white;
+                    border-radius: 12px;
+                }
+
+                &-description {
+                    margin-top: 8px;
+                    line-height: 1.428571428571429;
+
+                    &.hidden {
+                        max-height: 60px;
+                        overflow: hidden;
+                    }
+                }
+
+                &-answer {
+
+                    .reply-pics-image {
+                        @extend %profile-pics;
+                        width: 40px;
+                        height: 40px;
+                        margin-right: 9px;
+                    }
+
+                    .best-answer-tag {
+                        @extend .label;
+                        @extend .tag;
+                        background-color: $blk2;
+                    }
+
+                    .actions {
+                        float: right;
+                        width: 90%;
+                        overflow: hidden;
+
+                        &-upvote,
+                        &-share {
+                            float: left;
+                        }
+
+                        &-downvote,
+                        &-options {
+                            float: right;
+                        }
+
+                        &-upvote,
+                        &-downvote {
+                            width: 50px;
+                            margin: 0 10px 0 15px;
+
+                            span {
+                                position: relative;
+                                bottom: 7px;
+                                left: 4px;
+
+                            }
+                        }
+
+
+                    }
+                }
+
+                button.more {
+                    height: 50px;
+                    width: 100%;
+                    margin-top: -20px;
+                    padding-top: 20px;
+                    color: #303030;
+                    font-size: 12px;
+                    background: linear-gradient(#ffffff24 10%, #ffffff 40%);
+                    border: none;
+                    border-radius: 0px;
+
+                    &-answers {
+                        @extend button.more;
+                        height: 40px;
+                        margin: 4px 0;
+                        padding-top: initial;
+                        background: #e7e7e7;
+                        border-radius: 3px;
+                    }
+                }
+
+                footer {
+                    position: relative;
+
+
+                    @keyframes fade {
+                        to {
+                            opacity: 0;
+                        }
+                    }
+
+                    .option-dialog {
+                        position: absolute;
+                        top: -10px;
+                        right: 30px;
+                        height: auto;
+                        background: white;
+                        border-radius: 3px;
+                        box-shadow: 0px 2px 20px rgba($color: #4e1f1f, $alpha: 0.16);
+                        overflow: hidden;
+                        z-index: 2;
+                        animation: slideIn 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+                        &.ng-hide {
+                            animation: slideOut 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
+                        }
+
+                        &.ng-hide button {
+                            animation: fade 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95)
+                        }
+
+
+
+                        ul {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+
+                            li {
+                                float: left;
+                                padding: 5px 10px;
+                            }
+                        }
+                    }
+
+                    .number-answers {
+                        @extend .tag;
+                    }
+
+                    button.small {
+                        margin: 0 3px 0 5px;
+                        padding: 2px;
+                    }
+
+                    .reply-pics {
+                        position: relative;
+                        float: right;
+
+                        &-image-thumb {
+                            @extend %profile-pics;
+                            margin-right: -15px;
+
+
+                            &:nth-child(3) {
+                                margin-right: 0px;
+                                z-index: 1;
+
+                            }
+
+                            &::nth-child(2) {
+                                z-index: 2;
+                            }
+
+                            &::nth-child(1) {
+                                z-index: 3;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+/*************** End Question Panel List Styles ***************/
+
+/*************** Begin Slide Indicator Styles ***************/
+
+.slide-indicator-wrapper {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    .slide-indicator {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 0px 8px;
+        background-color: white;
+        border-radius: 3px;
+    }
+
+    .selected {
+        background-color: orangered;
+    }
+}
+
+/*************** End Slide Indicator Styles ***************/
+
+
+/*************** Begin Form Styles ***************/
+.has-form {
+
+    label {
+        position: relative;
+        bottom: 0;
+        @extend %ffB;
+
+        &.error {
+            color: orangered;
+        }
+    }
+
+    input:not([type="submit"]) {
+        float: left;
+        padding: 9px 35px;
+        font-size: 14px;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $blk;
+        border-radius: 3px;
+        @extend %ffB;
+    }
+
+    input.ng-invalid.ng-dirty {
+        border-bottom: 2px solid orangered;
+    }
+
+    select {
+        @extend %ffB;
+        width: 100%;
+        height: 37px;
+        padding: 4px 8px;
+        border: 2px solid $blk;
+        border-radius: 3px;
+    }
+
+    .form-wrapper {
+        position: relative;
+    }
+
+    .form-group {
+        position: relative;
+        height: 65px;
+    }
+
+    .form-control {
+        position: relative;
+        left: 0px;
+        right: 0px;
+        height: 37px;
+        color: $blk3;
+        background-color: #F5F5F5;
+    }
+
+    .add-opt {
+        position: absolute;
+        right: 5px;
+        top: 9px;
+        width: 24px;
+        height: 24px;
+
+        &.toggle-visibility.moveLeft {
+            right: 40px;
+        }
+    }
+
+    .alert-label {
+        @include font-size(1);
+        @extend %ffB;
+        color: orangered;
+        text-align: center;
+
+        &>* {
+            vertical-align: middle
+        }
+    }
+
+
+    input[name=username] {
+        background: url('../Icons/user-24px.png') 5px center no-repeat, white;
+    }
+
+    input[name=password] {
+        background: url('../Icons/secure-24px.png') 5px center no-repeat, white;
+    }
+
+    input[name=email] {
+        background: url('../Icons/email-24px.png') 5px center no-repeat, white;
+    }
+
+    input.submit {
+        height: 50px;
+        margin: 6px 0;
+        font-weight: bold;
+        background-color: $pri;
+        color: $bg;
+        border-radius: 3px;
+        text-align: center;
+        text-indent: 0px;
+    }
+
+    // Switch Action In Account Dialog
+    .overtext {
+        margin: 0px auto 0px;
+        @include font-size(2);
+        color: $blk1;
+
+        @include responsify($break-smobile) {
+            margin: 20px auto 0px;
+        }
+    }
+}
+
+/*************** End Slide Indicator Styles ***************/

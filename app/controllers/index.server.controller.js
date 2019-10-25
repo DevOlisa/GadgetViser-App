@@ -1,0 +1,12 @@
+exports.render = function (req, res) {
+    if (req.session.lastVisit) {
+        console.log(req.session.lastVisit);
+    }
+    console.log(req.user);  
+    req.session.lastVisit = new Date();
+
+    res.render('index', {
+        title: 'GadgetViser Says Hello',
+        userFullName: req.user ? req.user.username : ''
+    });
+};

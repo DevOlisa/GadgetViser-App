@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en" ng-app="Gad" ng-controller="MainController">
+
+<head g-controller="">
+    <title><%= title %></title>
+    <!-- ie9+ rendering support for latest standards -->
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+
+    <!-- <link rel="stylesheet" href="../css/vendor/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" href="./css/app.css">
+
+    <!-- third party javascript -->
+    <script src="./lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="./lib/angular/angular.js"></script>
+
+    <!-- <script src="./lib/angular-route/angular-route.js"></script> -->
+    <script src="./lib/angular-animate/angular-animate.js"></script>
+    <script src="./lib/angular-route/angular-route.js"></script>
+    <script src="./lib/angular-cookies/angular-cookies.js"></script>
+    <script src="./lib/angular-messages/angular-messages.js"></script>
+    <script src="./lib/angular-resource/angular-resource.js"></script>
+
+    <!-- our javascript -->
+
+    <!-- our main feature modules -->
+    <script src="./admin/admin.client.module.js"></script>
+    <script src="./main/main.client.module.js"></script>
+    <script src="./news/news.client.module.js"></script>
+    <script src="./user/user.client.module.js"></script>
+    <script src="./authorize/auth.client.module.js"></script>
+    <script src="./header/header.client.module.js"></script>
+    <script src="./search/search.client.module.js"></script>
+
+    <!-- other supporting scripts -->
+    <script src="./user/services/user.client.services.js"></script>
+    
+    <script src="./admin/controllers/admin.client.controllers.js"></script>
+    <script src="./admin/routes/admin.client.routes.js"></script>
+    <script src="./admin/services/admin.client.service.js"></script>
+
+    <script src="./main/services/main.client.services.js"></script>
+    <script src="./main/routes/main.client.routes.js"></script>
+    <script src="./main/controllers/main.client.controllers.js"></script>
+    <script src="./main/services/main.client.gadgetprovider.js"></script>
+    <script src="./main/directives/main.client.directives.js"></script>
+
+    <script src="./news/routes/news.client.routes.js"></script>
+    <script src="./news/services/news.client.service.js"></script>
+    <script src="./news/controllers/news.client.controllers.js"></script>
+    <script src="./news/directives/news.client.directives.js"></script>
+
+    <script src="./authorize/directives/auth.client.directives.js"></script>
+    <script src="./authorize/services/auth.client.services.js"></script>
+    <script src="./authorize/controllers/auth.client.controllers.js"></script>
+
+    <script src="./header/controllers/header.client.controller.js"></script>
+
+    <script src="./search/controllers/search.client.controller.js"></script>
+
+    <script src="app/gad.client.js"></script>
+
+</head>
+
+<body>
+    <div id="gad">
+        <!-- Begin Shell Mask -->
+        <div class="gad-shell-mask" ng-class="{'blur' : false}">
+            <!-- header layout -->
+            <div class="gad-shell-header" ng-controller="HeaderController as headCtrl">
+
+                <div class="gad-shell-header-logo">
+                    <!-- Burger Nav On Mobile -->
+                    <div class="burger" ng-click="headCtrl.toggleSideNav()">
+                        <img src="icons/burger-48px.png" class="burger-nav" width="48px" />
+                    </div>
+
+                    <!-- GadgetViser Logo -->
+                    <a href="#">
+                        <img id="logo" src="icons/logo-48px.png" alt="GadgetViser" title="GadgetViser Home">
+                        GadgetViser Home
+                    </a>
+                </div>
+                <!-- search bar on top -->
+                <div class="gad-shell-header-searchbar" ng-class="{'expanded': SearchBarState.isSearchBarHidden}">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-control main-search">
+                                    <input id="search-input" type="text" placeholder="Search this site">
+                                </div>
+                            </td>
+                            <td class="search-control">
+                                <button ng-click="headCtrl.showSearchBar()">
+                                    <img class="close" src="icons/close-black.png" />
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr>
+                                <div class="search-results-wrapper" ng-if="SearchBarState.isSearchBarHidden">
+                                    <div class="device-search-result">
+                                        <h3>Devices</h3>
+                                        <div class="device-search-result-item">
+                                            <div class="device-search-result-item-image"></div>
+                                            <div class="device-search-result-item-name">Sony Xperia 1</div>
+                                        </div>
+                                        <div class="device-search-result-item">
+                                            <div class="device-search-result-item-image"></div>
+                                            <div class="device-search-result-item-name">Sony Xperia 1</div>
+                                        </div>
+                                        <div class="device-search-result-item">
+                                            <div class="device-search-result-item-image"></div>
+                                            <div class="device-search-result-item-name">Sony Xperia 1</div>
+                                        </div>
+                                    </div>
+                                    <div class="questions-search-result">
+                                        <h3>Questions</h3>
+                                        <div class="questions-search-result-item">
+                                            <div class="questions-search-result-item-title">Lorem ipsum dolor sit amet
+                                                consectetur, adipisicing elit.</div>
+                                        </div>
+                                    </div>
+                                    <div class="news-search-result">
+                                        <h3>News</h3>
+                                        <div class="news-search-result-item">
+                                            <div class="news-search-result-item-title">Lorem ipsum dolor sit amet
+                                                consectetur, adipisicing elit.</div>
+                                        </div>
+                                        <div class="news-search-result-item">
+                                            <div class="news-search-result-item-title">Lorem ipsum dolor sit amet
+                                                consectetur, adipisicing elit.</div>
+                                        </div>
+                                        <div class="news-search-result-item">
+                                            <div class="news-search-result-item-title">Lorem ipsum dolor sit amet
+                                                consectetur, adipisicing elit.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="gad-shell-header-primarylinks">
+                    <ul>
+                        <li><a href=#>Forum</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+
+                <!-- notification feature -->
+                <div class="gad-shell-header-notification">
+                    <a href="#">
+                        <img src="../icons/bell-48px.png" alt="Notifications">
+                    </a>
+                </div>
+                <!-- account and related features -->
+                <div class="gad-shell-header-account">
+                    <button href="#/" ng-click="openAccountDialog()">
+                        <img src="../icons/account.png" alt="Sign in or create account">
+                        <div>Sign In</div>
+                    </button>
+                </div>
+
+                <!-- search toggle on mobile -->
+                <div class="gad-shell-header-toggle">
+                    <button class="gad-shell-header-toggle-button" ng-click="headCtrl.showSearchBar()">
+                        <img src="icons/search-48px.png" alt="search-control">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- side nav layout -->
+            <div class="gad-shell-sidenav" ng-controller="NavController as nCtrl"
+                ng-class='{"extended": nCtrl.NavState.isOpen}'>
+                <ul class="gad-shell-sidenav-navlist">
+                    <li class="nav-items">
+                        <a href="#!phones">
+                            <img alt="phones" title="Phones" src="../icons/phone.png">
+                            Phones
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="#!laptops">
+                            <img alt="laptops" title="Laptops" src="../icons/laptop-48px.png">
+                            Laptops
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="#!news">
+                            <img alt="tablets" title="Tablets" src="../icons/tablet-48px.png">
+                            Tablets
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="#">
+                            <img alt="tv & monitors" title="TV & Monitors" src="../icons/TV-48px.png">
+                            TV & Monitors
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="#">
+                            <img alt="smartwatches" title="Smartwatches" src="../icons/smartwatch-48px.png">
+                            Smartwatches
+                        </a>
+                    </li>
+                </ul>
+                <div class="gad-shell-sidenav-footer">
+
+                    <!-- Begin Social Connect -->
+                    <div class="social-connect">
+                        <div class="main-social-links">
+                            <img src="icons/Twitter.png" width="20px">
+                        </div>
+                        <div class="main-social-links">
+                            <img src="icons/Facebook.png" width="20px">
+                        </div>
+                    </div>
+                    <!-- End Social Connect -->
+
+                    <!-- Begin Footer Links -->
+                    <div class="footer-links">
+                        <svg height="1" width="87" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
+                            <line x1="0" y1="0" x2="87" y2="0"
+                                style="stroke: rgb(200, 200, 200); stroke-width: 0.2; stroke-linecap:round " />
+                        </svg>
+                        <div>About</div>
+                        <div>Privacy</div>
+                        <div class="copy">GadgetViser &copy; 2019</div>
+                    </div>
+                    <!-- End Footer Links -->
+                </div>
+                <!-- End  SideNav Footer -->
+            </div>
+
+            <!-- main container layout -->
+            <main class="gad-shell-main" ng-class="{'blur': SearchBarState.isSearchBarHidden}" ng-view></main>
+            <!-- End gad-shell-main -->
+
+            <!---------------------------------------------- Side Bar  --------------------------------------->
+            <!-- <aside class="gad-shell-sidebar" ng-include="'./main/views/sidebar.html'">
+            </aside> -->
+            <!--------------------------------------------- End of Side Bar --------------------------------------------->
+        </div>
+        <!-- End gad mask -->
+
+        <!-- Account dialog popup -->
+        <div ng-include="'./authorize/views/account-dialog.html'" ng-controller="AuthController"></div>
+
+    </div>
+    <!-- End gad shell -->
+
+</body>
+
+</html>

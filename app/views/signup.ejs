@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=title %>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        html {
+            display: table;
+            height: 100%;        
+            width: 100%;
+            text-align: center;
+        }
+        body {
+            display: table-cell;
+            vertical-align: middle;
+            font-family: 'montserrat';
+        }
+    
+        div {
+            margin: 5px;
+            padding: 0px;
+        }
+    
+        input {
+            height: 37px;
+            border-radius: 6px;
+            border: 1px solid #cecece;
+            font-family: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <% for(let i in messages) { %>
+    <div class="flash"><%= messages[i] %></div>
+    <% } %>
+    <form action="/signup" method="post">
+
+        <div>
+            <label>Email:</label>
+            <input type="text" name="email" />
+        </div>
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" />
+        </div>
+        <div>
+            <input type="submit" value="Sign up" />
+        </div>
+    </form>
+</body>
+
+
+</html>

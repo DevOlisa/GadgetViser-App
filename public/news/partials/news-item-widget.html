@@ -1,0 +1,27 @@
+<li class="news-list-item" ng-class="{'expand' : selectedArticle === article._id}">
+    <div class="image" style="background-image: url({{article.image}})">
+    </div>
+    <article class="content">
+        <header>
+            <h3>{{article.title}}</h3>
+            <div class="stats">
+                <span class="posted">
+                    12 hrs
+                </span>
+                <span class="views">
+                    {{article.likeCount}}k views
+                </span>
+            </div>
+        </header>
+        <section>
+            <p>
+                {{article.content}}
+            </p>
+            <div class="social-share-article">
+                <button class="fb">facebook</button>
+                <button class="tw">twitter</button>
+                <button class="wa">whatsapp</button>
+            </div>
+        </section>
+    </article>
+</li>

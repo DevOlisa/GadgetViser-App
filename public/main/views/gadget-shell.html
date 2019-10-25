@@ -1,0 +1,14 @@
+<table class="item">
+    <tr class="item-image">
+        <td>
+            <div>
+                <img ng-src="{{gadget.image}}">
+            </div>
+        </td>
+    </tr>
+    <tr class="item-name">
+        <td>
+            <p><a href="#!{{gadget.type + 's/v/' + gadget.link | lowercase}}/">{{gadget.name}}</a></p>
+        </td>
+    </tr>
+</table>

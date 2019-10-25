@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24px" height="24px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 24 24"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:white;stroke-width:0.288;stroke-opacity:0.749020}
+    .str0 {stroke:#4D4D4D;stroke-width:0.666709;stroke-linejoin:round}
+    .fil0 {fill:none}
+    .fil2 {fill:none}
+    .fil1 {fill:#4D4D4D}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" width="24" height="24"/>
+  <polygon class="fil1 str0" points="12,6 14,9 18,10 15,13 16,17 12,15 8,17 9,13 6,10 10,9 "/>
+  <g id="_1586657437184">
+   <polyline class="fil2 str1" points="10,9 12,12 14,9 "/>
+   <polyline class="fil2 str1" points="9,13 12,12 15,13 "/>
+   <line class="fil2 str1" x1="12" y1="15" x2="12" y2= "12" />
+   <polyline class="fil2 str1" points="18,10 12,12 12,6 "/>
+   <polyline class="fil2 str1" points="8,17 12,12 16,17 "/>
+   <line class="fil2 str1" x1="6" y1="10" x2="12" y2= "12" />
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,201 @@
+<!---------------------------------- Account Actions Dialog ------------------------------->
+<div class="gad-shell-dialog has-form" ng-controller="AccountDialogController as acdCtrl" ng-switch on="acdCtrl.currentTab()"
+    ng-show="isDialogOpen">
+
+    <!-- CloseButton -->
+    <div class="gad-shell-dialog-close">
+        <img src="../Icons/close-black.png" ng-click="closeAccountDialog()">
+    </div>
+
+    <!-- Begin Dialog Content -->
+    <div class="gad-shell-dialog-content signin-content" ng-switch-when="signIn" ng-controller="SignInController as siCtrl">
+        <div class="content-wrapper">
+            <h2>
+                <span>Sign In With</span>
+            </h2>
+
+            <div class="oauth-action">
+                <div class="action">
+                    <button><img src="Icons/Facebook.png"> </button>
+                </div>
+                <div class="action">
+                    <button><img src="Icons/Twitter.png"></button>
+                </div>
+            </div>
+
+            <!-- seperator -->
+            <span class="seperator">OR</span>
+
+            <!-- Username Input -->
+            <form class="form-wrapper" name="signInForm" ng-submit="submit()" novalidate>
+                <div class="form-group">
+                    <div class="form-control">
+                        <input id="username" type="text" name="username" ng-model="user.username"
+                            placeholder="Username or Email" autocomplete="off" required />
+                        <div class="add-opt"
+                            ng-show="signInForm.username.$error.required && signInForm.username.$dirty">
+                            <img src="Icons/error-24px.png" />
+                        </div>
+                    </div>
+                    <div ng-messages="signInForm.username.$error"
+                        ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                        ng-show="signInForm.username.$dirty">
+                        <label ng-message="required" class="error">Enter username or email</label>
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <div class="form-control">
+                        <input id="password" type="password" name="password" ng-model="user.password"
+                            placeholder="Password" required>
+                        <!-- Error Alert Icon -->
+                        <div class="add-opt error"
+                            ng-show="signInForm.password.$error.required && signInForm.password.$dirty">
+                            <img src="./Icons/error-24px.png">
+                        </div>
+                        <!-- Visibility Toggle -->
+                        <div class="add-opt toggle-visibility" ng-hide="signInForm.password.$error.required"
+                            ng-click="togglePasswordVisibilty()" ng-show="signInForm.password.$dirty">
+                            <img src="./Icons/visible-24px.png">
+                        </div>
+                    </div>
+                    <div ng-messages="signInForm.password.$error"
+                        ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                        ng-show="signInForm.password.$dirty">
+                        <label ng-message="required" class="error">Password field is empty</label>
+                    </div>
+                </div>
+
+                <!-- Login Error Alert  -->
+                <div class="alert-label" ng-hide="true">
+                    <img src="Icons/error-24px.png">
+                    <span>Invalid Username and Password</span>
+                </div>
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <div class="">
+                        <input class="submit" type="submit" value="Sign In">
+                    </div>
+                </div>
+
+                <div class="switch-action">
+                    <div class="centertext overtext">Don't have an account?</div>
+                    <button href="#" class="button-sec" ng-click="siCtrl.switchTab()">
+                        <span>Create Account</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Dialog Content -->
+
+
+
+
+
+    <!-- Begin SignUp Dialog Content -->
+    <div class="gad-shell-dialog-content signup-content" ng-controller="SignUpController as suCtrl"
+        ng-switch-when="signUp">
+
+        <div class="content-wrapper">
+            <h2>
+                <span>Sign Up Using</span>
+            </h2>
+            <div class="oauth-action">
+                <div class="action">
+                    <button><img src="Icons/Facebook.png"> </button>
+                </div>
+                <div class="action">
+                    <button><img src="Icons/Twitter.png"></button>
+                </div>
+            </div>
+
+            <!-- seperator -->
+            <span class="seperator">OR</span>
+            
+            <!-- Username Input -->
+            <form name="signUpForm" class="form-wrapper" ng-submit="submit()" novalidate>
+                <div class="form-group">
+                    <div class="form-control">
+                        <input id="username" type="text" ng-model="user.username" name="username" placeholder="Username"
+                            autocomplete="off" ng-maxlength="20"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            required>
+                        <div class="add-opt" ng-show="signUpForm.username.$dirty && signUpForm.username.$invalid">
+                            <img src="Icons/error-24px.png">
+                        </div>
+                    </div>
+                    <div ng-messages="signUpForm.username.$error" ng-show="signUpForm.username.$dirty">
+                        <label ng-message="maxlength" class="error">Username cannot be more than 20 characters</label>
+                        <label ng-message="required" class="error">Username field can not be empty</label>
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                    <div class="form-control">
+                        <input id="email" type="email" ng-model="user.email"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            name="email" placeholder="Email" required>
+                        <!-- Error Alert Icon -->
+                        <div class="add-opt" ng-show="signUpForm.email.$dirty && signUpForm.email.$invalid">
+                            <img src="Icons/error-24px.png">
+                        </div>
+                    </div>
+                    <div ng-messages="signUpForm.email.$error" ng-show="signUpForm.email.$dirty">
+                        <label ng-message="email" class="error">Please enter a valid email address</label>
+                        <label ng-message="required" class="error">Email field can not be empty</label>
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <div class="form-control">
+                        <input id="password" type="password" ng-model="user.password" name="password"
+                            placeholder="Password" aria-required="true" ng-minlength="8"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            required>
+                        <!-- Error Alert Icon -->
+                        <div class="add-opt" ng-messages="signUpForm.password.$error">
+                            <img ng-message="minlength" src="Icons/error-24px.png">
+                        </div>
+                        <!-- Visibility Toggle -->
+                        <div class="add-opt" ng-click="togglePasswordVisibilty()">
+                            <img src="Icons/visible-24px.png">
+                        </div>
+                    </div>
+                    <div ng-messages="signUpForm.password.$error"
+                        ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                        ng-show="signUpForm.password.$dirty">
+                        <label ng-message="required" class="error">Password field can not be empty</label>
+                        <label ng-message="minlength" class="error">Password should be at least 8 characters
+                            long</label>
+                    </div>
+                </div>
+
+                <!-- Login Error Alert  -->
+                <div class="alert-label" ng-if="error">
+                    <img src="Icons/error-24px.png">
+                    <span>Invalid Username and Password</span>
+                </div>
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <div class="">
+                        <input class="submit" type="submit" value="Create Account" />
+                    </div>
+                </div>
+
+                <div class="switch-action">
+                    <!-- <hr style="border: none; border-bottom: 0.5px solid #cfcfcf"> -->
+
+                    <div class="centertext overtext">Already have an account?</div>
+                    <button href="#" class="button-sec" ng-click="suCtrl.switchTab()">
+                        <span>Back to Sign Up</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End SignUp Dialog Content -->
+
+</div>
+<!--------------------------------------- End Dialog -------------------------------------------->
