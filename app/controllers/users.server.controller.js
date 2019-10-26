@@ -1,5 +1,5 @@
 const User = require('mongoose').model('User');
-passport = require('passport');
+const passport = require('passport');
 
 
 let getErrorMessage = (err) => {
@@ -23,6 +23,10 @@ let getErrorMessage = (err) => {
     }
     return message;
 };
+
+exports.alert = (req, res) => {
+    res.json(req.user);
+}
 
 exports.renderSignin = (req, res, next) => {
     if (!req.user) {
@@ -123,7 +127,6 @@ exports.signout = (req, res) => {
 //APIs Functons
 exports.create = (req, res, next) => {
     let user = new User(req.body);
-    console.log(req.body);
 
     user.save((err) => {
         if (err) {

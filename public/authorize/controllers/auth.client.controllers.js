@@ -2,15 +2,15 @@ angular.module('Auth')
     .controller('AuthController', ['$scope', function ($scope) {
         var self = this;
     }])
-    .controller('AccountDialogController', ['$scope', 'BgMask', 'AccountPageService',
+    .controller('AccountDialogController', ['$scope', 'BgMask', 'AccountPageService', 
         function ($scope, BgMask, AccountPageService) {
             var self = this;
             self.currentTab = function () {
                 return AccountPageService.getTab() || 'signUp';
             };
         }])
-    .controller('SignInController', ['$scope', 'BgMask', 'AccountPageService',
-        function ($scope, BgMask, AccountPageService) {
+    .controller('SignInController', ['$scope', 'BgMask', 'AccountPageService','UserService',
+        function ($scope, BgMask, AccountPageService, UserService) {
             var self = this;
 
             self.tab = 'signIn';
@@ -28,10 +28,9 @@ angular.module('Auth')
                 $scope.passwordVisible = true;
             };
 
-            self.users = AccountPageService.getUsers().query();
-
             $scope.submit = function () {
-                console.log($scope);
+                console.log($scope.user);
+                UserService.localSignIn($scope.user);
             };
         }])
     .controller('SignUpController', ['$scope', 'BgMask', 'AccountPageService', 'UserService',

@@ -24,7 +24,7 @@
                 <input type="text" name="oem" ng-model="device.oem" placeholder="OEM" required>
                 <!-- Error Alert Icon -->
                 <div class="add-opt error" ng-show="addDeviceForm.oem.$error.required && addDeviceForm.oem.$dirty">
-                    <img src="./Icons/error-24px.png"/>
+                    <img src="./Icons/error-24px.png" />
                 </div>
             </div>
             <div ng-messages="addDeviceForm.oem.$error"
@@ -49,21 +49,40 @@
             </div>
         </div>
 
-        
+
         <div class="form-group">
-                <div class="form-control">
-                    <input type="text" name="image" ng-model="device.image" placeholder="Image" required>
-                    <!-- Error Alert Icon -->
-                    <div class="add-opt error" ng-show="addDeviceForm.$error.image.required && addDeviceForm.image.$dirty">
-                        <img src="./Icons/error-24px.png">
-                    </div>
-                </div>
-                <div ng-messages="addDeviceForm.image.$error"
-                    ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
-                    ng-show="addDeviceForm.image.$dirty">
-                    <label ng-message="required" class="error">Image Path field is empty</label>
+            <div class="form-control">
+                <input type="text" name="image" ng-model="device.image" placeholder="Image" required>
+                <!-- Error Alert Icon -->
+                <div class="add-opt error" ng-show="addDeviceForm.$error.image.required && addDeviceForm.image.$dirty">
+                    <img src="./Icons/error-24px.png">
                 </div>
             </div>
+            <div ng-messages="addDeviceForm.image.$error"
+                ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                ng-show="addDeviceForm.image.$dirty">
+                <label ng-message="required" class="error">Image Path field is empty</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Released
+                <input type="radio" name="released" value="true" ng-model="device.released" placeholder="" required>
+            </label>
+            <label>Upcoming
+                    <input type="radio" name="released" value="false" ng-model="device.released" placeholder="" required>
+                </label>
+            <!-- Error Alert Icon -->
+            <div class="add-opt error"
+                ng-show="addDeviceForm.$error.released.required && addDeviceForm.released.$dirty">
+                <img src="./Icons/error-24px.png">
+            </div>
+        </div>
+        <div ng-messages="addDeviceForm.released.$error"
+            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+            ng-show="addDeviceForm.released.$dirty">
+            <label ng-message="required" class="error">Image Path field is empty</label>
+        </div>
 
         <input class="submit" type="submit" value="Add Device" />
     </form>

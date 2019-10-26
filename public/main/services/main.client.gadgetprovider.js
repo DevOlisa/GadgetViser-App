@@ -15,6 +15,7 @@ angular.module('Main').service('TestObjects', ['$resource', '$http', '$q', 'Gadg
                 return $http.post('http://localhost:3000/gadgets', GadgetToSave)
                     .then(function (response) {
                         return GadgetToSave;
+                        alert( GadgetToSave.name + ' was added to the database successfully!');
                     });
             }
         };
@@ -23,7 +24,7 @@ angular.module('Main').service('TestObjects', ['$resource', '$http', '$q', 'Gadg
             return $http.get('http://localhost:3000/gadget/' + link)
                 .then(function (response) {
                     return response.data;
-                })
+                });
         };
 
         service.getGadgets = function (opt) {

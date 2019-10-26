@@ -1,18 +1,18 @@
 const users = require('../controllers/users.server.controller'),
-passport = require('passport');
+    passport = require('passport');
 
-module.exports = function(app) {
+module.exports = function (app) {
     app.route('/signup')
-    .get(users.renderSignup)
-    .post(users.signup);
+        .get(users.renderSignup)
+        .post(users.signup);
 
     app.route('/signin')
-    .get(users.renderSignin)
-    .post(passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/signin',
-        failureFlash: true
-    }));
+        .get(users.renderSignin)
+        .post(passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/signin',
+            failureFlash: true
+        }));
 
     app.get('/oauth/google', passport.authenticate('google', {
         failureRedirect: '/signin',
@@ -30,11 +30,11 @@ module.exports = function(app) {
     app.get('/signout', users.signout);
 
     app.route('/users')
-    .post(users.create)
-    .get(users.list);
+        .post(users.create)
+        .get(users.list);
 
     app.route('/users/:userId')
-    .get(users.read);
+        .get(users.read);
 
     app.param('userId', users.fetchUser)
 }

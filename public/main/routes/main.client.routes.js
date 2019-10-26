@@ -5,13 +5,23 @@ angular.module('Main')
         });
         $routeProvider.when('/phones', {
             templateUrl: './main/views/device-category.html',
-            category: 'phone',
+            category: 'Phone',
         });
         $routeProvider.when('/laptops', {
             templateUrl: './main/views/device-category.html',
-            category: 'laptop',
+            category: 'Laptop',
         });
         $routeProvider.when('/phones/v/:id', {
+            templateUrl: './main/views/view-device.html',
+            controller: "GadgetController as gadgetCtrl",
+            resolve: {
+                selectedGadget: ['$route', 'GadgetBuilder', function ($route, GadgetBuilder) {
+                    return GadgetBuilder.fetch($route.current.params.id);
+
+                }]
+            },
+        });
+        $routeProvider.when('/laptops/v/:id', {
             templateUrl: './main/views/view-device.html',
             controller: "GadgetController as gadgetCtrl",
             resolve: {

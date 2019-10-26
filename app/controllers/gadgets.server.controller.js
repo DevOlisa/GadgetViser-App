@@ -34,8 +34,13 @@ exports.fetchLatest = (req, res, next) => {
     if (req.query.function === "latest") {
         console.log('fetching latest')
 
-        Gadget.find({}, "", {
-            limit: 10
+        Gadget.find({
+            type: req.query.type,
+            released: {
+                $ne: false
+            }
+        }, "", {
+            limit: 10,
         },
             (err, gadgets) => {
                 if (err) {
@@ -54,7 +59,8 @@ exports.fetchUpcoming = (req, res, next) => {
         console.log('fetching upcoming')
 
         Gadget.find({
-            released: false
+            released: false,
+            type: req.query.type
         }, "", {
             limit: 10
         },
@@ -77,20 +83,53 @@ exports.fetchOem = (req, res, next) => {
     }
 };
 
-exports.fetchList = (req, res, next, params) => {
-    console.log('Got here in list function');
-    Gadget.find(req.params, "", {
-        limit: req.params.limit
-    },
-        (err, gadgets) => {
+exports.fetchMoreFromOem = (req, res, next) => {
+    if (req.query.function === 'moreFromOem') {
+        console.log('fetching more from oem');
+        Gadget.find({
+            $and: [
+                {
+                    _id: {
+                        $ne: req.query.id
+                    }
+                },
+                {
+                    type: {
+                        $eq: req.query.type
+                    }
+                },
+                {
+                    oem: {
+                        $eq: req.query.oem
+                    }
+                }
+            ]
+        }, (err, gadgets) => {
             if (err) {
                 next(err);
             } else {
-                req.gadgets = gadgets;
-                next();
+                res.json(gadgets);
             }
-        });
-};
+        })
+    } else {
+        next();
+    }
+}
+
+// exports.fetchList = (req, res, next, params) => {
+//     console.log('Got here in list function');
+//     Gadget.find(req.params, "", {
+//         limit: req.params.limit
+//     },
+//         (err, gadgets) => {
+//             if (err) {
+//                 next(err);
+//             } else {
+//                 req.gadgets = gadgets;
+//                 next();
+//             }
+//         });
+// };
 
 exports.read = (req, res) => {
     if (req.gadget) {

@@ -8,10 +8,5 @@ angular.module('Auth')
         self.getTab = function () {
             return self.tab;
         };
-        self.getUsers = function() {
-            return $resource('http://localhost:3000/users');
-        };
-
-        self.Users = $resource('http://localhost:3000/users');
 
     }]);

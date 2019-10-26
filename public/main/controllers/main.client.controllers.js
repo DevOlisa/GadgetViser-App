@@ -1,10 +1,6 @@
 angular.module('Main')
     .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', function ($scope, BgMask, SearchBarState) {
         $scope.isDialogOpen = false;
-        
-    $scope.$on('$routeChangeSuccess', function(e, current, previous) {
-        $scope.currentRoute =  current;
-    });
 
         $scope.closeAccountDialog = function () {
             if ($scope.isDialogOpen === false) return;
@@ -50,9 +46,9 @@ angular.module('Main')
                 var opt = {};
                 opt.type = selectedGadget.type;
                 opt.oem= selectedGadget.oem;
-                // opt.sort = -1;
-                // opt.limit = 6;
-                // console.log(opt);
+                opt.id= selectedGadget._id;
+                opt.function= "moreFromOem";
+                
                 return GadgetFactory.getGadgets(opt)
                 .then(function(gadgets) {
                     $scope.similarGadgets = gadgets;
