@@ -4,16 +4,14 @@ const passport = require('passport');
 
 let getErrorMessage = (err) => {
     let message = "";
-
-    if (err.code) {
-        switch (err.code) {
-            case 11000:
-            case 11001:
-                message = 'Username already exist';
-                break;
-            default:
-                message = 'Something went wrong';
-        }
+    if (err.code && (err.code === 11000 || 11001)) {
+        if (err.errmsg.indexOf('email_1 dup key:') > 0) {
+            message = 'Email is already registered';
+        } else if(err.errmsg.indexOf('username_1 dup key:') > 0) {
+            message = 'Username already exist';
+        } else {
+            message = 'Something went wrong';
+        }       
     } else {
         for (errName in err.errors) {
             if (err.errors[errName].message) {
@@ -39,6 +37,23 @@ exports.renderSignin = (req, res, next) => {
     }
 };
 
+exports.signin = (req, res, next) => {
+    console.log(req.body)
+    passport.authenticate('local', (err, user, info) => {
+        console.log(info);
+        if (err) {
+            return res.json({error: getErrorMessage(err)});
+            return next(err);
+        }
+        if (!user) {
+            return res.json({error: 'Invalid Login Credentials'});
+        }
+        req.logIn(user, (err) => {
+            return res.json({success: 'Login Successful!', user: user});
+        })
+    })(req, res, next);
+};
+
 exports.renderSignup = (req, res, next) => {
     if (!req.user) {
         res.render('signup', {
@@ -51,8 +66,9 @@ exports.renderSignup = (req, res, next) => {
 };
 
 exports.signup = (req, res, next) => {
+    console.log(req.body);
     if (!req.user) {
-        let user = new User(req.body),
+        let user = new User(req.body.param),
             message = null;
 
         user.provider = 'local';
@@ -65,7 +81,7 @@ exports.signup = (req, res, next) => {
                 message = getErrorMessage(err);
                 req.flash('error', message);
 
-                return res.redirect('/signup')
+                return res.json({error: getErrorMessage(err)});
             }
             req.login(user, function (err) {
                 console.log(req.user);
@@ -75,6 +91,7 @@ exports.signup = (req, res, next) => {
                 return res.redirect('/');
             });
         });
+
     } else {
         return res.redirect('/');
     }
@@ -139,7 +156,7 @@ exports.create = (req, res, next) => {
 };
 
 exports.list = (req, res, next) => {
-    User.find({}, "username email", function (err, users) {
+    User.find({}, "", function (err, users) {
         if (err) {
             return next(err);
         } else {

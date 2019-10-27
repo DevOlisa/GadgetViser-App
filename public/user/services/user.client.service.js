@@ -9,5 +9,17 @@ angular.module('User').factory('UserService', ['$http', '$q', '$resource', '$roo
             console.error(err);
         })
     };
+
+    
+    service.localSignUp = (user) => {
+        let userToCreate = angular.copy(user);
+        return $http.post('http://localhost:3000/signup', { param: userToCreate })
+        .then((response) => {
+            console.log(response);
+        }, (err) => {
+            console.error(err);
+        })
+    };
+
     return service;
 }])

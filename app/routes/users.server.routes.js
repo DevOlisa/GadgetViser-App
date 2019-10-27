@@ -8,11 +8,7 @@ module.exports = function (app) {
 
     app.route('/signin')
         .get(users.renderSignin)
-        .post(passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/signin',
-            failureFlash: true
-        }));
+        .post(users.signin);
 
     app.get('/oauth/google', passport.authenticate('google', {
         failureRedirect: '/signin',

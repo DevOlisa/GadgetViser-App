@@ -53,7 +53,7 @@ angular.module('Auth')
 
             $scope.submit = function () {
                 if ($scope.signUpForm.$invalid) return;
-                UserService.User.save($scope.user);
+                UserService.localSignUp($scope.user);
                 console.log($scope.signUpForm);
             };
         }])
