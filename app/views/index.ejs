@@ -36,14 +36,16 @@
     <script src="./user/user.client.module.js"></script>
     <script src="./authorize/auth.client.module.js"></script>
     <script src="./header/header.client.module.js"></script>
-    <script src="./search/search.client.module.js"></script>
+    <script src="./user/search.module.js"></script>
+
+    <!-- <script src="./search/search.client.module.js"></script> -->
 
     <!-- other supporting scripts -->
     <script src="./main/controllers/root.client.controller.js"></script>
 
     <script src="./user/services/user.client.service.js"></script>
     <script src="./user/routes/user.client.routes.js"></script>
-    
+
     <script src="./admin/controllers/admin.client.controllers.js"></script>
     <script src="./admin/routes/admin.client.routes.js"></script>
     <script src="./admin/services/admin.client.service.js"></script>
@@ -67,6 +69,7 @@
     <script src="./header/controllers/header.client.controller.js"></script>
 
     <script src="./search/controllers/search.client.controller.js"></script>
+    <script src="./search/services/search.client.service.js"></script>
 
     <script src="app/gad.client.js"></script>
 
@@ -92,12 +95,16 @@
                     </a>
                 </div>
                 <!-- search bar on top -->
-                <div class="gad-shell-header-searchbar" ng-class="{'expanded': SearchBarState.isSearchBarHidden}">
+                <div class="gad-shell-header-searchbar" ng-controller="SearchController as searchCtrl"
+                    ng-class="{'expanded': SearchBarState.isSearchBarHidden}">
                     <table>
                         <tr>
                             <td>
                                 <div class="form-control main-search">
-                                    <input id="search-input" type="text" placeholder="Search this site">
+                                    <input id="search-input" name="searchText" ng-keyup="searchCtrl.submit(text)"
+                                        ng-model="searchText" ype="text"
+                                        ng-model-options="{ debounce: 600}"
+                                        placeholder="Search this site">
                                 </div>
                             </td>
                             <td class="search-control">
@@ -106,7 +113,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr ng-if="searchResult">
                             <td colspan="2">
                                 <hr>
                                 <div class="search-results-wrapper" ng-if="SearchBarState.isSearchBarHidden">

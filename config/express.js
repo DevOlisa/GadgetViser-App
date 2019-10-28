@@ -49,6 +49,7 @@ module.exports = function() {
     require('../app/routes/gadgets.server.routes.js')(gad);
     require('../app/routes/questions.server.routes.js')(gad);
     require('../app/routes/answers.server.routes.js')(gad);
+    require('../app/routes/search.server.routes.js')(gad);
 
 
     // Use the Express static to serve files

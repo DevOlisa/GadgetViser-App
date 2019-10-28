@@ -1,14 +1,22 @@
-angular.module('Search').controller('SearchBarController', ['$scope', 'SearchBarState', 'NavState', 'BgMask', 
-function ($scope, SearchBarState, NavState, BgMask) {
-    var self = this;
-    self.showMask = true;
+angular.module('Search').controller('SearchController', ['$scope', 'ResultProvider', 'NavState', 'BgMask',
 
-    
-    // self.showSearchBar = function () {
-    //     SearchBarState.isSearchBarHidden = !SearchBarState.isSearchBarHidden;
-    // };
+    function ($scope, ResultProvider, NavState, BgMask) {
+        var self = this;
+        $scope.searchText = '';
+        $scope.searchResult = null;
 
-    // self.toggleSideNav = function() {
-    //     NavState.isOpen = !NavState.isOpen;
-    // };
-}]);
+        $scope.$watch('searchText', function (n, o) {
+            console.log(n)
+            if (n && (n !== '' || n !== o) ) {
+                ResultProvider.searchString(n)
+                    .then(function (response) {
+                        console.log(response);
+                        $scope.searchResult = response
+                    }, function (error) {
+                        console.error(error);
+                    })
+            } else if(n === '') {
+                $scope.searchResult = null;
+            }
+        });
+    }]);

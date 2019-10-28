@@ -9,12 +9,15 @@
     "install-front": "yarn add --production=true --modules-folder ./public/lib"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",
     "angular-animate": "^1.7.8",
+    "angular-auth0": "^3.0.4",
     "angular-cookie": "^4.1.0",
     "angular-cookies": "^1.7.8",
     "angular-resource": "^1.7.8",
     "angular-route": "^1.7.8",
+    "auth0-js": "^9.11.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "bower-away": "^1.1.2",

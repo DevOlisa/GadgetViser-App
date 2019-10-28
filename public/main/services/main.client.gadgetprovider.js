@@ -14,8 +14,8 @@ angular.module('Main').service('TestObjects', ['$resource', '$http', '$q', 'Gadg
                 GadgetToSave.link = (GadgetToSave.oem + '-' + GadgetToSave.name).toLowerCase().replace(/\s+/gi, '-');
                 return $http.post('http://localhost:3000/gadgets', GadgetToSave)
                     .then(function (response) {
-                        return GadgetToSave;
                         alert( GadgetToSave.name + ' was added to the database successfully!');
+                        return GadgetToSave;
                     });
             }
         };

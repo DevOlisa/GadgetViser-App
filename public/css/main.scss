@@ -170,10 +170,10 @@ main[ng-view] {
 }
 
 main[ng-view] .ng-enter, main[ng-view] .ng-leave {
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
+    -webkit-transition: all 10s ease;
+    -moz-transition: all 10s ease;
+    -o-transition: all 10s ease;
+    transition: all 10s ease;
 }
 
 main[ng-view] .ng-enter { left: 100%;}
