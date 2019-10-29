@@ -11,7 +11,7 @@ angular.module('Main')
             templateUrl: './main/views/device-category.html',
             category: 'Laptop',
         });
-        $routeProvider.when('/phones/v/:id', {
+        $routeProvider.when('/phone/v/:id', {
             templateUrl: './main/views/view-device.html',
             controller: "GadgetController as gadgetCtrl",
             resolve: {
@@ -21,7 +21,7 @@ angular.module('Main')
                 }]
             },
         });
-        $routeProvider.when('/laptops/v/:id', {
+        $routeProvider.when('/laptop/v/:id', {
             templateUrl: './main/views/view-device.html',
             controller: "GadgetController as gadgetCtrl",
             resolve: {

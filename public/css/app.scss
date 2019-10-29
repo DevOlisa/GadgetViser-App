@@ -26,7 +26,7 @@ h2 {
 a {
     text-decoration: none;
     color: initial;
-    @include font-size(1);
+    @include font-size(2);
 }
 
 label {
@@ -48,6 +48,13 @@ button {
     background-color: $bg;
     outline: none;
     cursor: pointer;
+}
+
+.loading-indicator {
+    display: block;
+    width: 90px;
+    height: 90px;
+    margin: auto;
 }
 
 // Generic Classes Definition
@@ -250,9 +257,13 @@ button {
                     content: "";
                 }
             }
+               
+            .highlight-string {
+                color: #222222;
+                font-weight: bolder;
+            }
 
             .device-search-result {
-
                 &-item {
                     padding: 5px 10px;
                     height: 39px;
@@ -265,13 +276,14 @@ button {
                         height: 35px;
                         margin-right: 10px;
                         background: url(../img/phone_pics/sony-xperia-1.jpg) center no-repeat;
-                        background-size: cover;
+                        background-size: contain;
                     }
 
                     &-name {
                         float: left;
                         transform: translate(0, 10px);
-                        @extend %ffM;
+                        color: $blk2;
+                        @extend %ffR;
                     }
                 }
             }
@@ -289,6 +301,7 @@ button {
                         @extend %ffM;
                         color: $blk2;
                         word-break: break-all;
+                        text-transform: capitalize;
                     }
                 }
             }

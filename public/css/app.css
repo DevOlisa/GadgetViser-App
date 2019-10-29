@@ -7,10 +7,10 @@ h2, .device-page-main #specifications .specs-category-main-item table h3 {
 .device-page-main-content #prices .store-list .store-item-unit .detail-condition {
   font-family: 'Fira Sans Light'; }
 
-.device-page-main-content #prices .store-list .store-item-unit .detail-seller {
+.gad-shell-header-searchbar .search-results-wrapper .device-search-result-item-name, .device-page-main-content #prices .store-list .store-item-unit .detail-seller {
   font-family: 'Fira Sans'; }
 
-.gad-shell-header-searchbar .search-results-wrapper .device-search-result-item-name, .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title {
+.gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title {
   font-family: 'Fira Sans Medium'; }
 
 .gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
@@ -101,7 +101,7 @@ html {
 a {
   text-decoration: none;
   color: initial;
-  font-size: 12px; }
+  font-size: 14px; }
 
 label {
   font-size: 12px;
@@ -120,6 +120,12 @@ button {
   background-color: #ffffff;
   outline: none;
   cursor: pointer; }
+
+.loading-indicator {
+  display: block;
+  width: 90px;
+  height: 90px;
+  margin: auto; }
 
 .centertext {
   text-align: center; }
@@ -261,6 +267,9 @@ button {
           margin-bottom: 5px;
           background: linear-gradient(90deg, #a6a7a8, #f0f2f5);
           content: ""; }
+      .gad-shell-header-searchbar .search-results-wrapper .highlight-string {
+        color: #222222;
+        font-weight: bolder; }
       .gad-shell-header-searchbar .search-results-wrapper .device-search-result-item {
         padding: 5px 10px;
         height: 39px;
@@ -272,10 +281,11 @@ button {
           height: 35px;
           margin-right: 10px;
           background: url(../img/phone_pics/sony-xperia-1.jpg) center no-repeat;
-          background-size: cover; }
+          background-size: contain; }
         .gad-shell-header-searchbar .search-results-wrapper .device-search-result-item-name {
           float: left;
-          transform: translate(0, 10px); }
+          transform: translate(0, 10px);
+          color: #707070; }
       .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item {
         padding: 10px;
         border-bottom: 1px solid #cfcfcf; }

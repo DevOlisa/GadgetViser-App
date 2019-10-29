@@ -4,6 +4,7 @@ angular.module('Header').controller('HeaderController', ['$scope', 'SearchBarSta
 
     self.showSearchBar = function () {
         SearchBarState.isSearchBarHidden = !SearchBarState.isSearchBarHidden;
+        SearchBarState.clearText();
     };
 
     self.toggleSideNav = function() {

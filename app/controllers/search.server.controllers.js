@@ -5,7 +5,7 @@ const Question = require('mongoose').model('Question');
 exports.handleSearch = (req, res, next, string) => {
     req.result = {};
     req.errors = {};
-    req.searchString = string.toLowerCase();
+    req.searchString = string.toLowerCase().replace(/\s+/gi, '-');
     console.log('Handling Search');
     next();
 };
@@ -13,7 +13,7 @@ exports.handleSearch = (req, res, next, string) => {
 exports.gadgetSearch = (req, res, next) => {
     Gadget.find({
         link: { $regex : new RegExp(req.searchString, "i")}
-    }, "name image", {}, (err, result) => {
+    }, "name link type image", {}, (err, result) => {
         if (err) {
             req.error = err;
             req.result.gadgets = null;
