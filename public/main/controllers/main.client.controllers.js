@@ -59,9 +59,9 @@ angular.module('Main')
 
             self.getOemDevice();
         }])
-    .controller('PricesController', ['TestObjects', function (TestObjects) {
+    .controller('PricesController', ['GadgetFactory', function (GadgetFactory) {
         let self = this;
-        self.stores = TestObjects.stores;
+        self.stores = GadgetFactory.getGadgets().then((response)=> { return response});
         self.showModal = false;
         self.modal = '';
 

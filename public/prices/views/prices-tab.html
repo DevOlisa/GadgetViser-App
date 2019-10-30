@@ -1,0 +1,69 @@
+            <!-- Device Prices Go Here -->
+            <div id="prices" ng-switch-when="pricesTab" ng-controller="PricesController as gadgetCtrl">
+                    <div>
+                        <table border="0" class="controls">
+                            <tr>
+                                <td><button class="controls-filter" ng-click="openModal('filter')">Filter</button>
+                                </td>
+                                <td><button class="controls-settings"
+                                        ng-click="openModal('settings')">Settings</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <ul class="store-list">
+                        <li class="store-item" ng-repeat="store in stores">
+                            <table border="0" class="store-item-unit">
+                                <tr>
+                                    <td class="img">
+                                        <img src="./img/phone_pics/sony-xperia-1.jpg" />
+                                    </td>
+                                    <td class="detail">
+                                        <span class="detail-name">Sony Xperia 1</span>
+                                        <span class="detail-condition">New</span>
+                                        <span class="detail-seller">Seller Info</span>
+                                        <span class="detail-shipping">Free Shipping: Free</span>
+                                        <span class="detail-price">&dollar;{{store.bestPrice}}</span>
+                                        <span class="detail-store"
+                                            style="background-image: url(./img/flipkart.jpg)"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                    <dialog class="controls-modal" ng-switch="modal" ng-show="showModal">
+                        <div class="controls-modal-filter" ng-switch-when="filter"
+                            ng-controller="SettingsController as sCtrl">
+                            <h3 class="modal-title">Filter</h3>
+                            <table>
+                                <tr class="controls-modal-filter-currency">
+                                    <td class="label"><span>Price Range: </span></td>
+                                    <td class="input"></td>
+                                </tr>
+    
+                                <tr class="controls-modal-filter-condition">
+                                    <td class="label"><span>Condition: </span></td>
+                                    <td class="input"></td>
+                                </tr>
+    
+                                <tr class="controls-modal-filter-shipping">
+                                    <td class="label"><span>Free Shipping: </span></td>
+                                    <td class="input"></td>
+                                </tr>
+                            </table>
+                        </div>
+    
+                        <div class="controls-modal-settings" ng-switch-when="settings"
+                            ng-controller="SettingsController as sCtrl">
+                            <h3 class="modal-title">Settings</h3>
+                            <div class="controls-modal-settings-currency"></div>
+                            <div class="controls-modal-settings-currency"></div>
+                            <div class="controls-modal-settings-currency"></div>
+                        </div>
+                        <footer>
+                            <button>Save</button>
+                            <button ng-click="closeModal()">Cancel</button>
+    
+                        </footer>
+                    </dialog>
+                </div>
+                <!-- End Device Prices -->

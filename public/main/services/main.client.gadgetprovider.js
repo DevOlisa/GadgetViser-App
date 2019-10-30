@@ -1,8 +1,4 @@
-angular.module('Main').service('TestObjects', ['$resource', '$http', '$q', 'GadgetFactory',
-    function ($resource, $http, $q, GadgetFactory) {
-
-
-    }])
+angular.module('Main')
     .factory('GadgetFactory', ['$resource', '$http', function ($resource, $http) {
         var service = {};
         var newGadget = true;
@@ -14,7 +10,7 @@ angular.module('Main').service('TestObjects', ['$resource', '$http', '$q', 'Gadg
                 GadgetToSave.link = (GadgetToSave.oem + '-' + GadgetToSave.name).toLowerCase().replace(/\s+/gi, '-');
                 return $http.post('http://localhost:3000/gadgets', GadgetToSave)
                     .then(function (response) {
-                        alert( GadgetToSave.name + ' was added to the database successfully!');
+                        alert(GadgetToSave.name + ' was added to the database successfully!');
                         return GadgetToSave;
                     });
             }

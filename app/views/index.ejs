@@ -3,6 +3,7 @@
 
 <head g-controller="">
     <title><%= title %></title>
+    <base href="/">
     <!-- ie9+ rendering support for latest standards -->
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,6 +22,7 @@
     <script type="text/javascript" src="./lib/angular/angular.js"></script>
 
     <!-- <script src="./lib/angular-route/angular-route.js"></script> -->
+    <script type="text/javascript" src="./lib/@uirouter/angularjs/release/angular-ui-router.js"></script>
     <script src="./lib/angular-animate/angular-animate.js"></script>
     <script src="./lib/angular-route/angular-route.js"></script>
     <script src="./lib/angular-cookies/angular-cookies.js"></script>
@@ -209,7 +211,7 @@
                 ng-class='{"extended": nCtrl.NavState.isOpen}'>
                 <ul class="gad-shell-sidenav-navlist">
                     <li class="nav-items">
-                        <a href="#!phones">
+                        <a ui-sref="!phones">
                             <img alt="phones" title="Phones" src="../icons/phone.png">
                             Phones
                         </a>
@@ -221,7 +223,7 @@
                         </a>
                     </li>
                     <li class="nav-items">
-                        <a href="#!news">
+                        <a ui-sref="!news">
                             <img alt="tablets" title="Tablets" src="../icons/tablet-48px.png">
                             Tablets
                         </a>
@@ -269,7 +271,7 @@
             </div>
 
             <!-- main container layout -->
-            <main class="gad-shell-main" ng-class="{'blur': !SearchBarState.isSearchBarHidden}" ng-view></main>
+            <main class="gad-shell-main" ng-class="{'blur': !SearchBarState.isSearchBarHidden}" ui-view></main>
             <!-- End gad-shell-main -->
 
             <!---------------------------------------------- Side Bar  --------------------------------------->

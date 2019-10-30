@@ -1,0 +1,122 @@
+
+<!--------------------------------------------- BEGIN HOMEPAGE HTML --------------------------------------------->
+<div id="home">
+    <div class="page">
+
+        <!-- Forum CTA -->
+        <div class="forum-cta-container">
+            <div class="forum-cta">
+                <h1>Questions About Any Device?</h1>
+                <p>Our community of users are waiting to help out!</p>
+                <button>Discover</button>
+            </div>
+        </div>
+
+        <!---------------------------------------- Begin News Column -------------------------------------------->
+        <div class="news-container">
+            <!-- <header>
+                <h2>Featured News</h2>
+            </header>
+            <div class="news-wrapper">
+                <ul class="news-list">
+                    <li class="news-item important">
+                        <div ng-click="dCtrl.ToggleDialog()">
+                            <div class="headline">
+                                Foldable Phones Are Cool But the Tech Isn't Ready For Prime Time
+                            </div>
+                        </div>
+                    </li>
+                    <li class="news-item">
+                        <div>
+                            <div class="headline">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor
+                            </div>
+                        </div>
+                    </li>
+                    <li class="news-item">
+                        <div>
+                            <div class="headline">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+                            </div>
+                        </div>
+                    </li>
+                    <li class="news-item">
+                        <div>
+                            <div class="headline">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                t
+                            </div>
+                        </div>
+                    </li>
+                    <li class="news-item">
+                        <div>
+                            <div class="headline">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+
+            <!-- Go to news button -->
+            <button>Go To News</button>
+
+
+        </div>
+        <!------------------------------------------ End of News Column ----------------------------------------->
+
+        <!---------------------------------------- Begin Recent Devices Column -------------------------------------------->
+        <div class="recent-devices-container" ng-controller="PhoneController as pCtrl">
+            <header>
+                <h2>Recently Added</h2>
+            </header>
+            <!-- Device Row -->
+            <div class="devices-row">
+                <!-- Begin Item Wrapper -->
+                <div class="devices-row-wrapper">
+                    <!-- Begin Item Wrapper -->
+                    <div class="item-wrapper test" ng-repeat="gadget in pCtrl.gadgets">
+                        <gadget-shell></gadget-shell>
+                    </div>
+                    <!-- End Item Wrapper -->
+                </div>
+                <!-- End Device Row Wrapper -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- <style type="text/css">
+.circle {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background: radial-gradient(rgb(235, 102, 25), red);
+    border-radius: 50%;
+}
+</style>
+<script type="text/javascript">
+    // Design a program that calculate the dimensions of an HTML container
+    (function calc(win, $) {
+        $(win.document).ready(function () {
+            var elem = $(win.document);
+            elem.click(function (event) {
+                var circleElem = $('<div class="circle"></div>');
+                circleElem.css({'top': event.pageY -25, 'left' : event.pageX -25}).width(50).css('border', '1px solid red');
+                elem.find('#home').append(circleElem);
+                console.log(event.pageX, "", event.pageY)
+            });
+        });
+
+        $(win.document).ready(function() {
+            $(this).click(function(event) {
+                var width = $(this).width();
+                alert(width);
+            });
+        });
+    })(window, jQuery);
+</script> -->
+<!------------------------------------------ END HOMEPAGE HTML ----------------------------------------->
