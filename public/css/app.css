@@ -13,7 +13,7 @@ h2, .device-page-main #specifications .specs-category-main-item table h3 {
 .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title {
   font-family: 'Fira Sans Medium'; }
 
-.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
+.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
   font-family: 'Fira Sans';
   font-weight: bold; }
 
@@ -293,7 +293,8 @@ button {
           border-bottom: none; }
         .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title {
           color: #707070;
-          word-break: break-all; }
+          word-break: break-all;
+          text-transform: capitalize; }
       .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item {
         padding: 10px; }
         .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title {
@@ -1045,6 +1046,55 @@ button {
 
 /********* End View Device Page Styles ********/
 /*############# INDEPENDENT STYLES ###########*/
+/*************** Begin Question Dialog Styles ***************/
+.create-question-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; }
+
+.create-question-dialog {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 50%;
+  background-color: #ffffff;
+  border: 1px solid #cfcfcf;
+  border-radius: 30px 30px 0 0; }
+  .create-question-dialog .wrapper {
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    left: 10px;
+    bottom: 14px; }
+  .create-question-dialog textarea {
+    width: 100%;
+    font-size: 20px; }
+  .create-question-dialog .question-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 54px; }
+    .create-question-dialog .question-controls-setting {
+      position: absolute;
+      right: 71px;
+      left: 0;
+      height: 54px; }
+    .create-question-dialog .question-controls-submit {
+      position: absolute;
+      right: 0;
+      height: 54px;
+      width: 71px;
+      border-left: 1px solid #cfcfcf; }
+      .create-question-dialog .question-controls-submit input[type="submit"] {
+        background: url(../icons/arrow-48px.png) center no-repeat;
+        transform: rotateZ(180deg); }
+
+/*************** End Question Dialog Styles ***************/
 /*************** Begin Gadget Item List Styles ***************/
 .devices-row {
   margin: 22px 0; }

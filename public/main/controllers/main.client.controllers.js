@@ -1,5 +1,6 @@
 angular.module('Main')
-    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', function ($scope, BgMask, SearchBarState) {
+    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'QuestionDialogService', 
+    function ($scope, BgMask, SearchBarState, QuestionDialogService) {
         $scope.isDialogOpen = false;
 
         $scope.closeAccountDialog = function () {
@@ -14,8 +15,8 @@ angular.module('Main')
             BgMask.toggle();
         };
 
+        $scope.QuestionDialogService = QuestionDialogService;
         $scope.SearchBarState = SearchBarState;
-
     }])
     .controller('QuestionController', [function () {
         var self = this;
@@ -31,8 +32,8 @@ angular.module('Main')
         };
 
     }])
-    .controller('GadgetController', ['$scope', 'GadgetFactory', 'selectedGadget',
-        function ($scope, GadgetFactory, selectedGadget) {
+    .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget',
+        function ($scope,$state, GadgetFactory, selectedGadget) {
             let self = this;
             $scope.gadget = selectedGadget;
             $scope.gadgets = [selectedGadget];
@@ -58,6 +59,7 @@ angular.module('Main')
             };
 
             self.getOemDevice();
+            $state.go('view-phone.questions')
         }])
     .controller('PricesController', ['GadgetFactory', function (GadgetFactory) {
         let self = this;

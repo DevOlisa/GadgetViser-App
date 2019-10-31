@@ -1,10 +1,10 @@
 angular.module('Main')
-    .controller('GadgetCategoryController', ['$scope', '$location', 'RouteStateService', 'GadgetFactory',
-        function ($scope, $location, RouteStateService, GadgetFactory) {
+    .controller('GadgetCategoryController', ['$scope', '$stateParams', '$location', 'RouteStateService', 'GadgetFactory',
+        function ($scope, $stateParams, $location, RouteStateService, GadgetFactory) {
             var self = this;
             $scope.latestGadgets = [];
             $scope.upcomingGadgets = [];
-            self.category = RouteStateService.currentRoute.category;
+            self.category = $stateParams.category;
             
             self.fetchLatestGadgets = () => {
                 let opt = {};
