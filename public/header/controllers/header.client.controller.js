@@ -8,6 +8,6 @@ angular.module('Header').controller('HeaderController', ['$scope', 'SearchBarSta
     };
 
     self.toggleSideNav = function() {
-        NavState.isOpen = !NavState.isOpen;
+        NavState.isClosed = !NavState.isClosed;
     };
 }]);

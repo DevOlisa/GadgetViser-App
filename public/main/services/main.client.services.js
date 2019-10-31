@@ -4,17 +4,14 @@ angular.module('Main').service('BgMask', [function () {
         this.mask.toggleClass('blur');
     };
 }])
-.service('NavState', ['$rootScope', function($rootScope) {
+.service('NavState', function() {
     let self= this;
-    self.isOpen = false;
+    self.isClosed = true;
     self.getState = function() {
         return self.NavOpen;
     };
-    $rootScope.$on("$routeChangeSuccess", function(e, args) {
-        if (self.isOpen === true) self.isOpen = false;
-    });
-}])
-.service('SearchBarState', ['$rootScope', function($rootScope) {
+})
+.service('SearchBarState', function() {
     let self= this;
     self.searchText = '';
     self.isSearchBarHidden = true;
@@ -31,7 +28,7 @@ angular.module('Main').service('BgMask', [function () {
         self.searchText = '';
         console.log('Clearing');
     };
-}])
+})
 .factory('ObjectStateService', [function() {
     let self = this;
     self.state = {};

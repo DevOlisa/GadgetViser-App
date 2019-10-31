@@ -1,15 +1,18 @@
 angular.module('Main')
-    .config(function ($routeProvider, $sceDelegateProvider) {
-        $routeProvider.when('/', {
-            templateUrl: './main/views/home.client.view.html',
-        });
-        $routeProvider.when('/phones', {
+    .config(function ($routeProvider, $stateProvider, $locationProvider, $urlRouterProvider, $sceDelegateProvider) {
+        $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: './main/views/home.html',
+        })
+        .state('phones', {
+            url: '/phones',
             templateUrl: './main/views/device-category.html',
-            category: 'Phone',
-        });
-        $routeProvider.when('/laptops', {
+            resolve: {}
+        })
+        .state('laptops', {
+            url: '/laptops',
             templateUrl: './main/views/device-category.html',
-            category: 'Laptop',
         });
         $routeProvider.when('/phone/v/:id', {
             templateUrl: './main/views/view-device.html',
@@ -38,6 +41,4 @@ angular.module('Main')
             // Allow loading from our assets domain.  Notice the difference between * and **.
             // 'http://*.youtube.com/**'
         ]);
-
-        $routeProvider.otherwise({redirectTo: '/'});
     });

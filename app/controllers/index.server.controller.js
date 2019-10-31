@@ -4,8 +4,4 @@ exports.render = function (req, res) {
     }
     console.log(req.user);  
     req.session.lastVisit = new Date();
-
-    res.render('index', {
-        title: 'GadgetViser'
-    });
 };

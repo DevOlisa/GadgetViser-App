@@ -1,10 +1,12 @@
 angular.module('Main')
-.controller('RootController', ['$scope', 'RouteStateService', 'SearchBarState', 
-function($scope, RouteStateService, SearchBarState) {
-    $scope.$on('$routeChangeSuccess', function(event, current, previous) {
-        RouteStateService.currentRoute = current;
-        if (SearchBarState.isSearchBarHidden === false) SearchBarState.isSearchBarHidden = true;
-        
-        // console.log(RouteStateService);
-    })
+.controller('RootController', ['$scope', '$transitions', 'RouteStateService', 'SearchBarState', 'NavState', 
+function($scope, $transitions, RouteStateService, SearchBarState, NavState) {
+    $transitions.onStart({}, function() {
+        if (NavState.isClosed === false) {
+            NavState.isClosed = true;
+        }
+        if (SearchBarState.isSearchBarHidden === false) {
+            SearchBarState.isSearchBarHidden = true;
+        }
+    });
 }]);

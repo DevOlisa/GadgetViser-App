@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" ng-app="Gad" ng-controller="RootController">
+
+<head g-controller="">
+    <title>GadgetViser App</title>
+    <base href="/"/>
+    <!-- ie9+ rendering support for latest standards -->
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+
+    <!-- <link rel="stylesheet" href="../css/vendor/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" href="./css/app.css">
+
+    <!-- third party javascript -->
+    <script src="./lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="./lib/angular/angular.js"></script>
+
+    <!-- <script src="./lib/angular-route/angular-route.js"></script> -->
+    <script type="text/javascript" src="./lib/@uirouter/angularjs/release/angular-ui-router.js"></script>
+    <script src="./lib/angular-animate/angular-animate.js"></script>
+    <script src="./lib/angular-route/angular-route.js"></script>
+    <script src="./lib/angular-cookies/angular-cookies.js"></script>
+    <script src="./lib/angular-messages/angular-messages.js"></script>
+    <script src="./lib/angular-resource/angular-resource.js"></script>
+    <script src="./lib/angular-sanitize.js"></script>
+
+    <!-- our javascript -->
+
+    <!-- our main feature modules -->
+    <script src="./admin/admin.client.module.js"></script>
+    <script src="./main/main.client.module.js"></script>
+    <script src="./news/news.client.module.js"></script>
+    <script src="./user/user.client.module.js"></script>
+    <script src="./authorize/auth.client.module.js"></script>
+    <script src="./header/header.client.module.js"></script>
+    <script src="./user/search.module.js"></script>
+
+    <!-- <script src="./search/search.client.module.js"></script> -->
+
+    <!-- other supporting scripts -->
+
+    <script src="./user/services/user.client.service.js"></script>
+    <script src="./user/routes/user.client.routes.js"></script>
+
+    <script src="./admin/controllers/admin.client.controllers.js"></script>
+    <script src="./admin/routes/admin.client.routes.js"></script>
+    <script src="./admin/services/admin.client.service.js"></script>
+
+    <script src="./main/config/main.client.config.js"></script>
+    <script src="./main/controllers/root.client.controller.js"></script>
+    <script src="./main/services/main.client.services.js"></script>
+    <script src="./main/routes/main.client.routes.js"></script>
+    <script src="./main/controllers/main.client.controllers.js"></script>
+    <script src="./main/controllers/device.category.controllers.js"></script>
+    <script src="./main/services/main.client.gadgetprovider.js"></script>
+    <script src="./main/directives/main.client.directives.js"></script>
+
+    <script src="./news/routes/news.client.routes.js"></script>
+    <script src="./news/services/news.client.service.js"></script>
+    <script src="./news/controllers/news.client.controllers.js"></script>
+    <script src="./news/directives/news.client.directives.js"></script>
+
+    <script src="./authorize/directives/auth.client.directives.js"></script>
+    <script src="./authorize/services/auth.client.services.js"></script>
+    <script src="./authorize/controllers/auth.client.controllers.js"></script>
+
+    <script src="./header/controllers/header.client.controller.js"></script>
+
+    <script src="./search/controllers/search.client.controller.js"></script>
+    <script src="./search/services/search.client.service.js"></script>
+    <script src="./search/filters/search.client.filter.js"></script>
+
+    <script src="app/gad.client.js"></script>
+
+</head>
+
+<body ng-controller="MainController">
+    <div id="gad">
+        <!-- Begin Shell Mask -->
+        <div class="gad-shell-mask" ng-class="{'blur' : false}">
+            <!-- header layout -->
+            <div class="gad-shell-header" ng-controller="HeaderController as headCtrl">
+
+                <div class="gad-shell-header-logo">
+                    <!-- Burger Nav On Mobile -->
+                    <div class="burger" ng-click="headCtrl.toggleSideNav()">
+                        <img src="icons/burger-48px.png" class="burger-nav" width="48px" />
+                    </div>
+
+                    <!-- GadgetViser Logo -->
+                    <a ui-sref="/">
+                        <img id="logo" src="icons/logo-48px.png" alt="GadgetViser" title="GadgetViser Home">
+                        GadgetViser Home
+                    </a>
+                </div>
+                <!-- search bar on top -->
+                <div class="gad-shell-header-searchbar" ng-controller="SearchController as searchCtrl"
+                    ng-class="{'expanded': !SearchBarState.isSearchBarHidden}">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-control main-search">
+                                    <input id="search-input" name="searchText" ng-model="searchText" type="text"
+                                        ng-model-options="{ debounce: 600}" placeholder="Search this site">
+                                </div>
+                            </td>
+                            <td class="search-control">
+                                <button ng-click="headCtrl.showSearchBar()">
+                                    <img class="close" src="icons/close-black.png" />
+                                </button>
+                            </td>
+                        </tr>
+                        <tr ng-if="searching">
+                            <td colspan="2">
+                                <div class="loading-indicator center">
+                                    <?xml version="1.0" encoding="utf-8"?><svg width='90px' height='90px'
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+                                        preserveAspectRatio="xMidYMid" class="uil-ring">
+                                        <rect x="0" y="0" width="200" height="200" fill="none" class="bk"></rect>
+                                        <defs>
+                                            <filter id="uil-ring-shadow" x="-100%" y="-100%" width="500%" height="500%">
+                                                <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0"></feOffset>
+                                                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0">
+                                                </feGaussianBlur>
+                                               <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+                                            </filter>
+                                        </defs>
+                                        <path
+                                            d="M10,50c0,0,0,0.5,0.1,1.4c0,0.5,0.1,1,0.2,1.7c0,0.3,0.1,0.7,0.1,1.1c0.1,0.4,0.1,0.8,0.2,1.2c0.2,0.8,0.3,1.8,0.5,2.8 c0.3,1,0.6,2.1,0.9,3.2c0.3,1.1,0.9,2.3,1.4,3.5c0.5,1.2,1.2,2.4,1.8,3.7c0.3,0.6,0.8,1.2,1.2,1.9c0.4,0.6,0.8,1.3,1.3,1.9 c1,1.2,1.9,2.6,3.1,3.7c2.2,2.5,5,4.7,7.9,6.7c3,2,6.5,3.4,10.1,4.6c3.6,1.1,7.5,1.5,11.2,1.6c4-0.1,7.7-0.6,11.3-1.6 c3.6-1.2,7-2.6,10-4.6c3-2,5.8-4.2,7.9-6.7c1.2-1.2,2.1-2.5,3.1-3.7c0.5-0.6,0.9-1.3,1.3-1.9c0.4-0.6,0.8-1.3,1.2-1.9 c0.6-1.3,1.3-2.5,1.8-3.7c0.5-1.2,1-2.4,1.4-3.5c0.3-1.1,0.6-2.2,0.9-3.2c0.2-1,0.4-1.9,0.5-2.8c0.1-0.4,0.1-0.8,0.2-1.2 c0-0.4,0.1-0.7,0.1-1.1c0.1-0.7,0.1-1.2,0.2-1.7C90,50.5,90,50,90,50s0,0.5,0,1.4c0,0.5,0,1,0,1.7c0,0.3,0,0.7,0,1.1 c0,0.4-0.1,0.8-0.1,1.2c-0.1,0.9-0.2,1.8-0.4,2.8c-0.2,1-0.5,2.1-0.7,3.3c-0.3,1.2-0.8,2.4-1.2,3.7c-0.2,0.7-0.5,1.3-0.8,1.9 c-0.3,0.7-0.6,1.3-0.9,2c-0.3,0.7-0.7,1.3-1.1,2c-0.4,0.7-0.7,1.4-1.2,2c-1,1.3-1.9,2.7-3.1,4c-2.2,2.7-5,5-8.1,7.1 c-0.8,0.5-1.6,1-2.4,1.5c-0.8,0.5-1.7,0.9-2.6,1.3L66,87.7l-1.4,0.5c-0.9,0.3-1.8,0.7-2.8,1c-3.8,1.1-7.9,1.7-11.8,1.8L47,90.8 c-1,0-2-0.2-3-0.3l-1.5-0.2l-0.7-0.1L41.1,90c-1-0.3-1.9-0.5-2.9-0.7c-0.9-0.3-1.9-0.7-2.8-1L34,87.7l-1.3-0.6 c-0.9-0.4-1.8-0.8-2.6-1.3c-0.8-0.5-1.6-1-2.4-1.5c-3.1-2.1-5.9-4.5-8.1-7.1c-1.2-1.2-2.1-2.7-3.1-4c-0.5-0.6-0.8-1.4-1.2-2 c-0.4-0.7-0.8-1.3-1.1-2c-0.3-0.7-0.6-1.3-0.9-2c-0.3-0.7-0.6-1.3-0.8-1.9c-0.4-1.3-0.9-2.5-1.2-3.7c-0.3-1.2-0.5-2.3-0.7-3.3 c-0.2-1-0.3-2-0.4-2.8c-0.1-0.4-0.1-0.8-0.1-1.2c0-0.4,0-0.7,0-1.1c0-0.7,0-1.2,0-1.7C10,50.5,10,50,10,50z"
+                                            fill="#337ab7" filter="url(#uil-ring-shadow)">
+                                            <animateTransform attributeName="transform" type="rotate" from="0 50 50"
+                                                to="360 50 50" repeatCount="indefinite" dur="500ms"></animateTransform>
+                                        </path>
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="!SearchBarState.isSearchBarHidden && searchResult && !searching">
+                            <td colspan="2">
+                                <hr>
+                                <div class="search-results-wrapper">
+                                    <div class="device-search-result" ng-if="searchResult.gadgets.length">
+                                        <h3>Devices ({{searchResult.gadgets.length}})</h3>
+                                        <div class="device-search-result-item" ng-repeat="item in searchResult.gadgets">
+                                            <a href="#!{{item.type | lowercase}}/v/{{item.link}}">
+                                                <div class="device-search-result-item-image"
+                                                    style="background-image: url({{item.image}});"></div>
+                                                <div class="device-search-result-item-name" ng-bind-html="item.name | highlight: searchText | lowercase"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="questions-search-result" ng-if="searchResult.questions.length">
+                                        <h3>Questions ({{searchResult.questions.length}})</h3>
+                                        <div class="questions-search-result-item"
+                                            ng-repeat="item in searchResult.questions">
+                                            <div class="questions-search-result-item-title">Lorem ipsum dolor sit amet
+                                                consectetur, adipisicing elit.</div>
+                                        </div>
+                                    </div>
+                                    <div class="news-search-result" ng-if="searchResult.articles.length">
+                                        <h3>News ({{searchResult.articles.length}})</h3>
+                                        <div class="news-search-result-item" ng-repeat="item in searchResult.articles">
+                                            <a href="#!{{item.type | lowercase}}/v/{{item.link}}">
+                                                <div class="news-search-result-item-title" ng-bind-html="item.title | highlight: searchText | lowercase"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="gad-shell-header-primarylinks">
+                    <ul>
+                        <li><a href=#>Forum</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+
+                <!-- notification feature -->
+                <div class="gad-shell-header-notification">
+                    <a href="#">
+                        <img src="../icons/bell-48px.png" alt="Notifications">
+                    </a>
+                </div>
+                <!-- account and related features -->
+                <div class="gad-shell-header-account">
+                    <button href="#/" ng-click="openAccountDialog()">
+                        <img src="../icons/account.png" alt="Sign in or create account">
+                        <div>Sign In</div>
+                    </button>
+                </div>
+
+                <!-- search toggle on mobile -->
+                <div class="gad-shell-header-toggle">
+                    <button class="gad-shell-header-toggle-button" ng-click="headCtrl.showSearchBar()">
+                        <img src="icons/search-48px.png" alt="search-control">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- side nav layout -->
+            <div class="gad-shell-sidenav" ng-controller="NavController as nCtrl"
+                ng-class='{"extended": !nCtrl.NavState.isClosed}'>
+                <ul class="gad-shell-sidenav-navlist">
+                    <li class="nav-items">
+                        <a ui-sref="phones">
+                            <img alt="phones" title="Phones" src="../icons/phone.png">
+                            Phones
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a ui-sref="laptops">
+                            <img alt="laptops" title="Laptops" src="../icons/laptop-48px.png">
+                            Laptops
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a ui-sref="news">
+                            <img alt="tablets" title="Tablets" src="../icons/tablet-48px.png">
+                            Tablets
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a ui-sref="#">
+                            <img alt="tv & monitors" title="TV & Monitors" src="../icons/TV-48px.png">
+                            TV & Monitors
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a href="#">
+                            <img alt="smartwatches" title="Smartwatches" src="../icons/smartwatch-48px.png">
+                            Smartwatches
+                        </a>
+                    </li>
+                </ul>
+                <div class="gad-shell-sidenav-footer">
+
+                    <!-- Begin Social Connect -->
+                    <div class="social-connect">
+                        <div class="main-social-links">
+                            <img src="icons/Twitter.png" width="20px">
+                        </div>
+                        <div class="main-social-links">
+                            <img src="icons/Facebook.png" width="20px">
+                        </div>
+                    </div>
+                    <!-- End Social Connect -->
+
+                    <!-- Begin Footer Links -->
+                    <div class="footer-links">
+                        <svg height="1" width="87" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
+                            <line x1="0" y1="0" x2="87" y2="0"
+                                style="stroke: rgb(200, 200, 200); stroke-width: 0.2; stroke-linecap:round " />
+                        </svg>
+                        <div>About</div>
+                        <div>Privacy</div>
+                        <div class="copy">GadgetViser &copy; 2019</div>
+                    </div>
+                    <!-- End Footer Links -->
+                </div>
+                <!-- End  SideNav Footer -->
+            </div>
+
+            <!-- main container layout -->
+            <main class="gad-shell-main" ng-class="{'blur': !SearchBarState.isSearchBarHidden}" ui-view>
+                <div class="loading-indicator center">
+                    <?xml version="1.0" encoding="utf-8"?><svg width='90px' height='90px'
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+                        preserveAspectRatio="xMidYMid" class="uil-ring">
+                        <rect x="0" y="0" width="200" height="200" fill="none" class="bk"></rect>
+                        <defs>
+                            <filter id="uil-ring-shadow" x="-100%" y="-100%" width="500%" height="500%">
+                                <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0"></feOffset>
+                                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0">
+                                </feGaussianBlur>
+                               <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+                            </filter>
+                        </defs>
+                        <path
+                            d="M10,50c0,0,0,0.5,0.1,1.4c0,0.5,0.1,1,0.2,1.7c0,0.3,0.1,0.7,0.1,1.1c0.1,0.4,0.1,0.8,0.2,1.2c0.2,0.8,0.3,1.8,0.5,2.8 c0.3,1,0.6,2.1,0.9,3.2c0.3,1.1,0.9,2.3,1.4,3.5c0.5,1.2,1.2,2.4,1.8,3.7c0.3,0.6,0.8,1.2,1.2,1.9c0.4,0.6,0.8,1.3,1.3,1.9 c1,1.2,1.9,2.6,3.1,3.7c2.2,2.5,5,4.7,7.9,6.7c3,2,6.5,3.4,10.1,4.6c3.6,1.1,7.5,1.5,11.2,1.6c4-0.1,7.7-0.6,11.3-1.6 c3.6-1.2,7-2.6,10-4.6c3-2,5.8-4.2,7.9-6.7c1.2-1.2,2.1-2.5,3.1-3.7c0.5-0.6,0.9-1.3,1.3-1.9c0.4-0.6,0.8-1.3,1.2-1.9 c0.6-1.3,1.3-2.5,1.8-3.7c0.5-1.2,1-2.4,1.4-3.5c0.3-1.1,0.6-2.2,0.9-3.2c0.2-1,0.4-1.9,0.5-2.8c0.1-0.4,0.1-0.8,0.2-1.2 c0-0.4,0.1-0.7,0.1-1.1c0.1-0.7,0.1-1.2,0.2-1.7C90,50.5,90,50,90,50s0,0.5,0,1.4c0,0.5,0,1,0,1.7c0,0.3,0,0.7,0,1.1 c0,0.4-0.1,0.8-0.1,1.2c-0.1,0.9-0.2,1.8-0.4,2.8c-0.2,1-0.5,2.1-0.7,3.3c-0.3,1.2-0.8,2.4-1.2,3.7c-0.2,0.7-0.5,1.3-0.8,1.9 c-0.3,0.7-0.6,1.3-0.9,2c-0.3,0.7-0.7,1.3-1.1,2c-0.4,0.7-0.7,1.4-1.2,2c-1,1.3-1.9,2.7-3.1,4c-2.2,2.7-5,5-8.1,7.1 c-0.8,0.5-1.6,1-2.4,1.5c-0.8,0.5-1.7,0.9-2.6,1.3L66,87.7l-1.4,0.5c-0.9,0.3-1.8,0.7-2.8,1c-3.8,1.1-7.9,1.7-11.8,1.8L47,90.8 c-1,0-2-0.2-3-0.3l-1.5-0.2l-0.7-0.1L41.1,90c-1-0.3-1.9-0.5-2.9-0.7c-0.9-0.3-1.9-0.7-2.8-1L34,87.7l-1.3-0.6 c-0.9-0.4-1.8-0.8-2.6-1.3c-0.8-0.5-1.6-1-2.4-1.5c-3.1-2.1-5.9-4.5-8.1-7.1c-1.2-1.2-2.1-2.7-3.1-4c-0.5-0.6-0.8-1.4-1.2-2 c-0.4-0.7-0.8-1.3-1.1-2c-0.3-0.7-0.6-1.3-0.9-2c-0.3-0.7-0.6-1.3-0.8-1.9c-0.4-1.3-0.9-2.5-1.2-3.7c-0.3-1.2-0.5-2.3-0.7-3.3 c-0.2-1-0.3-2-0.4-2.8c-0.1-0.4-0.1-0.8-0.1-1.2c0-0.4,0-0.7,0-1.1c0-0.7,0-1.2,0-1.7C10,50.5,10,50,10,50z"
+                            fill="#337ab7" filter="url(#uil-ring-shadow)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 50 50"
+                                to="360 50 50" repeatCount="indefinite" dur="500ms"></animateTransform>
+                        </path>
+                    </svg>
+                </div>
+            </main>
+            <!-- End gad-shell-main -->
+
+            <!---------------------------------------------- Side Bar  --------------------------------------->
+            <!-- <aside class="gad-shell-sidebar" ng-include="'./main/views/sidebar.html'">
+            </aside> -->
+            <!--------------------------------------------- End of Side Bar --------------------------------------------->
+        </div>
+        <!-- End gad mask -->
+
+        <!-- Account dialog popup -->
+        <div ng-include="'./authorize/views/account-dialog.html'" ng-controller="AuthController"></div>
+
+    </div>
+    <!-- End gad shell -->
+
+</body>
+
+</html>

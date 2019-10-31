@@ -1,13 +1,19 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var
+const
     mongoose = require('./config/mongoose'),
     express = require('./config/express'),
-    passport = require('./config/passport');
+    path = require('path'),
+    passportConfig = require('./config/passport');
 
 const db = mongoose();
 const gad = express();
-var passport = passport();
+const passport = passportConfig();
+
+gad.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+  });
+
 gad.listen(3000);
 module.exports = gad;
 console.log('Server running at http://localhost:3000/');
