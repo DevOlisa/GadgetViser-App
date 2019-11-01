@@ -1,21 +1,25 @@
-    <!-- Add New Question Dialog -->
-    <div class="create-question-backdrop" qui-modal ng-if="QuestionDialogService.isDialogVisible">
-        <div class="create-question-dialog">
-            <div class="wrapper">
-                <form name="QuestionForm" ng-submit="submit()" novalidate>
-                    <div class="question-input">
-                        <textarea name="question" ng-model="question.title"
-                            placeholder="Ask any question about the gadget">
+<!-- Add New Question Dialog -->
+<div class="create-question-backdrop" ng-controller="QuestionDialogController as qdCtrl" qui-modal
+    ng-if="QuestionDialogService.isDialogVisible">
+    <div class="create-question-dialog">
+        <div class="wrapper">
+            <form name="QuestionForm" ng-submit="qdCtrl.submit()" novalidate>
+                <div class="question-input">
+                    <textarea name="question" ng-model="question.title" maxlength="150"
+                        placeholder="Ask any question about the {{QuestionDialogService.selectedGadget.name}}">
                     </textarea>
+                    <label class="char-count" ng-if="question.title.length"
+                    ng-class="{'error': question.title.length > 149 }">{{ question.title.length}}/150</label>
+                </div>
+                <div class="question-controls">
+                    <div class="question-controls-setting">
                     </div>
-                    <div class="question-controls">
-                        <div class="question-controls-setting">
-                        </div>
-                        <div class="question-controls-submit">
-                            <input type="submit" value="" />
-                        </div>
+                    <div class="question-controls-submit">
+                        <input type="submit" value="" />
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+    <!-- Do all android apps scale well on tall 21:9 aspect ratio screens? -->
+</div>

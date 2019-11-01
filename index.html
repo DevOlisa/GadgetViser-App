@@ -153,7 +153,7 @@
                                     <div class="device-search-result" ng-if="searchResult.gadgets.length">
                                         <h3>Devices ({{searchResult.gadgets.length}})</h3>
                                         <div class="device-search-result-item" ng-repeat="item in searchResult.gadgets">
-                                            <a href="#!{{item.type | lowercase}}/v/{{item.link}}">
+                                            <a href="{{item.type | lowercase}}/v/{{item.link}}">
                                                 <div class="device-search-result-item-image"
                                                     style="background-image: url({{item.image}});"></div>
                                                 <div class="device-search-result-item-name"
@@ -172,7 +172,7 @@
                                     <div class="news-search-result" ng-if="searchResult.articles.length">
                                         <h3>News ({{searchResult.articles.length}})</h3>
                                         <div class="news-search-result-item" ng-repeat="item in searchResult.articles">
-                                            <a href="#!{{item.type | lowercase}}/v/{{item.link}}">
+                                            <a href="news/v/{{item.link}}">
                                                 <div class="news-search-result-item-title"
                                                     ng-bind-html="item.title | highlight: searchText | lowercase"></div>
                                             </a>

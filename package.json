@@ -5,9 +5,7 @@
   "main": "gad.server.js",
   "author": "Olisa Samson",
   "license": "MIT",
-  "scripts": {
-    "install-front": "yarn add --production=true --modules-folder ./public/lib"
-  },
+  "scripts": {  },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",

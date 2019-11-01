@@ -32,12 +32,14 @@ angular.module('Main')
         };
 
     }])
-    .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget',
-        function ($scope,$state, GadgetFactory, selectedGadget) {
+    .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService',
+        function ($scope,$state, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService) {
             let self = this;
             $scope.gadget = selectedGadget;
-            $scope.gadgets = [selectedGadget];
+            $scope.gadgets = selectedGadget;
             $scope.similarGadgets = [];
+            QuestionDialogService.selectedGadget = selectedGadget;
+            QuestionService.selectedGadget = selectedGadget._id;
 
             self.likeGadget = function() {
                 ++$scope.gadget.likes;
@@ -59,7 +61,7 @@ angular.module('Main')
             };
 
             self.getOemDevice();
-            $state.go('view-phone.questions')
+            $state.go('view-device.questions')
         }])
     .controller('PricesController', ['GadgetFactory', function (GadgetFactory) {
         let self = this;

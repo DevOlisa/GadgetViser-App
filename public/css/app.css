@@ -10,14 +10,14 @@ h2, .device-page-main #specifications .specs-category-main-item table h3 {
 .gad-shell-header-searchbar .search-results-wrapper .device-search-result-item-name, .device-page-main-content #prices .store-list .store-item-unit .detail-seller {
   font-family: 'Fira Sans'; }
 
-.gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title {
+.gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title, .create-question-dialog .char-count {
   font-family: 'Fira Sans Medium'; }
 
-.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
+.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, .create-question-dialog .char-count.error, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
   font-family: 'Fira Sans';
   font-weight: bold; }
 
-.device-page-main-content #prices .store-list .store-item-unit .detail-price, .device-page-main #questions .new-question-input textarea {
+.device-page-main-content #prices .store-list .store-item-unit .detail-price {
   font-family: 'Fira Sans Extrabold'; }
 
 html {
@@ -1020,24 +1020,17 @@ button {
     border-collapse: collapse;
     border-spacing: 3;
     table-layout: fixed; }
+    .device-page-main #questions .new-question table td:nth-child(1) {
+      padding-left: 10px; }
     .device-page-main #questions .new-question table td:nth-child(2) {
-      width: 37px; }
+      width: 57px; }
+      .device-page-main #questions .new-question table td:nth-child(2) img {
+        display: block;
+        width: 42px;
+        transform: rotateZ(180deg); }
   .device-page-main #questions .new-question-input {
-    border: 2px solid grey;
+    border: 1px solid #cfcfcf;
     border-radius: 3px; }
-    .device-page-main #questions .new-question-input textarea {
-      width: 100%;
-      padding: 11px 8px;
-      font-size: 18px;
-      outline: none;
-      overflow-y: hidden;
-      box-sizing: border-box; }
-    .device-page-main #questions .new-question-input input[type=submit] {
-      width: 37px;
-      height: 42px;
-      margin: 0;
-      background: url(../Icons/arrow-r-48px.png) center no-repeat;
-      text-indent: -10000000px; }
 .device-page-main .devices-row {
   width: 100%;
   margin-top: 20px; }
@@ -1066,19 +1059,29 @@ button {
   border-radius: 30px 30px 0 0; }
   .create-question-dialog .wrapper {
     position: absolute;
-    top: 14px;
+    top: 22px;
     right: 10px;
-    left: 10px;
+    left: 15px;
     bottom: 14px; }
   .create-question-dialog textarea {
+    position: absolute;
+    bottom: 120px;
+    top: 0;
     width: 100%;
-    font-size: 20px; }
+    line-height: 1.68;
+    font-size: 20px;
+    outline: none; }
+  .create-question-dialog .char-count {
+    position: absolute;
+    bottom: 100px; }
+    .create-question-dialog .char-count.error {
+      color: orangered; }
   .create-question-dialog .question-controls {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 54px; }
+    height: 94px; }
     .create-question-dialog .question-controls-setting {
       position: absolute;
       right: 71px;

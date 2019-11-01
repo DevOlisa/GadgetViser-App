@@ -1,9 +1,27 @@
 const Question = require('mongoose').model('Question');
 
 exports.list = (req, res, next) => {
-    Question.find({}, function (err, questions) {
+    if (req.query) {
+    console.log('Passing on Request');
+        next();
+    } else {
+        Question.find({}, function (err, questions) {
+            if (err) {
+                return next(err);
+            } else {
+                res.json(questions);
+            }
+        });
+    }
+};
+
+exports.getGadgetQuestions = (req, res, next) => {
+    console.log('Handling Get Gadget Questions Request');
+    Question.find({
+        gadget: req.query.gadget
+    }, "", {}, (err, questions)=> {
         if (err) {
-            return next(err);
+            next(err);
         } else {
             res.json(questions);
         }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
     title: {
@@ -14,6 +14,10 @@ const QuestionSchema = new Schema({
         type: Boolean,
         default: false
     },
+    gadget: {
+        type: Schema.ObjectId,
+        ref: 'Gadget',
+    },
     created: {
         type: Date,
         default: Date.now
@@ -23,7 +27,7 @@ const QuestionSchema = new Schema({
     },
     upvotes: {
         type: Number,
-        default: 0
+        default: 14
     },
     downvotes: {
         type: Number,
@@ -31,11 +35,11 @@ const QuestionSchema = new Schema({
     },
     views: {
         type: Number,
-        default: 0
+        default: 407
     },
     shares: {
         type: Number,
-        default: 0
+        default: 54
     },
     answers: [{
         type: Schema.ObjectId,

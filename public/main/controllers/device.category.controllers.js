@@ -26,7 +26,6 @@ angular.module('Main')
                 GadgetFactory.getGadgets(opt)
                     .then(function (response) {
                         $scope.upcomingGadgets = response;
-                        console.log(response);
                     }, function(err) {
                         console.error(err);
                     });

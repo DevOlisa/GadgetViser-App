@@ -1440,33 +1440,24 @@ button {
                     border-spacing: 3;
                     table-layout: fixed;
 
+                    td:nth-child(1) {
+                        padding-left: 10px;
+                    }
+                    
                     td:nth-child(2) {
-                        width: 37px;
+                        width: 57px;
+
+                        img {
+                            display: block;
+                            width: 42px;
+                            transform: rotateZ(180deg);
+                        }
                     }
                 }
 
                 &-input {
-                    border: 2px solid grey;
+                    border: 1px solid $blk;
                     border-radius: 3px;
-
-                    textarea {
-                        width: 100%;
-                        padding: 11px 8px;
-                        @extend %ffEB;
-                        font-size: 18px;
-                        outline: none;
-                        overflow-y: hidden;
-                        box-sizing: border-box;
-                    }
-
-                    input[type=submit] {
-                        width: 37px;
-                        height: 42px;
-                        margin: 0;
-                        background: url(../Icons/arrow-r-48px.png) center no-repeat;
-                        text-indent: -10000000px;
-                    }
-
                 }
             }
 
@@ -1512,16 +1503,32 @@ button {
 
     .wrapper {
         position: absolute;
-        top: 14px;
+        top: 22px;
         right: 10px;
-        left: 10px;
+        left: 15px;
         bottom: 14px;
     }
 
     textarea {
+        position: absolute;
+        bottom: 120px;
+        top: 0;
         width: 100%;
         @extend %ffB;
+        line-height: 1.68;
         font-size: 20px;
+        outline: none;
+    }
+
+    .char-count {
+        position: absolute;
+        bottom: 100px;
+        @extend %ffM;
+
+        &.error {
+            color: orangered;
+            @extend %ffB;
+        }
     }
 
     .question-controls {
@@ -1529,7 +1536,7 @@ button {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 54px;
+        height: 94px;
 
         &-setting {
             position: absolute;

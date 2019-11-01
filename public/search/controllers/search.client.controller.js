@@ -11,12 +11,10 @@ angular.module('Search').controller('SearchController', ['$scope', 'ResultProvid
         };
 
         $scope.$watch('searchText', function (n, o) {
-            console.log(n)
             if (n && (n !== '' || n !== o) ) {
                 $scope.searching = true;
                 ResultProvider.searchString(n)
                     .then(function (response) {
-                        console.log(response);
                         $scope.searchResult = response;
                         $scope.searching = false;
                     }, function (error) {
