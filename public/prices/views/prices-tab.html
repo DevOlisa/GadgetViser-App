@@ -1,9 +1,9 @@
             <!-- Device Prices Go Here -->
-            <div id="prices" ng-controller="PricesController as gadgetCtrl">
+            <div id="prices" ng-controller="PricesController as vm">
                     <div>
                         <table border="0" class="controls">
                             <tr>
-                                <td><button class="controls-filter" ng-click="openModal('filter')">Filter</button>
+                                <td><button class="controls-filter" ng-click="vm.openModal('filter')">Filter</button>
                                 </td>
                                 <td><button class="controls-settings"
                                         ng-click="openModal('settings')">Settings</button></td>
@@ -11,11 +11,11 @@
                         </table>
                     </div>
                     <ul class="store-list">
-                        <li class="store-item" ng-repeat="store in stores">
+                        <li class="store-item" ng-repeat="store in vm.stores">
                             <table border="0" class="store-item-unit">
                                 <tr>
                                     <td class="img">
-                                        <img src="./img/phone_pics/sony-xperia-1.jpg" />
+                                        <img src="{{gadget.image}}" />
                                     </td>
                                     <td class="detail">
                                         <span class="detail-name">Sony Xperia 1</span>
@@ -52,8 +52,7 @@
                             </table>
                         </div>
     
-                        <div class="controls-modal-settings" ng-switch-when="settings"
-                            ng-controller="SettingsController as sCtrl">
+                        <div class="controls-modal-settings" ng-controller="PriceSettingsController as sCtrl">
                             <h3 class="modal-title">Settings</h3>
                             <div class="controls-modal-settings-currency"></div>
                             <div class="controls-modal-settings-currency"></div>

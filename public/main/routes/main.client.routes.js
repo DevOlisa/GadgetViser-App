@@ -24,7 +24,7 @@ angular.module('Main')
             controller: 'QuestionsTabController as vm'
         }).state('view-device.specs', {
             templateUrl: './main/views/mobile/specs-tab.html'
-        }).state('view-phone.prices', {
+        }).state('view-device.prices', {
             templateUrl: './prices/views/prices-tab.html'
         })
         .state('view-device', {

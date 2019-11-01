@@ -63,25 +63,6 @@ angular.module('Main')
             self.getOemDevice();
             $state.go('view-device.questions')
         }])
-    .controller('PricesController', ['GadgetFactory', function (GadgetFactory) {
-        let self = this;
-        self.stores = GadgetFactory.getGadgets().then((response)=> { return response});
-        self.showModal = false;
-        self.modal = '';
-
-        self.openModal = function (arg) {
-            if (arg == 'filter' || arg == 'settings') {
-                self.showModal = !self.showModal;
-                self.modal = arg;
-                return;
-            }
-        }
-
-        self.closeModal = function () {
-            self.showModal = false;
-            return;
-        };
-    }])
     .controller('NavController', ['$scope', 'NavState', function ($scope, NavState) {
         let self = this;
         self.NavState = NavState;
