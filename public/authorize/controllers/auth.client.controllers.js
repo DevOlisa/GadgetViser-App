@@ -29,8 +29,11 @@ angular.module('Auth')
             };
 
             $scope.submit = function () {
-                console.log($scope.user);
-                UserService.localSignIn($scope.user);
+                if (!$scope.signInForm.$invalid) {
+                    UserService.localSignIn($scope.user).then(function(user) {
+                        UserService.updateStatus(user);
+                    });
+                }
             };
         }])
     .controller('SignUpController', ['$scope', 'BgMask', 'AccountPageService', 'UserService',

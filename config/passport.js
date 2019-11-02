@@ -5,6 +5,7 @@ module.exports = function () {
     let User = mongoose.model('User');
 
     passport.serializeUser(function (user, done) {
+        console.log("Serializing")
         done(null, user.id);
     });
 

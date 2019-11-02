@@ -7,11 +7,11 @@ let getErrorMessage = (err) => {
     if (err.code && (err.code === 11000 || 11001)) {
         if (err.errmsg.indexOf('email_1 dup key:') > 0) {
             message = 'Email is already registered';
-        } else if(err.errmsg.indexOf('username_1 dup key:') > 0) {
+        } else if (err.errmsg.indexOf('username_1 dup key:') > 0) {
             message = 'Username already exist';
         } else {
             message = 'Something went wrong';
-        }       
+        }
     } else {
         for (errName in err.errors) {
             if (err.errors[errName].message) {
@@ -38,18 +38,21 @@ exports.renderSignin = (req, res, next) => {
 };
 
 exports.signin = (req, res, next) => {
-    console.log(req.body)
     passport.authenticate('local', (err, user, info) => {
         console.log(info);
         if (err) {
-            return res.json({error: getErrorMessage(err)});
+            return res.json({ error: getErrorMessage(err) });
             return next(err);
         }
         if (!user) {
-            return res.json({error: 'Invalid Login Credentials'});
+            return res.json({ error: 'Invalid Login Credentials' });
         }
         req.logIn(user, (err) => {
-            return res.json({success: 'Login Successful!', user: user});
+            if (err) {
+                return next(getErrorMessage(err));
+            } else {
+                return res.json({ success: 'Login Successful!', user: user });
+            }
         })
     })(req, res, next);
 };
@@ -68,20 +71,16 @@ exports.renderSignup = (req, res, next) => {
 exports.signup = (req, res, next) => {
     console.log(req.body);
     if (!req.user) {
-        let user = new User(req.body.param),
+        let user = new User(req.body),
             message = null;
-
         user.provider = 'local';
 
         user.save(function (err) {
             console.log('tried to save');
             if (err) {
-                console.log('but got an error');
                 console.log(err);
-                message = getErrorMessage(err);
-                req.flash('error', message);
-
-                return res.json({error: getErrorMessage(err)});
+                req.flash('error', getErrorMessage(err));
+                return res.json({ error: getErrorMessage(err) });
             }
             req.login(user, function (err) {
                 console.log(req.user);
@@ -102,26 +101,26 @@ exports.saveOAuthUserProfile = (req, profile, done) => {
     User.findOne({
         provider: profile.provider,
         providerId: profile.providerId
-    }, (err, user)=> {
+    }, (err, user) => {
         if (err) {
             return done(err);
         } else {
             if (!user) {
                 let possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
-                
-                User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
+
+                User.findUniqueUsername(possibleUsername, null, function (availableUsername) {
                     profile.username = availableUsername;
 
                     user = new User(profile);
 
-                    user.save(function(err) {
+                    user.save(function (err) {
                         if (err) {
                             let message = _this.getErrorMessage(err);
 
                             req.flash('error', message);
                             return res.redirect('/signup');
-                        } 
-                    
+                        }
+
                         return done(err, user);
                     });
                 });

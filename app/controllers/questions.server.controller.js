@@ -17,6 +17,7 @@ exports.list = (req, res, next) => {
 
 exports.getGadgetQuestions = (req, res, next) => {
     console.log('Handling Get Gadget Questions Request');
+    console.log(req.user);
     Question.find({
         gadget: req.query.gadget
     }, "", {}, (err, questions)=> {

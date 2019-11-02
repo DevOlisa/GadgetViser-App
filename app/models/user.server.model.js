@@ -14,6 +14,10 @@ let UserSchema = new Schema({
         type: String,
         unique: true
     },
+    image: {
+        type: String,
+        default: './img/generic_profile_pic.png'
+    },
     password: {
         type: String,
         validate: [function (password) {
