@@ -123,9 +123,12 @@ button {
 
 .loading-indicator {
   display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 90px;
   height: 90px;
-  margin: auto; }
+  transform: translate(-50%, -50%); }
 
 .centertext {
   text-align: center; }
@@ -726,23 +729,23 @@ button {
 
 /********* End of Device Category Page Styles ********/
 /********* Begin Device Sub-Category Page Styles ********/
-#sub-category .sub-category-intro {
+#sub-category .sub-category-description {
   position: relative;
   height: 194px;
   width: 868px;
   margin-bottom: 50px; }
-  #sub-category .sub-category-intro .text-box {
+  #sub-category .sub-category-description .text-box {
     position: absolute;
     bottom: 0;
     display: inline-block; }
-    #sub-category .sub-category-intro .text-box ul {
+    #sub-category .sub-category-description .text-box ul {
       list-style: none;
       margin: 0; }
-      #sub-category .sub-category-intro .text-box ul p {
+      #sub-category .sub-category-description .text-box ul p {
         line-height: 1.65;
         font-weight: bold;
         color: #aeadad; }
-  #sub-category .sub-category-intro .image {
+  #sub-category .sub-category-description .image {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -819,42 +822,10 @@ button {
     .device-page .stats-pane .watch-btn span, .device-page .stats-pane .watch-btn img {
       display: inline-block;
       vertical-align: middle; }
-.device-page header.main {
-  position: relative;
-  right: 0;
-  left: 0;
-  background-color: #fff;
-  overflow: hidden;
-  border: none;
-  border-bottom: 1px solid #ececec; }
-  @media (min-width: 1024px) {
-    .device-page header.main {
-      right: 300px; } }
-  .device-page header.main nav {
-    padding: 14px auto; }
-    .device-page header.main nav ul {
-      list-style: none;
-      overflow: hidden; }
-      .device-page header.main nav ul li {
-        float: left;
-        width: 33.3333333333333%; }
-        .device-page header.main nav ul li a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 15px 8px;
-          font-weight: bold;
-          color: #707070; }
-          .device-page header.main nav ul li a > * {
-            display: inline-block;
-            vertical-align: middle; }
-          .device-page header.main nav ul li a object {
-            width: auto; }
 .device-page-main-image {
   width: 33.33333%;
-  min-width: 300px;
-  margin: 10px auto;
-  padding: 15px; }
+  min-width: 100%;
+  margin: 10px auto; }
   .device-page-main-image img {
     display: block;
     max-height: 190px;
@@ -1038,7 +1009,76 @@ button {
     margin-bottom: 12px; }
 
 /********* End View Device Page Styles ********/
-/*############# INDEPENDENT STYLES ###########*/
+/********* Begin Account Page Styles ********/
+/********* Begin Account Page Styles ********/
+#account-page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden; }
+  #account-page .profile-detail {
+    position: relative;
+    padding: 7px 14px;
+    overflow: hidden; }
+    #account-page .profile-detail-image {
+      height: 100px;
+      width: 100px;
+      background: center no-repeat;
+      background-size: cover;
+      border: 1px solid #cfcfcf;
+      border-radius: 30px; }
+    #account-page .profile-detail-info {
+      position: absolute;
+      top: 35px;
+      left: 124px; }
+  #account-page div[ui-view] {
+    position: absolute;
+    top: 170px;
+    bottom: 0;
+    overflow-y: scroll; }
+  #account-page .activity-page .activity-list {
+    list-style: none; }
+    #account-page .activity-page .activity-list-item {
+      margin: 5px 0;
+      padding: 7px 4px;
+      overflow: hidden; }
+      #account-page .activity-page .activity-list-item .created {
+        display: inline-block;
+        margin-bottom: 5px; }
+      #account-page .activity-page .activity-list-item h3 {
+        font-size: 14px;
+        color: #777777; }
+      #account-page .activity-page .activity-list-item .highlight {
+        color: initial; }
+      #account-page .activity-page .activity-list-item .question-title {
+        color: #ff0044; }
+      #account-page .activity-page .activity-list-item-main {
+        width: 93%;
+        float: right; }
+        #account-page .activity-page .activity-list-item-main .link-to-answer {
+          display: block;
+          margin: 8px 4px 4px;
+          padding: 8px;
+          background-color: #ececec;
+          border-radius: 3px; }
+      #account-page .activity-page .activity-list-item .footer {
+        overflow: hidden; }
+        #account-page .activity-page .activity-list-item .footer ul {
+          list-style: none;
+          overflow: hidden; }
+        #account-page .activity-page .activity-list-item .footer li {
+          float: left; }
+        #account-page .activity-page .activity-list-item .footer .actions {
+          float: right;
+          width: 100px; }
+          #account-page .activity-page .activity-list-item .footer .actions button {
+            height: 20px;
+            margin-left: 7px; }
+
+/********* End Account Page Styles ********/
+/*############# BEGIN VIEW-INDEPENDENT STYLES ###########*/
 /*************** Begin Question Dialog Styles ***************/
 .create-question-backdrop {
   position: fixed;
@@ -1100,7 +1140,7 @@ button {
 /*************** End Question Dialog Styles ***************/
 /*************** Begin Gadget Item List Styles ***************/
 .devices-row {
-  margin: 22px 0; }
+  margin: 8px 0 9px; }
   .devices-row-wrapper {
     height: auto;
     width: auto;
@@ -1115,8 +1155,8 @@ button {
   .devices-row .item-wrapper {
     display: inline-block; }
   .devices-row .item {
-    width: 123px;
-    height: 177px;
+    width: 120px;
+    height: 156px;
     margin: 0 10px 10px 0;
     border-collapse: collapse;
     border-radius: 3px; }
@@ -1124,7 +1164,7 @@ button {
       height: 80%; }
       .devices-row .item-image img {
         display: block;
-        height: 90px;
+        height: 80px;
         margin: 0 auto; }
     .devices-row .item-name {
       height: 20%;
@@ -1169,6 +1209,9 @@ button {
       border-radius: 3px; }
       #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3 {
         font-size: 18px; }
+      #questions .main-content-question .no-answers {
+        margin: 12px 0 6px;
+        color: #aeaeae; }
       #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag {
         font-size: 12px; }
       #questions .main-content-question .tag, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, #questions .main-content-question footer .number-answers {
@@ -1231,9 +1274,9 @@ button {
           height: auto;
           background: white;
           border-radius: 3px;
-          box-shadow: 0px 2px 20px rgba(78, 31, 31, 0.16);
+          border: 1px solid #cfcfcf;
           overflow: hidden;
-          z-index: 2;
+          z-index: 8;
           animation: slideIn 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955); }
           #questions .main-content-question footer .option-dialog.ng-hide {
             animation: slideOut 200ms cubic-bezier(0.165, 0.84, 0.44, 1); }
@@ -1281,6 +1324,39 @@ button {
     background-color: orangered; }
 
 /*************** End Slide Indicator Styles ***************/
+/*************** Begin PageNav Styles ***************/
+.page-nav {
+  position: relative;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid #ececec; }
+  @media (min-width: 1024px) {
+    .page-nav {
+      right: 300px; } }
+  .page-nav nav {
+    padding: 14px auto; }
+    .page-nav nav ul {
+      list-style: none;
+      overflow: hidden; }
+      .page-nav nav ul li {
+        float: left;
+        width: 33.3333333333333%; }
+        .page-nav nav ul li a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px 8px;
+          font-weight: bold; }
+          .page-nav nav ul li a > * {
+            display: inline-block;
+            vertical-align: middle; }
+          .page-nav nav ul li a object {
+            width: auto; }
+
+/*************** End PageNav Styles ***************/
 /*************** Begin Form Styles ***************/
 .has-form label {
   position: relative;

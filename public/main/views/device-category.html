@@ -26,7 +26,7 @@
 
         </div>
     </div>
-    <div ng-controller="GadgetCategoryController as gCtrl">
+    <div>
         <div class="coming-soon">
             <h3>LATEST</h3>
             <div class="devices-row">
@@ -48,7 +48,7 @@
                 <!-- Begin Item Wrapper -->
                 <div class="devices-row-wrapper">
                     <!-- Begin Item Wrapper -->
-                    <div class="item-wrapper" ng-repeat="gadget in gCtrl.gadgets">
+                    <div class="item-wrapper" ng-repeat="gadget in topChoice">
                         <gadget-shell></gadget-shell>
                     </div>
                     <!-- End Item Wrapper -->

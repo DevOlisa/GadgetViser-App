@@ -52,9 +52,12 @@ button {
 
 .loading-indicator {
     display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 90px;
     height: 90px;
-    margin: auto;
+    transform: translate(-50%, -50%);
 }
 
 // Generic Classes Definition
@@ -961,7 +964,7 @@ button {
 
 /********* Begin Device Sub-Category Page Styles ********/
 #sub-category {
-    .sub-category-intro {
+    .sub-category-description {
         position: relative;
         height: 194px;
         width: 868px;
@@ -1114,52 +1117,6 @@ button {
         }
     }
 
-    header.main {
-        position: relative;
-        right: 0;
-        left: 0;
-        background-color: #fff;
-        overflow: hidden;
-        border: none;
-        border-bottom: 1px solid #ececec;
-
-        @include responsify($break-desktop) {
-            right: 300px;
-        }
-
-        nav {
-            padding: 14px auto;
-
-            ul {
-                list-style: none;
-                overflow: hidden;
-
-                li {
-                    float: left;
-                    width: 33.3333333333333%;
-
-                    a {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 15px 8px;
-                        font-weight: bold;
-                        color: #707070;
-
-                        &>* {
-                            display: inline-block;
-                            vertical-align: middle
-                        }
-
-                        object {
-                            width: auto;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     &-main {
         // display: flex;
         // margin-top: 30px;
@@ -1168,9 +1125,8 @@ button {
 
         &-image {
             width: 33.33333%;
-            min-width: 300px;
+            min-width: 100%;
             margin: 10px auto;
-            padding: 15px;
 
             img {
                 display: block;
@@ -1443,7 +1399,7 @@ button {
                     td:nth-child(1) {
                         padding-left: 10px;
                     }
-                    
+
                     td:nth-child(2) {
                         width: 57px;
 
@@ -1476,8 +1432,123 @@ button {
 
 /********* End View Device Page Styles ********/
 
+/********* Begin Account Page Styles ********/
 
-/*############# INDEPENDENT STYLES ###########*/
+
+/********* Begin Account Page Styles ********/
+#account-page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    .profile-detail {
+        position: relative;
+        padding: 7px 14px;
+        overflow: hidden;
+
+        &-image {
+            height: 100px;
+            width: 100px;
+            background: center no-repeat;
+            background-size: cover;
+            border: 1px solid $blk;
+            border-radius: 30px;
+        }
+
+        &-info {
+            position: absolute;
+            top: 35px;
+            left: 124px;
+        }
+    }
+
+    header.pag.nav {
+        // height: df;
+    }
+
+    div[ui-view] {
+        position: absolute;
+        top: 170px;
+        bottom: 0;
+        overflow-y: scroll;
+    }
+
+    .activity-page {
+
+        .activity-list {
+            list-style: none;
+
+            &-item {
+                margin: 5px 0;
+                padding: 7px 4px;
+                overflow: hidden;
+
+                .created {
+                    display: inline-block;
+                    margin-bottom: 5px;
+                }
+
+                h3 {
+                    font-size: 14px;
+                    color: #777777;
+                }
+
+                .highlight {
+                    color: initial;
+                }
+
+                .question-title {
+                    color: #ff0044;
+                }
+
+                &-main {
+                    width: 93%;
+                    float: right;
+
+                    .link-to-answer {
+                        display: block;
+                        margin: 8px 4px 4px;
+                        padding: 8px;
+                        background-color: #ececec;
+                        border-radius: 3px;
+                    }
+                }
+
+                .footer {
+                    overflow: hidden;
+
+                    ul {
+                        list-style: none;
+                        overflow: hidden;
+                    }
+
+                    li {
+                        float: left;
+                    }
+
+                    .actions {
+                        float: right;
+                        width: 100px;
+
+                        button {
+                            height: 20px;
+                            margin-left: 7px;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+/********* End Account Page Styles ********/
+
+
+/*############# BEGIN VIEW-INDEPENDENT STYLES ###########*/
 
 
 /*************** Begin Question Dialog Styles ***************/
@@ -1565,7 +1636,7 @@ button {
 
 /*************** Begin Gadget Item List Styles ***************/
 .devices-row {
-    margin: 22px 0;
+    margin: 8px 0 9px;
 
     &-wrapper {
         height: auto;
@@ -1588,8 +1659,8 @@ button {
     }
 
     .item {
-        width: 123px;
-        height: 177px;
+        width: 120px;
+        height: 156px;
         margin: 0 10px 10px 0;
         border-collapse: collapse;
         border-radius: 3px;
@@ -1600,7 +1671,7 @@ button {
 
             img {
                 display: block;
-                height: 90px;
+                height: 80px;
                 margin: 0 auto;
             }
         }
@@ -1671,6 +1742,11 @@ button {
                 h2 {
                     @extend %ffB;
                     font-size: 18px;
+                }
+
+                .no-answers {
+                    margin: 12px 0 6px;
+                    color: #aeaeae;
                 }
 
                 .label {
@@ -1780,9 +1856,9 @@ button {
                         height: auto;
                         background: white;
                         border-radius: 3px;
-                        box-shadow: 0px 2px 20px rgba($color: #4e1f1f, $alpha: 0.16);
+                        border: 1px solid $blk;
                         overflow: hidden;
-                        z-index: 2;
+                        z-index: 8;
                         animation: slideIn 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
                         &.ng-hide {
@@ -1873,6 +1949,55 @@ button {
 }
 
 /*************** End Slide Indicator Styles ***************/
+
+/*************** Begin PageNav Styles ***************/
+
+.page-nav {
+    position: relative;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    overflow: hidden;
+    border: none;
+    border-bottom: 1px solid #ececec;
+
+    @include responsify($break-desktop) {
+        right: 300px;
+    }
+
+    nav {
+        padding: 14px auto;
+
+        ul {
+            list-style: none;
+            overflow: hidden;
+
+            li {
+                float: left;
+                width: 33.3333333333333%;
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 15px 8px;
+                    font-weight: bold;
+
+                    &>* {
+                        display: inline-block;
+                        vertical-align: middle
+                    }
+
+                    object {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*************** End PageNav Styles ***************/
 
 
 /*************** Begin Form Styles ***************/

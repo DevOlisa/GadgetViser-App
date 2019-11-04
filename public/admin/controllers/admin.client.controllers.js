@@ -7,6 +7,12 @@ function ($scope, GadgetFactory) {
         { label: 'Tablet', value: 'Tablet' },
     ];
 
+    self.deviceCategory = [
+        { label: 'Gaming', value: 'gaming', selected: true },
+        { label: 'Battery Champ', value: 'battery' },
+        { label: 'Best Camera', value: 'camera' },
+    ];
+
     self.submit = function () {
         // console.log($scope.addDeviceForm);
         // console.log(GadgetFactory);

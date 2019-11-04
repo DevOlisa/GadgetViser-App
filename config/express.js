@@ -6,7 +6,8 @@ bodyParser = require('body-parser'),
 methodOverride = require('method-override'),
 session =require('express-session'),
 flash = require('connect-flash'),
-passport =require('passport');
+passport =require('passport'),
+moment = require('moment');
 
 module.exports = function() {
     const gad = express();

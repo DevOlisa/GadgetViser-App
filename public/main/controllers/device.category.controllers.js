@@ -1,11 +1,18 @@
 angular.module('Main')
-    .controller('GadgetCategoryController', ['$scope', '$stateParams', '$location', 'RouteStateService', 'GadgetFactory',
-        function ($scope, $stateParams, $location, RouteStateService, GadgetFactory) {
+    .controller('CategoryController', ['$scope', 'topChoice',
+        function ($scope, topChoice) {
+            var self = this;
+            $scope.topChoice = topChoice;
+
+        }])
+    .controller('GadgetCategoryController', ['$scope', '$stateParams', '$location', 'RouteStateService', 'GadgetFactory', 'topChoice',
+        function ($scope, $stateParams, $location, RouteStateService, GadgetFactory, topChoice) {
             var self = this;
             $scope.latestGadgets = [];
             $scope.upcomingGadgets = [];
+            $scope.topChoice = topChoice;
             self.category = $stateParams.category;
-            
+
             self.fetchLatestGadgets = () => {
                 let opt = {};
                 opt.function = "latest";
@@ -14,7 +21,7 @@ angular.module('Main')
                     .then(function (response) {
                         $scope.latestGadgets = response;
                         // console.log(response)
-                    }, function(err) {
+                    }, function (err) {
                         console.error(err);
                     });
             };
@@ -26,7 +33,7 @@ angular.module('Main')
                 GadgetFactory.getGadgets(opt)
                     .then(function (response) {
                         $scope.upcomingGadgets = response;
-                    }, function(err) {
+                    }, function (err) {
                         console.error(err);
                     });
             };

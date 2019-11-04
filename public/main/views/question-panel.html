@@ -1,5 +1,8 @@
 <article class="main-content-question" ng-controller="QuestionController as qCtrl">
     <h3>{{question.title}}</h3>
+    <p class="no-answers" ng-if="question.answers.length === 0">
+        No answers yet
+    </p>
 
     <div ng-if="question.answers.length > 0">
         <section class="main-content-question-answer">
@@ -52,9 +55,9 @@
             </ul>
         </div>
         <!-- End Options dialog -->
-        <span class="label time-ago">6 hrs</span>
+        <span class="label time-ago" am-time-ago="question.created | amUtc | amLocal"></span>
         <span class="label number-answers"> {{question.answers.length}} answers</span>
-        <button class="reply small">Reply</button>
+        <button class="reply small">Reply </button>
         <button class="share small">Share</button>
         <div class="reply-pics">
             <span ng-if="question.answers.length > 0">

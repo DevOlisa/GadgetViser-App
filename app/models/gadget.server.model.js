@@ -27,9 +27,16 @@ let GadgetSchema = new Schema({
         enum: ["Phone", "Laptop", "Smartwatch", "Tablet", "TV"],
         default: "Phone"
     },
-    category: [],
+    category: [{
+        type: String,
+        enum: ["gaming", "camera", "battery"]
+    }],
     link: {
         type: String
+    },
+    topChoice: {
+        type: Boolean,
+        default: false
     },
     released: {
         type: Boolean,
