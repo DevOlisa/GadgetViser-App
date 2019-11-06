@@ -260,6 +260,12 @@
                             Smartwatches
                         </a>
                     </li>
+                    <li class="nav-items">
+                        <a ui-sref="user.activity">
+                            <img alt="smartwatches" title="Smartwatches" src="../icons/account.png">
+                            Profile
+                        </a>
+                    </li>
                 </ul>
                 <div class="gad-shell-sidenav-footer">
 
@@ -292,7 +298,7 @@
 
             <!-- main container layout -->
             <main class="gad-shell-main" 
-            ng-class="{'blur': !SearchBarState.isSearchBarHidden || QuestionDialogService.isDialogVisible}" ui-view>
+            ng-class="{'blur': !SearchBarState.isSearchBarHidden || QuestionDialogService.isDialogVisible || AnswerDialogService.isDialogVisible}" ui-view>
                 <div class="loading-indicator center">
                     <?xml version="1.0" encoding="utf-8"?><svg width='90px' height='90px'
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"
@@ -326,7 +332,8 @@
 
         <!-- Account dialog popup -->
         <div ng-include="'./authorize/views/account-dialog.html'" ng-controller="AuthController"></div>
-        <div ng-include="'./questions/views/add-question-dialog.html'" ng-controller="AuthController"></div>
+        <div ng-include="'./questions/views/add-question-dialog.html'"></div>
+        <div ng-include=" './questions/views/add-answer-dialog.html' "></div>
 
 
     </div>

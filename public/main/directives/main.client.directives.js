@@ -5,12 +5,6 @@ angular.module('Main')
             restrict: 'AE'
         };
     }])
-    .directive('questionPanel', [function () {
-        return {
-            templateUrl: '/main/views/question-panel.html',
-            restrict: 'AE'
-        };
-    }])
     .directive('slideIndicator', ['$compile', function ($compile) {
         return {
             restrict: 'AE',

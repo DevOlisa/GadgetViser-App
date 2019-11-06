@@ -10,21 +10,23 @@
             </div>
 
         </div>
-        <nav class="nav" aria-role="navigation">
-            <ul>
+        <nav id="profile-nav" aria-role="navigation">
+            <ul class="main">
                 <li ui-sref-active="active">
                     <a ui-sref=".activity">
-                        <object type="image/svg+xml" data="./Icons/pictures-24px.svg"></object>
+                        <!-- <object type="image/svg+xml" data="./Icons/pictures-24px.svg"></object> -->
                         Activity</a></li>
 
                 <li ui-sref-active="active">
                     <a ui-sref=".watchlist">
-                        <object type="image/svg+xml" data="./Icons/specs-24px.svg"></object> WatchList</a>
+                        <!-- <object type="image/svg+xml" data="./Icons/specs-24px.svg"></object>  -->
+                        WatchList</a>
                 </li>
-
-                <li ui-sref-active="active" style="width: 54px;">
-                    <a ui-sref=".settings">
-                        <object type="image/svg+xml" data="./Icons/prices-24px.svg"></object> Settings</a>
+            </ul>
+            <ul class="settings">
+                <li  ui-sref=".settings" ui-sref-active="active" style="width: 54px;">
+                    <a>
+                        <object type="image/svg+xml" data="./Icons/prices-24px.svg"></object> </a>
                 </li>
             </ul>
         </nav>

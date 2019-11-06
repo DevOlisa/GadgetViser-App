@@ -6,9 +6,13 @@ angular.module('Questions')
             $scope.gadgetQuestions = data;
         })
 
-        self.openDialog = () => {
+        self.openDialog = function() {
             QuestionDialogService.isDialogVisible = true;
         };
+        
+    }])
+    .controller('QuestionController', ['AnswerDialogService', '$log', function (AnswerDialogService, $log) {
+
     }])
     .controller('QuestionDialogController', ['$scope', 'QuestionDialogService', 'QuestionService', 
         function($scope, QuestionDialogService, QuestionService) {
@@ -17,6 +21,16 @@ angular.module('Questions')
             self.submit = () => {
                 if (!$scope.QuestionForm.$invalid) {
                     QuestionDialogService.buildQuestion($scope.question);
+                }
+            };
+    }])
+    .controller('AnswerDialogController', ['$scope', 'AnswerDialogService', 'AnswerService', 
+        function($scope, AnswerDialogService, AnswerService) {
+            var self =  this;
+
+            self.submit = () => {
+                if (!$scope.AnswerForm.$invalid) {
+                    AnswerDialogService.buildAnswer($scope.answer);
                 }
             };
     }])

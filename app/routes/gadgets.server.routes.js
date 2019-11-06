@@ -4,10 +4,11 @@ module.exports = (app) => {
 
     app.route('/gadgets')
         .get(gadgets.list, gadgets.fetchLatest, gadgets.fetchUpcoming, gadgets.fetchMoreFromOem, gadgets.fetchOem)
-        .post(gadgets.create);
+        .post(gadgets.create)
+        .put(gadgets.update);
 
     app.route('/gadget/:gadgetUrl')
-        .get(gadgets.read);
+        .get(gadgets.log, gadgets.read);
 
     app.param('gadgetUrl', gadgets.fetchGadget);
 };

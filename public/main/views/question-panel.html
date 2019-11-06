@@ -1,10 +1,10 @@
-<article class="main-content-question" ng-controller="QuestionController as qCtrl">
-    <h3>{{question.title}}</h3>
-    <p class="no-answers" ng-if="question.answers.length === 0">
+<article class="main-content-question">
+    <h3>{{questionData.title}}</h3>
+    <p class="no-answers" ng-if="questionData.answers.length === 0">
         No answers yet
     </p>
 
-    <div ng-if="question.answers.length > 0">
+    <div ng-if="questionData.answers.length > 0">
         <section class="main-content-question-answer">
             <header>
                 <table>
@@ -20,7 +20,7 @@
                 </table>
             </header>
 
-            <div class="main-content-question-description" ng-class="{'hidden': !qCtrl.visible, '': qCtrl.visible}">
+            <div class="main-content-question-description" ng-class="{'show': visible}">
                 <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quo quia
                     nihil? Fuga sed autem neque repellat doloribus laudantium vitae. Molestiae fugit
@@ -31,7 +31,7 @@
                     id vitae similique quia ut eius impedit dolore eos eveniet ipsam, deserunt
                 </p>
             </div>
-            <div class="actions" ng-show="qCtrl.visible">
+            <div class="actions" ng-show="visible">
                 <button class="actions-share">Share</button>
                 <button class="actions-upvote">
                     <img src="../Icons/upvote-24px.png" /><span>43</span></button>
@@ -40,27 +40,27 @@
             </div>
         </section>
     </div>
-    <button class="more" ng-if="!qCtrl.visible && question.answers.length > 0" ng-click="qCtrl.showDescription()">Read
+    <button class="more" ng-if="!visible && questionData.answers.length > 0" ng-click="showDescription()">Read
         more</button>
-    <button class="more-answers" ng-if="qCtrl.visible && question.answers.length > 1" ng-click="qCtrl.showDescription()">
-        See {{question.answers.length - 1}} More Answers</button>
+    <button class="more-answers" ng-if="visible && questionData.answers.length > 1" ng-click="showDescription()">
+        See {{questionData.answers.length - 1}} More Answers</button>
 
     <footer>
 
         <!-- Option Dialog -->
-        <div class="option-dialog" ng-show="qCtrl.options">
+        <div class="option-dialog" ng-show="options">
             <ul>
                 <li class="actions-report"><button>Report</button></li>
                 <li class="actions-follow"><button>Follow</button></li>
             </ul>
         </div>
         <!-- End Options dialog -->
-        <span class="label time-ago" am-time-ago="question.created | amUtc | amLocal"></span>
-        <span class="label number-answers"> {{question.answers.length}} answers</span>
-        <button class="reply small">Reply </button>
-        <button class="share small">Share</button>
+        <span class="label time-ago" am-time-ago="questionData.created | amUtc | amLocal"></span>
+        <span class="label number-answers"> {{questionData.answers.length}} answers</span>
+        <button ng-click="createReply(questionData)" class="reply small">Reply </button>
+        <button  ng-click="socialShare()" class="share small">Share</button>
         <div class="reply-pics">
-            <span ng-if="question.answers.length > 0">
+            <span ng-if="questionData.answers.length > 0">
                 <span class="reply-pics-image-thumb"
                     style="background-image: url(./img/121644_adapted_1440x2560.jpg)"></span>
                 <span class="reply-pics-image-thumb"
@@ -68,7 +68,7 @@
                 <span class="reply-pics-image-thumb"
                     style="background-image: url(./img/220px-SubZeroMKXrender.png)"></span>
             </span>
-            <button ng-click="qCtrl.toggleOptions()"><img src="../Icons/option-48px.png" width="30px" /></button>
+            <button ng-click="toggleOptions()"><img src="../Icons/option-48px.png" width="30px" /></button>
         </div>
     </footer>
 </article>

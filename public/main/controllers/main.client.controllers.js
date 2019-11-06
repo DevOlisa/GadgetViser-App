@@ -1,6 +1,6 @@
 angular.module('Main')
-    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'QuestionDialogService', 
-    function ($scope, BgMask, SearchBarState, QuestionDialogService) {
+    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'QuestionDialogService', 'AnswerDialogService', 
+    function ($scope, BgMask, SearchBarState, QuestionDialogService, AnswerDialogService) {
         $scope.isDialogOpen = false;
 
         $scope.closeAccountDialog = function () {
@@ -16,21 +16,9 @@ angular.module('Main')
         };
 
         $scope.QuestionDialogService = QuestionDialogService;
+        $scope.AnswerDialogService = AnswerDialogService;
         $scope.SearchBarState = SearchBarState;
-    }])
-    .controller('QuestionController', [function () {
-        var self = this;
-        self.visible = false;
-        self.answered = false;
-        self.options = false;
-        self.showDescription = function () {
-            self.visible = true;
-        };
-
-        self.toggleOptions = function () {
-            self.options = !self.options;
-        };
-
+        $scope.SearchBarState = SearchBarState;
     }])
     .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService',
         function ($scope,$state, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService) {
@@ -40,10 +28,6 @@ angular.module('Main')
             $scope.similarGadgets = [];
             QuestionDialogService.selectedGadget = selectedGadget;
             QuestionService.selectedGadget = selectedGadget._id;
-
-            self.likeGadget = function() {
-                ++$scope.gadget.likes;
-            };
 
             self.getOemDevice = function() {
                 var opt = {};
@@ -58,6 +42,13 @@ angular.module('Main')
                 }, function(error) {
                     console.error(error);
                 });
+            };
+
+            self.likeGadget =  function() {
+                GadgetFactory.like(selectedGadget)
+                .then(function(response) {
+                    alert(response.data);
+                })
             };
 
             self.getOemDevice();

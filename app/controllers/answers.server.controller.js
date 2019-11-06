@@ -19,5 +19,5 @@ exports.list =function (req, res, next) {
         } else {
             res.json(answers);
         }
-    });
+    }).populate('question');
 };

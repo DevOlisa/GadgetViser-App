@@ -1,0 +1,24 @@
+<!-- Add New Answer Dialog -->
+<div class="create-backdrop" ng-controller="AnswerDialogController as adCtrl" aui-modal
+    ng-if="AnswerDialogService.isDialogVisible">
+    <div class="create-question-dialog">
+        <div class="wrapper">
+            <form name="AnswerForm" ng-submit="adCtrl.submit()" novalidate>
+                <div>
+                    <textarea id="answer-input" name="answer" ng-model="answer.content" maxlength="{{maxlength}}"
+                        placeholder="Type a reply">
+                    </textarea>
+                    <label class="char-count" ng-if="answer.content.length"
+                    ng-class="{'error': answer.content.length > maxlength }">{{ answer.content.length}}/{{maxlength}}</label>
+                </div>
+                <div class="question-controls">
+                    <div class="question-controls-setting">
+                    </div>
+                    <div class="question-controls-submit">
+                        <input type="submit" value=""/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

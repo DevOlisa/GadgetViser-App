@@ -1,8 +1,7 @@
 angular.module('Main')
-    .factory('GadgetFactory', ['$resource', '$http', function ($resource, $http) {
+    .factory('GadgetFactory', ['$resource', '$http', '$q', function ($resource, $http, $q) {
         var service = {};
         var newGadget = true;
-        service.Gadget = $resource('http://localhost:3000/gadgets', {}, { update: { action: 'PUT' } }).$promise;
 
         service.addGadget = function (gadget) {
             if (gadget.name) {
@@ -14,6 +13,17 @@ angular.module('Main')
                         return GadgetToSave;
                     });
             }
+        };
+
+        service.like = function(gadget) {
+            return $http.put('http://localhost:3000/gadgets', gadget)
+            .then(function(response) {
+                if (response.data) {
+                    return response;
+                }
+            }, function(error) {
+                $q.reject(error);
+            })
         };
 
         service.getGadget = function (link) {
@@ -47,13 +57,13 @@ angular.module('Main')
         };
 
         service.fetch = function (link) {
-            return GadgetFactory.getGadget(link).then(function (gadget) {
-                buildGadget = gadget;
-                return buildGadget;
-                console.log(buildGadget);
-            }, function (err) {
-                console.log('In Error: ' + err);
-            });
+            return GadgetFactory.getGadget(link)
+                .then(function (gadget) {
+                    buildGadget = gadget;
+                    return buildGadget;
+                }, function (err) {
+                    console.log('In Error: ' + err);
+                });
         };
 
         return service;

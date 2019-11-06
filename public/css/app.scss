@@ -1433,9 +1433,6 @@ button {
 /********* End View Device Page Styles ********/
 
 /********* Begin Account Page Styles ********/
-
-
-/********* Begin Account Page Styles ********/
 #account-page {
     position: absolute;
     top: 0;
@@ -1443,6 +1440,32 @@ button {
     left: 0;
     right: 0;
     overflow: hidden;
+
+    nav#profile-nav {
+        position: relative;
+        height: 47px;
+
+        ul.main {
+            position: absolute;
+            left: 0;
+            right: 54px;
+
+            li {
+                width: 50%;
+            }
+        }
+
+        ul.settings {
+            position: absolute;
+            width: 54px;
+            right: 0;
+            bottom: 0;
+
+            li {
+                width: 54px;
+            }
+        }
+    }
 
     .profile-detail {
         position: relative;
@@ -1463,15 +1486,12 @@ button {
             top: 35px;
             left: 124px;
         }
-    }
 
-    header.pag.nav {
-        // height: df;
     }
 
     div[ui-view] {
         position: absolute;
-        top: 170px;
+        top: 162px;
         bottom: 0;
         overflow-y: scroll;
     }
@@ -1553,7 +1573,7 @@ button {
 
 /*************** Begin Question Dialog Styles ***************/
 
-.create-question-backdrop {
+.create-backdrop {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -1589,6 +1609,11 @@ button {
         line-height: 1.68;
         font-size: 20px;
         outline: none;
+    }
+
+    textarea#answer-input {
+        font-size: 14px;
+        @extend %ffR;
     }
 
     .char-count {
@@ -1763,11 +1788,13 @@ button {
 
                 &-description {
                     margin-top: 8px;
+                    max-height: 60px;
                     line-height: 1.428571428571429;
+                    overflow: hidden;
 
-                    &.hidden {
-                        max-height: 60px;
-                        overflow: hidden;
+                    &.show {
+                        overflow: initial;
+                        max-height: initial;
                     }
                 }
 

@@ -5,4 +5,5 @@ module.exports = (app) => {
         .post(questions.create)
         .get(questions.list, questions.getGadgetQuestions);
 
+        app.route('/questions/:questionID')
 };

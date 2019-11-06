@@ -3,7 +3,7 @@
                     <div>
                         <table border="0" class="controls">
                             <tr>
-                                <td><button class="controls-filter" ng-click="vm.openModal('filter')">Filter</button>
+                                <td><button class="controls-filter">Filter</button>
                                 </td>
                                 <td><button class="controls-settings"
                                         ng-click="openModal('settings')">Settings</button></td>
@@ -18,7 +18,7 @@
                                         <img src="{{gadget.image}}" />
                                     </td>
                                     <td class="detail">
-                                        <span class="detail-name">Sony Xperia 1</span>
+                                        <span class="detail-name">{{gadget.name}}</span>
                                         <span class="detail-condition">New</span>
                                         <span class="detail-seller">Seller Info</span>
                                         <span class="detail-shipping">Free Shipping: Free</span>
@@ -30,8 +30,8 @@
                             </table>
                         </li>
                     </ul>
-                    <dialog class="controls-modal" ng-switch="modal" ng-show="showModal">
-                        <div class="controls-modal-filter" ng-switch-when="filter"
+                    <dialog class="controls-modal" ng-if="false">
+                        <div class="controls-modal-filter"
                             ng-controller="SettingsController as sCtrl">
                             <h3 class="modal-title">Filter</h3>
                             <table>
@@ -52,7 +52,7 @@
                             </table>
                         </div>
     
-                        <div class="controls-modal-settings" ng-controller="PriceSettingsController as sCtrl">
+                        <div class="controls-modal-settings">
                             <h3 class="modal-title">Settings</h3>
                             <div class="controls-modal-settings-currency"></div>
                             <div class="controls-modal-settings-currency"></div>
@@ -60,7 +60,7 @@
                         </div>
                         <footer>
                             <button>Save</button>
-                            <button ng-click="closeModal()">Cancel</button>
+                            <button>Cancel</button>
     
                         </footer>
                     </dialog>

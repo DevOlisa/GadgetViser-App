@@ -1,7 +1,7 @@
 const answers = require('../controllers/answers.server.controller');
 
 module.exports = (app) => {
-    app.route('/answer')
+    app.route('/answers')
         .get(answers.list)
         .post(answers.create);
 };

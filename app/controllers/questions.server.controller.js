@@ -20,7 +20,7 @@ exports.getGadgetQuestions = (req, res, next) => {
     console.log(req.user);
     Question.find({
         gadget: req.query.gadget
-    }, "", {}, (err, questions)=> {
+    }, "", {}).populate('answer').exec((err, questions)=> {
         if (err) {
             next(err);
         } else {

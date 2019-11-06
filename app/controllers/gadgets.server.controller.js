@@ -139,6 +139,11 @@ exports.read = (req, res) => {
     }
 };
 
+exports.log = (req, res, next) => {
+    console.log('The device viewed is %s and type %s', req.gadget.name, req.gadget.type);
+    next();
+};
+
 exports.fetchGadget = (req, res, next, url) => {
     Gadget.findOne({
         link: url
@@ -154,15 +159,28 @@ exports.fetchGadget = (req, res, next, url) => {
 };
 
 exports.update = (req, res, next) => {
-    Gadget.findOneAndUpdate({
-        name: req.gadget.name
-    }, req.body, (err, gadget) => {
-        if (err) {
-            return next(err);
+    if (req.user) {
+        if (req.body.likes.includes(req.user._id.toString())) {
+            console.log('User already liked device');
+            console.log(req.body.likes.indexOf(req.user._id.toString()))
+            req.body.likes.splice(req.body.likes.indexOf(req.user._id.toString()), 1);
         } else {
-            res.json(gadget);
+            req.body.likes.push(req.user);
         }
-    });
+        Gadget.findOneAndUpdate({
+            _id: req.body._id
+        }, req.body, (err, gadget) => {
+            if (err) {
+                return next(err);
+            } else {
+                console.log(gadget)
+                res.json(gadget);
+            }
+        });
+    } else {
+        console.log('unedited');
+        return res.json(req.body);
+    }
 };
 
 exports.delete = (req, res, next) => {
