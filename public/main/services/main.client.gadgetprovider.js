@@ -18,8 +18,10 @@ angular.module('Main')
         service.like = function(gadget) {
             return $http.put('http://localhost:3000/gadgets', gadget)
             .then(function(response) {
-                if (response.data) {
+                if (response && response.data.ok && response.data.nModified) {
                     return response;
+                } else {
+                    $q.reject(response.data.error);
                 }
             }, function(error) {
                 $q.reject(error);

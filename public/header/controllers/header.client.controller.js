@@ -2,7 +2,7 @@ angular.module('Header').controller('HeaderController', ['$scope', 'UserService'
  function ($scope, UserService, SearchBarState, NavState, BgMask) {
     var self = this;
     self.showMask = true;
-    // servmage =  './icons/account.png'; 
+    $scope.image = sessionStorage.getItem('image') || './icons/account.png' ; 
 
     $scope.user = UserService.getUser();
     console.log($scope.user);
@@ -13,6 +13,6 @@ angular.module('Header').controller('HeaderController', ['$scope', 'UserService'
     };
 
     self.toggleSideNav = function() {
-        NavState.isClosed = !NavState.isClosed;
+        NavState.toggleState();
     };
 }]);

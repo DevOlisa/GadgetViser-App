@@ -16,6 +16,7 @@ angular.module('Search').controller('SearchController', ['$scope', 'ResultProvid
                 ResultProvider.searchString(n)
                     .then(function (response) {
                         $scope.searchResult = response;
+                        console.log(response)
                         $scope.searching = false;
                     }, function (error) {
                         $scope.searching = false;

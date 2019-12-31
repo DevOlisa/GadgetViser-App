@@ -47,9 +47,7 @@ let GadgetSchema = new Schema({
         default: Date.now
     },
     likes: [{
-        type:Schema.ObjectId,
-        ref: 'User',
-        unique: true,
+        type:String,
     }],
     availabilty: {
         type: String,

@@ -61,6 +61,14 @@ html {
   to {
     transform: translate(60px, 0);
     opacity: 0; } }
+@keyframes slideUp {
+  from {
+    transform: translate(0, 400px);
+    opacity: 0; } }
+@keyframes slideDown {
+  to {
+    transform: translate(400px, 0);
+    opacity: 0; } }
 /*########### END Animation Keyframe ###############*/
 /*########### NGVIEW ANIMATION STYLES ###############*/
 main[ng-view] .ng-enter, main[ng-view] .ng-leave {
@@ -129,6 +137,9 @@ button {
   width: 90px;
   height: 90px;
   transform: translate(-50%, -50%); }
+  .loading-indicator.in-search {
+    position: relative;
+    transform: translate(-50%, 0%); }
 
 .centertext {
   text-align: center; }
@@ -158,10 +169,10 @@ button {
 
 #gad {
   position: absolute;
-  height: 100%;
-  width: 100%; }
+  height: 100vh;
+  width: 100vw; }
 
-.gad-shell-header, .gad-shell-main, .gad-shell-header-searchbar, .gad-shell-header-account, .gad-shell-header-notification, .gad-shell-sidenav, .gad-shell-sidenav-footer, .gad-shell-modal, .gad-shell-sidebar, .gad-shell-mask {
+.gad-shell-header, .gad-shell-main, .gad-shell-header-searchbar, .gad-shell-header-account, .gad-shell-header-notification, .gad-shell-sidenav, .gad-shell-sidenav-footer, .gad-shell-modal, .gad-shell-sidebar, .gad-shell-mask, .gad-shell-inner-mask {
   position: absolute;
   overflow: hidden; }
 
@@ -171,13 +182,19 @@ button {
   z-index: 10;
   transition: 300ms; }
 
+.gad-shell-inner-mask {
+  top: 61px;
+  bottom: 0;
+  width: 100%;
+  z-index: 4; }
+
 .gad-shell-header {
   top: 0;
   left: 0;
   right: 0;
-  height: 54px;
+  height: 61px;
   z-index: 3;
-  border-bottom: 1px solid #ffabbc;
+  border-bottom: 1px solid #dbdbdb;
   overflow: initial; }
   .gad-shell-header-logo {
     position: absolute;
@@ -191,18 +208,18 @@ button {
       width: 50%; }
       .gad-shell-header-logo .burger img {
         display: block;
-        margin: 3px auto; }
+        width: 40px;
+        margin: 7px auto; }
       @media (min-width: 640px) {
         .gad-shell-header-logo .burger {
           display: none; } }
     .gad-shell-header-logo a {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0px;
-      width: 50%;
-      text-indent: -20000px;
-      cursor: pointer; }
+      position: fixed;
+      width: 61px;
+      height: 61px;
+      left: 50%;
+      cursor: pointer;
+      transform: translate(-50%, 0px); }
       @media (min-width: 640px) {
         .gad-shell-header-logo a {
           position: absolute;
@@ -211,19 +228,16 @@ button {
           width: 100%; } }
       .gad-shell-header-logo a #logo {
         position: absolute;
-        top: 7px;
-        left: calc(50% - 20px);
-        height: 40px; }
+        top: 0;
+        height: 61px; }
   .gad-shell-header-searchbar {
     position: absolute;
-    top: -100px;
-    left: 10px;
-    right: 10px;
-    padding: 0 7px;
-    border-width: 0 0 0.2px 0;
+    top: 0;
+    left: 700px;
+    right: 0;
     z-index: 3;
     opacity: 0;
-    transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    transition: 400ms ease-out; }
     @media (min-width: 1024px) {
       .gad-shell-header-searchbar {
         display: initial;
@@ -231,18 +245,24 @@ button {
         right: 240px;
         opacity: 1; } }
     .gad-shell-header-searchbar > table {
-      width: 100%; }
+      width: 100%;
+      height: 100%; }
+      .gad-shell-header-searchbar > table tr:nth-child(1) {
+        height: 61px; }
     .gad-shell-header-searchbar .main-search {
-      height: 50px; }
+      height: 61px;
+      padding-left: 4px; }
       .gad-shell-header-searchbar .main-search input {
         font-family: "Fira Sans";
         font-size: 14px;
         background: url(../Icons/search.png) left center no-repeat;
         background-size: 30px;
-        text-indent: 40px;
+        text-indent: 30px;
+        opacity: 0;
         outline: none; }
     .gad-shell-header-searchbar .search-control {
-      width: 30px; }
+      width: 30px;
+      opacity: 0; }
       .gad-shell-header-searchbar .search-control img {
         width: 24px; }
       @media (min-width: 1024px) {
@@ -250,16 +270,22 @@ button {
           display: none; } }
     .gad-shell-header-searchbar.expanded {
       display: block;
-      top: 58px;
-      right: 7px;
-      left: 7px;
+      top: 0;
+      right: 0;
+      left: 0;
       background: white;
-      box-shadow: 0px 2px 10px rgba(78, 31, 31, 0.16);
-      border-radius: 3px;
       opacity: 1;
-      z-index: 12; }
+      z-index: 12;
+      transition: all 200ms ease-out; }
+      .gad-shell-header-searchbar.expanded .main-search input {
+        opacity: 1;
+        transition: opacity 400ms; }
+      .gad-shell-header-searchbar.expanded .search-control {
+        opacity: 1;
+        transition: opacity 500ms 300ms; }
     .gad-shell-header-searchbar .search-results-wrapper {
-      margin: 0 0 7px; }
+      margin: 0 0 7px;
+      padding: 5px 7px; }
       .gad-shell-header-searchbar .search-results-wrapper h3 {
         margin: 4px 0 2px; }
         .gad-shell-header-searchbar .search-results-wrapper h3:after {
@@ -320,12 +346,12 @@ button {
       .gad-shell-header-primarylinks {
         display: initial; } }
   .gad-shell-header-account, .gad-shell-header-notification {
-    display: block;
+    display: none;
     top: 0;
     right: 0;
-    width: 54px;
+    width: 61px;
     height: 100%;
-    border: 0.2px solid #ffc7d2;
+    border: 0.2px solid #dbdbdb;
     border-width: 0 0 0 0.2px; }
     .gad-shell-header-account button, .gad-shell-header-notification button {
       display: block;
@@ -350,19 +376,19 @@ button {
           display: initial; } }
   .gad-shell-header-notification {
     display: none;
-    width: 54px;
+    width: 61px;
     right: 119px; }
     .gad-shell-header-notification a img {
       left: 7px; }
   .gad-shell-header-toggle {
     position: absolute;
-    right: 54px;
+    right: 0;
     top: 0;
     bottom: 0;
-    width: 54px;
+    width: 61p;
     padding: auto; }
     .gad-shell-header-toggle-button {
-      width: 54px;
+      width: 61p;
       height: 100%;
       padding-top: 4px; }
       .gad-shell-header-toggle-button img {
@@ -375,12 +401,12 @@ button {
   position: fixed;
   width: 0%;
   left: 0;
-  top: 54px;
+  top: 60px;
   bottom: 0;
   z-index: 5;
   background-color: #fff;
   transition: 200ms ease-in;
-  border: 0.2px solid #ffc7d2;
+  border: 0.2px solid #dbdbdb;
   border-width: 0 0.2px 0 0; }
   .gad-shell-sidenav.extended {
     width: 80%;
@@ -395,9 +421,10 @@ button {
     width: 100%;
     height: 400px; }
     .gad-shell-sidenav-navlist .nav-items {
-      display: block;
+      display: table;
       float: right;
       width: 100%;
+      height: 12%;
       padding: 3px 0;
       text-align: center;
       color: #707070;
@@ -406,11 +433,27 @@ button {
         content: '';
         display: block;
         clear: both; }
-    .gad-shell-sidenav-navlist .nav-items img {
-      display: block;
-      margin: auto;
-      width: 38px; }
+      .gad-shell-sidenav-navlist .nav-items-image {
+        display: none; }
+        @media (min-width: 800px) {
+          .gad-shell-sidenav-navlist .nav-items-image {
+            display: inline-block;
+            float: left; } }
+      .gad-shell-sidenav-navlist .nav-items-text {
+        float: left;
+        margin-left: 15px; }
+        @media (min-width: 800px) {
+          .gad-shell-sidenav-navlist .nav-items-text {
+            color: grey; } }
+      .gad-shell-sidenav-navlist .nav-items.active svg rect .str0 {
+        stroke: #ec0033; }
+      .gad-shell-sidenav-navlist .nav-items.active a {
+        color: #ec0033;
+        border: none;
+        border-right: 3px solid #ec0033; }
     .gad-shell-sidenav-navlist .nav-items a {
+      display: table-cell;
+      vertical-align: middle;
       overflow: hidden; }
   .gad-shell-sidenav-footer {
     bottom: 0;
@@ -446,7 +489,7 @@ button {
 
 /***** Main Content Styles *****/
 .gad-shell-main {
-  top: 54px;
+  top: 61px;
   bottom: 0;
   right: 0;
   left: 0;
@@ -472,7 +515,7 @@ button {
       position: absolute;
       right: 0;
       bottom: 0;
-      top: 54px; } }
+      top: 61px; } }
   .gad-shell-sidebar .popular-container {
     height: 300px; }
     .gad-shell-sidebar .popular-container h3::after {
@@ -521,7 +564,7 @@ button {
   left: 0;
   bottom: 0;
   background: #ffffff;
-  border: 0.2px solid #ffc7d2;
+  border: 0.2px solid #dbdbdb;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
   box-shadow: 0 -10px 30px rgba(63, 30, 30, 0.16);
@@ -816,9 +859,9 @@ button {
   .device-page .stats-pane .watch-btn {
     margin: 7px 0;
     width: 100%;
-    color: grey;
-    border: 1px solid #cfcfcf;
-    border-radius: 3px; }
+    color: #3b3b3b;
+    border: 2px solid #3b3b3b;
+    border-radius: 30px; }
     .device-page .stats-pane .watch-btn span, .device-page .stats-pane .watch-btn img {
       display: inline-block;
       vertical-align: middle; }
@@ -1026,6 +1069,8 @@ button {
       right: 54px; }
       #account-page nav#profile-nav ul.main li {
         width: 50%; }
+        #account-page nav#profile-nav ul.main li a {
+          padding-bottom: 12px; }
     #account-page nav#profile-nav ul.settings {
       position: absolute;
       width: 54px;
@@ -1102,6 +1147,10 @@ button {
   left: 0;
   right: 0;
   z-index: 10; }
+  .create-backdrop.ng-leave .create-question-dialog {
+    animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .create-backdrop.ng-leave-active .create-question-dialog {
+    animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .create-question-dialog {
   position: fixed;
@@ -1111,7 +1160,10 @@ button {
   height: 50%;
   background-color: #ffffff;
   border: 1px solid #cfcfcf;
-  border-radius: 30px 30px 0 0; }
+  animation: slideUp 400ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .create-question-dialog.ng-hide {
+    transition: 300ms;
+    animation: slideDown 300ms cubic-bezier(0.075, 0.82, 0.165, 1); }
   .create-question-dialog .wrapper {
     position: absolute;
     top: 22px;
@@ -1244,27 +1296,29 @@ button {
         #questions .main-content-question-description.show {
           overflow: initial;
           max-height: initial; }
-      #questions .main-content-question-answer .reply-pics-image {
-        width: 40px;
-        height: 40px;
-        margin-right: 9px; }
-      #questions .main-content-question-answer .best-answer-tag {
-        background-color: #707070; }
-      #questions .main-content-question-answer .actions {
-        float: right;
-        width: 90%;
-        overflow: hidden; }
-        #questions .main-content-question-answer .actions-upvote, #questions .main-content-question-answer .actions-share {
-          float: left; }
-        #questions .main-content-question-answer .actions-downvote, #questions .main-content-question-answer .actions-options {
-          float: right; }
-        #questions .main-content-question-answer .actions-upvote, #questions .main-content-question-answer .actions-downvote {
-          width: 50px;
-          margin: 0 10px 0 15px; }
-          #questions .main-content-question-answer .actions-upvote span, #questions .main-content-question-answer .actions-downvote span {
-            position: relative;
-            bottom: 7px;
-            left: 4px; }
+      #questions .main-content-question-answer {
+        margin: 12px 0 6px; }
+        #questions .main-content-question-answer .reply-pics-image {
+          width: 40px;
+          height: 40px;
+          margin-right: 9px; }
+        #questions .main-content-question-answer .best-answer-tag {
+          background-color: #707070; }
+        #questions .main-content-question-answer .actions {
+          width: 90%;
+          margin: auto;
+          overflow: hidden; }
+          #questions .main-content-question-answer .actions-upvote, #questions .main-content-question-answer .actions-share {
+            float: left; }
+          #questions .main-content-question-answer .actions-downvote, #questions .main-content-question-answer .actions-options {
+            float: right; }
+          #questions .main-content-question-answer .actions-upvote, #questions .main-content-question-answer .actions-downvote {
+            width: 50px;
+            margin: 0 10px 0 15px; }
+            #questions .main-content-question-answer .actions-upvote span, #questions .main-content-question-answer .actions-downvote span {
+              position: relative;
+              bottom: 7px;
+              left: 4px; }
       #questions .main-content-question button.more, #questions .main-content-question button.more-answers {
         height: 50px;
         width: 100%;
@@ -1367,13 +1421,17 @@ button {
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 15px 8px;
+          padding: 15px 2px;
           font-weight: bold; }
           .page-nav nav ul li a > * {
             display: inline-block;
             vertical-align: middle; }
           .page-nav nav ul li a object {
             width: auto; }
+        .page-nav nav ul li.active a {
+          color: #ec0033;
+          border: none;
+          border-bottom: 3px solid #ec0033; }
 
 /*************** End PageNav Styles ***************/
 /*************** Begin Form Styles ***************/

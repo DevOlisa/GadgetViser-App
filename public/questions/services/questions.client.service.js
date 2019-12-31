@@ -1,14 +1,14 @@
 angular.module('Questions')
-    .factory('QuestionService', ['$http', function ($http) {
+    .factory('QuestionService', ['$http', '$q', function ($http, $q) {
         var service = {};
         service.selectedGadget = null;
 
         service.createQuestion = (question) => {
             return $http.post('http://localhost:3000/questions', question)
                 .then(function (response) {
-                    console.log(response);
+                    return response;
                 }, function (error) {
-                    console.error(error);
+                    return $q.reject(error);
                 })
         };
 
@@ -34,25 +34,27 @@ angular.module('Questions')
         service.buildQuestion = (question) => {
             self.question = question;
             self.question.gadget = service.selectedGadget;
-            QuestionService.createQuestion(self.question);
+            QuestionService.createQuestion(self.question)
+            .then(function(response) {
+                console.log(response);
+                service.isDialogVisible = false;
+            }, function(error) {
+                // service.isDialogVisible = false;
+                console.log(error);
+            })
         }
 
         return service;
     }])
     .factory('AnswerService', ['$http', function ($http) {
         var service = {};
-        service.createAnswer = function (question, answer) {
+
+        service.updateQuestion = function(answer) {
             return $http.post('http://localhost:3000/answers', answer)
                 .then(function (response) {
                     return response;
                 }, function (error) {
                     console.error(error);
-                })
-                .then(function(response) {
-                    console.log(response.data);
-                    return $http.put('http://localhost:3000/questions')
-                }, function(error) {
-
                 })
         };
 
@@ -65,7 +67,7 @@ angular.module('Questions')
 
         service.buildAnswer = function (answer) {
             service.answer.content = answer.content;
-            AnswerService.createAnswer(service.answer)
+            AnswerService.updateQuestion(service.answer)
             .then(function(response) {
                 alert('Message Posted')
                 service.isDialogVisible = false;

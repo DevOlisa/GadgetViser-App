@@ -9,7 +9,7 @@
  $br : 6px;
 
  //border color
- $bc : rgb(255, 199, 210);
+ $bc : rgb(219, 219, 219);
 
  /*########### COLORS ###############*/
 
@@ -162,6 +162,20 @@
         transform:  translate(60px, 0);
         opacity: 0;
     }
+}
+
+@keyframes slideUp {
+   from {
+       transform: translate(0, 400px);
+       opacity: 0;
+   }
+}
+
+@keyframes slideDown {
+   to {
+       transform:  translate(400px, 0);
+       opacity: 0;
+   }
 }
  /*########### END Animation Keyframe ###############*/
  

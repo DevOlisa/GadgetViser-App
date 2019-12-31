@@ -20,10 +20,11 @@ exports.getGadgetQuestions = (req, res, next) => {
     console.log(req.user);
     Question.find({
         gadget: req.query.gadget
-    }, "", {}).populate('answer').exec((err, questions)=> {
+    }, "", {}).sort({created: -1}).populate('answers').exec((err, questions)=> {
         if (err) {
             next(err);
         } else {
+            console.log(questions)
             res.json(questions);
         }
     });

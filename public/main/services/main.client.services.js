@@ -4,12 +4,15 @@ angular.module('Main').service('BgMask', [function () {
         this.mask.toggleClass('blur');
     };
 }])
-.service('NavState', function() {
-    let self= this;
-    self.isClosed = true;
-    self.getState = function() {
-        return self.NavOpen;
+.factory('NavState', function() {
+    let service = {};
+    service.isOpen = false;
+
+    service.toggleState = () => {
+        service.isOpen = !service.isOpen;
     };
+
+    return service;
 })
 .service('SearchBarState', function() {
     let self= this;

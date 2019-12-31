@@ -31,7 +31,7 @@ angular.module('Auth')
             $scope.submit = function () {
                 if (!$scope.signInForm.$invalid) {
                     UserService.localSignIn($scope.user).then(function(user) {
-                        UserService.updateStatus(user);
+                        console.log('Signing in');
                     });
                 }
             };

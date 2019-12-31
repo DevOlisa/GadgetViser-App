@@ -13,8 +13,8 @@
                                 style="background-image: url(./img/Top-30-Most-Beautiful-Women-in-the-World-17.jpg)"></span>
                         </td>
                         <td>
-                            <h4>Arjunya</h4>
-                            <span class="best-answer-tag">Best Answer</span>
+                            <h4>User</h4>
+                            <span class="best-answer-tag" am-time-ago="questionData.answers[0].created | amUtc | amLocal">Best Answer</span>
                         </td>
                     </tr>
                 </table>
@@ -22,14 +22,12 @@
 
             <div class="main-content-question-description" ng-class="{'show': visible}">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit quo quia
-                    nihil? Fuga sed autem neque repellat doloribus laudantium vitae. Molestiae fugit
-                    iure debitis fugiat repudiandae, dolores voluptatum eaque impedit.
+                    {{questionData.answers[0].content }}
                 </p>
-                <p>
+                <!-- <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, incidunt tenetur,
                     id vitae similique quia ut eius impedit dolore eos eveniet ipsam, deserunt
-                </p>
+                </p> -->
             </div>
             <div class="actions" ng-show="visible">
                 <button class="actions-share">Share</button>
@@ -42,7 +40,7 @@
     </div>
     <button class="more" ng-if="!visible && questionData.answers.length > 0" ng-click="showDescription()">Read
         more</button>
-    <button class="more-answers" ng-if="visible && questionData.answers.length > 1" ng-click="showDescription()">
+    <button class="more-answers" ng-if="visible && questionData.answers.length > 1">
         See {{questionData.answers.length - 1}} More Answers</button>
 
     <footer>

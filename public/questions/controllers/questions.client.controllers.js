@@ -9,6 +9,17 @@ angular.module('Questions')
         self.openDialog = function() {
             QuestionDialogService.isDialogVisible = true;
         };
+
+        // Default filter
+        self.questionFilter = 'none';
+
+        // FilterOptions
+        self.filterOption = {
+            'none': '',
+            'unanswered': function(question) {
+                return question.answers.length === 0;
+            }
+        }
         
     }])
     .controller('QuestionController', ['AnswerDialogService', '$log', function (AnswerDialogService, $log) {

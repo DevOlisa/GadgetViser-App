@@ -1,60 +1,87 @@
 angular.module('Main')
-    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'QuestionDialogService', 'AnswerDialogService', 
-    function ($scope, BgMask, SearchBarState, QuestionDialogService, AnswerDialogService) {
-        $scope.isDialogOpen = false;
-
-        $scope.closeAccountDialog = function () {
-            if ($scope.isDialogOpen === false) return;
+    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'NavState', 'QuestionDialogService', 'AnswerDialogService',
+        function ($scope, BgMask, SearchBarState, NavState, QuestionDialogService, AnswerDialogService) {
+            let self = this;
+            self.NavState = NavState;
             $scope.isDialogOpen = false;
-            BgMask.toggle();
-        };
+            
 
-        $scope.openAccountDialog = function () {
-            if ($scope.isDialogOpen === true) return;
-            $scope.isDialogOpen = true;
-            BgMask.toggle();
-        };
+            $scope.closeAccountDialog = function () {
+                if ($scope.isDialogOpen === false) return;
+                $scope.isDialogOpen = false;
+                BgMask.toggle();
+            };
 
-        $scope.QuestionDialogService = QuestionDialogService;
-        $scope.AnswerDialogService = AnswerDialogService;
-        $scope.SearchBarState = SearchBarState;
-        $scope.SearchBarState = SearchBarState;
-    }])
-    .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService',
-        function ($scope,$state, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService) {
+            $scope.openAccountDialog = function () {
+                if ($scope.isDialogOpen === true) return;
+                $scope.isDialogOpen = true;
+                BgMask.toggle();
+            };
+
+            $scope.QuestionDialogService = QuestionDialogService;
+            $scope.AnswerDialogService = AnswerDialogService;
+            $scope.SearchBarState = SearchBarState;
+            $scope.SearchBarState = SearchBarState;
+        }])
+    .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService', 'UserService',
+        function ($scope, $state, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService, UserService) {
             let self = this;
             $scope.gadget = selectedGadget;
-            $scope.gadgets = selectedGadget;
             $scope.similarGadgets = [];
             QuestionDialogService.selectedGadget = selectedGadget;
             QuestionService.selectedGadget = selectedGadget._id;
 
-            self.getOemDevice = function() {
-                var opt = {};
-                opt.type = selectedGadget.type;
-                opt.oem= selectedGadget.oem;
-                opt.id= selectedGadget._id;
-                opt.function= "moreFromOem";
-                
-                return GadgetFactory.getGadgets(opt)
-                .then(function(gadgets) {
-                    $scope.similarGadgets = gadgets;
-                }, function(error) {
-                    console.error(error);
-                });
+            self.isGadgetLiked = function(_user) {
+                if (selectedGadget.likes.includes(_user)) {
+                    $scope.isLiked = true;
+                } else {
+                    $scope.isLiked = false;
+                }
             };
 
-            self.likeGadget =  function() {
-                GadgetFactory.like(selectedGadget)
-                .then(function(response) {
-                    alert(response.data);
-                })
+            self.getOemDevice = function () {
+                var opt = {};
+                opt.type = selectedGadget.type;
+                opt.oem = selectedGadget.oem;
+                opt.id = selectedGadget._id;
+                opt.function = "moreFromOem";
+
+                return GadgetFactory.getGadgets(opt)
+                    .then(function (gadgets) {
+                        $scope.similarGadgets = gadgets;
+                    }, function (error) {
+                        console.error(error);
+                    });
+            };
+
+            self.likeGadget = function () {
+                if ($scope.isLiked) {
+                    let userID = UserService.userID || sessionStorage.getItem('userId');
+                    selectedGadget.likes.splice(selectedGadget.likes.indexOf(UserService.userID), 1);
+                    GadgetFactory.like(selectedGadget)
+                        .then(function (response) {
+                            console.log('User unliked this');
+                            console.log(UserService.userID);
+                            $scope.isLiked = false;
+                            $scope.gadget = selectedGadget;
+                        }, function(error) {
+                            console.error(error)
+                        })
+                } else {
+                    selectedGadget.likes.push(UserService.userID);
+                    GadgetFactory.like(selectedGadget)
+                        .then(function (response) {
+                            console.log('User liked this');
+                            $scope.isLiked = true;
+                            $scope.gadget = selectedGadget;
+                        }, function(error) {
+                            console.error(error)
+                        })
+                }
             };
 
             self.getOemDevice();
-            $state.go('view-device.questions')
+            $state.go('view-device.questions');
+            console.log(UserService.userID);
+            self.isGadgetLiked(UserService.userID);
         }])
-    .controller('NavController', ['$scope', 'NavState', function ($scope, NavState) {
-        let self = this;
-        self.NavState = NavState;
-    }])

@@ -13,9 +13,9 @@ angular.module('Questions')
 
                     $scope.createReply = function (question) {
                         AnswerDialogService.isDialogVisible = true;
-                        AnswerDialogService.answer.question = question;
+                        AnswerDialogService.answer.question_id = question._id;
                         console.log('Crafting a reply for: ');
-                        console.log(question._id);
+                        console.log(question.title);
                     }
 
                     $scope.showDescription = function () {

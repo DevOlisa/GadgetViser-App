@@ -21,8 +21,10 @@
     <div class="main">
         <div class="main-controls">
             <div class="main-controls-category">
-                <button class="main-controls-category-btn selected">All</button>
-                <button class="main-controls-category-btn">Unanswered</button>
+                <button class="main-controls-category-btn" ng-class="{'selected': vm.questionFilter === 'none'}"
+                ng-click="vm.questionFilter = 'none'">All</button>
+                <button class="main-controls-category-btn" ng-class="{'selected': vm.questionFilter === 'unanswered'}"
+                 ng-click="vm.questionFilter = 'unanswered'">Unanswered</button>
             </div>
 
             <div class="main-controls-sort">
@@ -32,7 +34,7 @@
 
         <div class="main-content">
 
-            <question-panel ng-repeat="question in gadgetQuestions" question-data="question"></question-panel>
+            <question-panel ng-repeat="question in gadgetQuestions | filter:vm.filterOption[vm.questionFilter]" question-data="question"></question-panel>
 
         </div>
     </div>

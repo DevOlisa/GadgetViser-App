@@ -159,27 +159,19 @@ exports.fetchGadget = (req, res, next, url) => {
 };
 
 exports.update = (req, res, next) => {
-    if (req.user) {
-        if (req.body.likes.includes(req.user._id.toString())) {
-            console.log('User already liked device');
-            console.log(req.body.likes.indexOf(req.user._id.toString()))
-            req.body.likes.splice(req.body.likes.indexOf(req.user._id.toString()), 1);
-        } else {
-            req.body.likes.push(req.user);
-        }
-        Gadget.findOneAndUpdate({
+    if (req.user)  {
+        Gadget.updateOne({
             _id: req.body._id
-        }, req.body, (err, gadget) => {
+        }, req.body, (err, info) => {
             if (err) {
+                console.log(err)
                 return next(err);
             } else {
-                console.log(gadget)
-                res.json(gadget);
+                res.json(info);
             }
         });
     } else {
-        console.log('unedited');
-        return res.json(req.body);
+        return res.json({error: "User not logged in!"});
     }
 };
 

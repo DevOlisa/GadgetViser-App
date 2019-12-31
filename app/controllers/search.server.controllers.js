@@ -13,7 +13,7 @@ exports.handleSearch = (req, res, next, string) => {
 exports.gadgetSearch = (req, res, next) => {
     Gadget.find({
         link: { $regex : new RegExp(req.searchString, "i")}
-    }, "name link type image", {}, (err, result) => {
+    }, "name oem link type image", {}, (err, result) => {
         if (err) {
             req.error = err;
             req.result.gadgets = null;
