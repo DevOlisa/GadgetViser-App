@@ -1,5 +1,14 @@
 <!------------------------------------------ BEGIN DEVICE CATEGORY HTML ----------------------------------------->
 <div id="device-category" class="page">
+    <header id="category-header">
+        <nav class="device-category-nav" role="navigation">
+            <ul class="category-list">
+                <li class="category-list-item" ui-sref="phones" ui-sref-active="active"><div>Phones</div></li>
+                <li class="category-list-item" ui-sref="laptops" ui-sref-active="active"><div>Laptops</div></li>
+                <li class="category-list-item" ui-sref="smartwatches" ui-sref-active="active"><div>Smartwatches</div></li>
+            </ul>
+        </nav>
+    </header>
     <div class="featured-news-wrapper" ng-controller="FeaturedArticleController as fCtrl">
         <h3>FEATURED NEWS</h3>
         <div class="featured-news-carousel">
@@ -13,14 +22,6 @@
             <article class="content">
                 <header>
                     <h3>{{fCtrl.currentFeaturedArticle.title}}</h3>
-                    <div class="stats">
-                        <span class="posted">
-                            12 hrs
-                        </span>
-                        <span class="views">
-                            3.4k views
-                        </span>
-                    </div>
                 </header>
             </article>
 
@@ -71,6 +72,25 @@
                 <!-- End Device Row Wrapper -->
             </div>
         </div>
+        
+        <div class="new-release">
+            <div class="category-image">
+                <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
+            </div>
+            <h3>GAMING </h3>
+            <div class="devices-row">
+                <!-- Begin Item Wrapper -->
+                <div class="devices-row-wrapper">
+                    <!-- Begin Item Wrapper -->
+                    <div class="item-wrapper" ng-repeat="gadget in latestGadgets">
+                        <gadget-shell></gadget-shell>
+                    </div>
+                    <!-- End Item Wrapper -->
+                </div>
+                <!-- End Device Row Wrapper -->
+            </div>
+        </div>
+
     </div>
 
     <div id="questions" class="new-release">

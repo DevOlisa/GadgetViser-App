@@ -16,11 +16,11 @@
 
  // /**** Colors *****/
  $orange : #ff7933;
- $dp_orange : #cb5b20;
+ $dp_orange : #e98614;
  $lt_orange : #ffdbc8;
 
- $pri :rgb(236, 0, 51);
- $sec :rgb(0, 179, 255);
+ $pri :orangered;
+ $sec :rgb(255, 94, 0);
  $ter :rgb(255, 247, 0);
 
 
@@ -33,6 +33,8 @@
  $blk1 : #aeadad;
  $blk2 : #707070;
  $blk3 : #3b3b3b;
+
+ $bxshadow: #b2916830;
 
  /*########### END COLORS ############*/
 
@@ -61,40 +63,46 @@
 
 
  // Font styles
- $font1: 'Fira Sans';
- $font2: 'Fira sans';
- $font3: 'Fira Sans';
+ $font1: 'Aller';
+ $font2: 'Aller';
+ $font3: 'Aller';
 
  // Resuable Code
  %header {
-     font-family: 'Fira Sans';
+     font-family: 'Aller';
  }
 
  %ffL {
-    font-family: 'Fira Sans Light';
-}
+     font-family: 'Fira Sans Light';
+ }
 
-%ffR {
-    font-family: 'Fira Sans';
-}
- 
-%ffM {
-    font-family: 'Fira Sans Medium';
-}
+ %ffR {
+     font-family: 'Aller';
+ }
+
+ %ffM {
+     font-family: 'Fira Sans Medium';
+ }
 
  %ffB {
-    font-family: 'Fira Sans';
-    font-weight: bold;
-}
+     font-family: 'Aller';
+     font-weight: bold;
+ }
 
  %ffEB {
-    font-family: 'Fira Sans Extrabold';
-}
-
- html {
-     width: 100%;
-     height: 100%;
+     font-family: 'Fira Sans Extrabold';
  }
+
+ 
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Aller';
+    @include font-size(2);
+}
 
  /*########### MEDIA QUERY DEPENDENT STYLES ###############*/
 
@@ -112,7 +120,7 @@
      }
  }
 
-/*########### END MEDIA QUERY DEPENDENT STYLES ############*/
+ /*########### END MEDIA QUERY DEPENDENT STYLES ############*/
 
  // Scroll Bar Style
  ::-webkit-scrollbar {
@@ -121,13 +129,13 @@
 
  ::-webkit-scrollbar-track {
      background: transparent;
-     box-shadow: inset 0 0 5px 5px transparent;
+         box-shadow: inset 0 0 5px 5px transparent;
      border: 3px solid transparent;
  }
 
  ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 5px 5px #afa6a1;
-    border: 3px solid transparent;
+     box-shadow: inset 0 0 5px 5px #afa6a1;
+     border: 3px solid transparent;
  }
 
  ::-webkit-scrollbar-thumb:hover {
@@ -137,63 +145,99 @@
 
  //Profile pic style
  %profile-pics {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 2px solid white;
-    border-radius: 13px;
+     display: inline-block;
+     width: 30px;
+     height: 30px;
+     background-color: #fff;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     border: 2px solid white;
+     border-radius: 13px;
  }
+
+ //  Button Highlight
+ .highlight {
+     display: none;
+    opacity: 0;
+    background-color: rgb(163, 181, 195);
+    border-radius: 50%;
+    right: 12px;
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    animation: pop 250ms;
+ }
+
 
  /*########### Animation Keyframe ###############*/
 
  @keyframes slideIn {
-    from {
-        transform: translate(30px, 0px);
-        opacity: 0;
-    }
-}
+     from {
+         transform: translate(30px, 0px);
+         opacity: 0;
+     }
+ }
 
-@keyframes slideOut {
+ @keyframes slideOut {
+     to {
+         transform: translate(60px, 0);
+         opacity: 0;
+     }
+ }
+
+ @keyframes slideUp {
+     from {
+         transform: translate(0, 400px);
+         opacity: 0;
+     }
+ }
+
+ @keyframes slideDown {
+     to {
+         transform: translate(0, 400px);
+         opacity: 0;
+     }
+ }
+
+ @keyframes pop {
     to {
-        transform:  translate(60px, 0);
-        opacity: 0;
+        opacity: 0.4;
+        width: 80px;
+        height: 80px;
+        transform: translate(28px, -29px);
+        background-color: rgb(22, 115, 190);
     }
-}
+ }
 
-@keyframes slideUp {
-   from {
-       transform: translate(0, 400px);
-       opacity: 0;
-   }
-}
-
-@keyframes slideDown {
-   to {
-       transform:  translate(400px, 0);
-       opacity: 0;
-   }
-}
  /*########### END Animation Keyframe ###############*/
- 
+
  /*########### NGVIEW ANIMATION STYLES ###############*/
-main[ng-view] {
-}
 
-main[ng-view] .ng-enter, main[ng-view] .ng-leave {
-    -webkit-transition: all 10s ease;
-    -moz-transition: all 10s ease;
-    -o-transition: all 10s ease;
-    transition: all 10s ease;
-}
+ main[ng-view] .ng-enter,
+ main[ng-view] .ng-leave {
+     -webkit-transition: all 10s ease;
+     -moz-transition: all 10s ease;
+     -o-transition: all 10s ease;
+     transition: all 10s ease;
+ }
 
-main[ng-view] .ng-enter { left: 100%;}
-main[ng-view] .ng-enter-active { left: 0;}
-main[ng-view] .ng-leave { left: 0;}
-main[ng-view] .ng-leave-active { left: -100%;}
+ main[ng-view] .ng-enter {
+     left: 100%;
+ }
+
+ main[ng-view] .ng-enter-active {
+     left: 0;
+ }
+
+ main[ng-view] .ng-leave {
+     left: 0;
+ }
+
+ main[ng-view] .ng-leave-active {
+     left: -100%;
+ }
 
 
  /*########### NGVIEW ANIMATION STYLES ###############*/

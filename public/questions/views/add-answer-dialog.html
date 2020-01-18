@@ -1,6 +1,6 @@
 <!-- Add New Answer Dialog -->
 <div class="create-backdrop" ng-controller="AnswerDialogController as adCtrl" aui-modal
-    ng-if="AnswerDialogService.isDialogVisible">
+    ng-show="AnswerDialogService.isDialogVisible">
     <div class="create-question-dialog">
         <div class="wrapper">
             <form name="AnswerForm" ng-submit="adCtrl.submit()" novalidate>

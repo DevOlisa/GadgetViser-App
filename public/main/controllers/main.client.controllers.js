@@ -26,6 +26,7 @@ angular.module('Main')
     .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService', 'UserService',
         function ($scope, $state, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService, UserService) {
             let self = this;
+            let userID = UserService.userID || sessionStorage.getItem('userId');
             $scope.gadget = selectedGadget;
             $scope.similarGadgets = [];
             QuestionDialogService.selectedGadget = selectedGadget;
@@ -54,34 +55,41 @@ angular.module('Main')
                     });
             };
 
+            self.highlight = function() {
+                
+
+            };
+
             self.likeGadget = function () {
-                if ($scope.isLiked) {
-                    let userID = UserService.userID || sessionStorage.getItem('userId');
-                    selectedGadget.likes.splice(selectedGadget.likes.indexOf(UserService.userID), 1);
+                self.processingLike = true;
+                if ($scope.isLiked && !self.processingLike) {
+                    selectedGadget.likes.splice(selectedGadget.likes.indexOf(userID), 1);
                     GadgetFactory.like(selectedGadget)
                         .then(function (response) {
                             console.log('User unliked this');
-                            console.log(UserService.userID);
+                            // console.log(userID);
                             $scope.isLiked = false;
                             $scope.gadget = selectedGadget;
+                            self.processingLike = false;
                         }, function(error) {
-                            console.error(error)
+                            console.error(error);
                         })
-                } else {
-                    selectedGadget.likes.push(UserService.userID);
+                } else if (!$scope.isLiked && !self.processingLike) {
+                    selectedGadget.likes.push(userID);
                     GadgetFactory.like(selectedGadget)
                         .then(function (response) {
                             console.log('User liked this');
                             $scope.isLiked = true;
                             $scope.gadget = selectedGadget;
+                            self.processingLike = false;
                         }, function(error) {
-                            console.error(error)
+                            console.error(error);
                         })
                 }
             };
 
             self.getOemDevice();
             $state.go('view-device.questions');
-            console.log(UserService.userID);
-            self.isGadgetLiked(UserService.userID);
+            console.log(userID);
+            self.isGadgetLiked(userID);
         }])

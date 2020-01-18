@@ -1,11 +1,11 @@
 <!-- Add New Question Dialog -->
 <div class="create-backdrop" ng-controller="QuestionDialogController as qdCtrl" qui-modal
-    ng-if="QuestionDialogService.isDialogVisible">
+    ng-show="QuestionDialogService.isDialogVisible">
     <div class="create-question-dialog">
         <div class="wrapper">
             <form name="QuestionForm" ng-submit="qdCtrl.submit()" novalidate>
                 <div class="question-input">
-                    <textarea name="question" ng-model="question.title" maxlength="150"
+                    <textarea id="question-input" name="question" ng-model="question.title" maxlength="150"
                         placeholder="Ask any question about the {{QuestionDialogService.selectedGadget.name}}">
                     </textarea>
                     <label class="char-count" ng-if="question.title.length"

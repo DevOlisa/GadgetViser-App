@@ -2,27 +2,32 @@
 /*########### COLORS ###############*/
 /*########### END COLORS ############*/
 h2, .device-page-main #specifications .specs-category-main-item table h3 {
-  font-family: 'Fira Sans'; }
+  font-family: 'Aller'; }
 
 .device-page-main-content #prices .store-list .store-item-unit .detail-condition {
   font-family: 'Fira Sans Light'; }
 
 .gad-shell-header-searchbar .search-results-wrapper .device-search-result-item-name, .device-page-main-content #prices .store-list .store-item-unit .detail-seller, .create-question-dialog textarea#answer-input {
-  font-family: 'Fira Sans'; }
+  font-family: 'Aller'; }
 
 .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title, .create-question-dialog .char-count {
   font-family: 'Fira Sans Medium'; }
 
 .gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, .create-question-dialog .char-count.error, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
-  font-family: 'Fira Sans';
+  font-family: 'Aller';
   font-weight: bold; }
 
 .device-page-main-content #prices .store-list .store-item-unit .detail-price {
   font-family: 'Fira Sans Extrabold'; }
 
+body,
 html {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Aller';
+  font-size: 14px; }
 
 /*########### MEDIA QUERY DEPENDENT STYLES ###############*/
 /*########### END MEDIA QUERY DEPENDENT STYLES ############*/
@@ -52,6 +57,18 @@ html {
   border: 2px solid white;
   border-radius: 13px; }
 
+.highlight {
+  display: none;
+  opacity: 0;
+  background-color: #a3b5c3;
+  border-radius: 50%;
+  right: 12px;
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  animation: pop 250ms; }
+
 /*########### Animation Keyframe ###############*/
 @keyframes slideIn {
   from {
@@ -67,11 +84,19 @@ html {
     opacity: 0; } }
 @keyframes slideDown {
   to {
-    transform: translate(400px, 0);
+    transform: translate(0, 400px);
     opacity: 0; } }
+@keyframes pop {
+  to {
+    opacity: 0.4;
+    width: 80px;
+    height: 80px;
+    transform: translate(28px, -29px);
+    background-color: #1673be; } }
 /*########### END Animation Keyframe ###############*/
 /*########### NGVIEW ANIMATION STYLES ###############*/
-main[ng-view] .ng-enter, main[ng-view] .ng-leave {
+main[ng-view] .ng-enter,
+main[ng-view] .ng-leave {
   -webkit-transition: all 10s ease;
   -moz-transition: all 10s ease;
   -o-transition: all 10s ease;
@@ -97,15 +122,6 @@ main[ng-view] .ng-leave-active {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
 
-body,
-html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "Fira Sans";
-  font-size: 14px; }
-
 a {
   text-decoration: none;
   color: initial;
@@ -123,7 +139,7 @@ input {
 
 button {
   height: 42px;
-  font-family: 'Fira Sans';
+  font-family: 'Aller';
   font-weight: bold;
   background-color: #ffffff;
   outline: none;
@@ -145,7 +161,7 @@ button {
   text-align: center; }
 
 .page {
-  margin: 10px; }
+  margin: 0 7px; }
   @media (min-width: 800px) {
     .page {
       margin: 20px 50px; } }
@@ -166,6 +182,24 @@ button {
   left: 0;
   opacity: 1;
   transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) all; }
+
+#gad-shell-notification-dialog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 51px;
+  background: linear-gradient(90deg, white, whitesmoke);
+  z-index: 10;
+  box-shadow: 0px -2px 0px #b2916830; }
+  #gad-shell-notification-dialog table {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse; }
+  #gad-shell-notification-dialog .message, #gad-shell-notification-dialog .action {
+    height: 100%; }
+  #gad-shell-notification-dialog .action {
+    width: 85px; }
 
 #gad {
   position: absolute;
@@ -195,6 +229,7 @@ button {
   height: 61px;
   z-index: 3;
   border-bottom: 1px solid #dbdbdb;
+  box-shadow: 0px 3px 0px 0px #b2916830;
   overflow: initial; }
   .gad-shell-header-logo {
     position: absolute;
@@ -204,12 +239,11 @@ button {
       position: absolute;
       top: 0;
       left: 0;
-      bottom: 0;
-      width: 50%; }
+      bottom: 0; }
       .gad-shell-header-logo .burger img {
         display: block;
         width: 40px;
-        margin: 7px auto; }
+        margin: 10px auto; }
       @media (min-width: 640px) {
         .gad-shell-header-logo .burger {
           display: none; } }
@@ -250,14 +284,14 @@ button {
       .gad-shell-header-searchbar > table tr:nth-child(1) {
         height: 61px; }
     .gad-shell-header-searchbar .main-search {
-      height: 61px;
-      padding-left: 4px; }
+      height: 61px; }
       .gad-shell-header-searchbar .main-search input {
-        font-family: "Fira Sans";
+        font-family: "Aller";
         font-size: 14px;
         background: url(../Icons/search.png) left center no-repeat;
         background-size: 30px;
         text-indent: 30px;
+        padding-inline-end: 10px;
         opacity: 0;
         outline: none; }
     .gad-shell-header-searchbar .search-control {
@@ -388,9 +422,7 @@ button {
     width: 61p;
     padding: auto; }
     .gad-shell-header-toggle-button {
-      width: 61p;
-      height: 100%;
-      padding-top: 4px; }
+      height: 100%; }
       .gad-shell-header-toggle-button img {
         width: 40px; }
     @media (min-width: 640px) {
@@ -404,6 +436,7 @@ button {
   top: 60px;
   bottom: 0;
   z-index: 5;
+  box-shadow: 3px 0px 0px -1px #b2916830;
   background-color: #fff;
   transition: 200ms ease-in;
   border: 0.2px solid #dbdbdb;
@@ -446,11 +479,12 @@ button {
           .gad-shell-sidenav-navlist .nav-items-text {
             color: grey; } }
       .gad-shell-sidenav-navlist .nav-items.active svg rect .str0 {
-        stroke: #ec0033; }
+        stroke: orangered; }
       .gad-shell-sidenav-navlist .nav-items.active a {
-        color: #ec0033;
+        color: orangered;
         border: none;
-        border-right: 3px solid #ec0033; }
+        border-right: 3px solid orangered;
+        transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1); }
     .gad-shell-sidenav-navlist .nav-items a {
       display: table-cell;
       vertical-align: middle;
@@ -460,11 +494,6 @@ button {
     left: 0;
     width: 100%;
     height: 230px; }
-    .gad-shell-sidenav-footer .social-connect {
-      position: absolute;
-      bottom: 137px;
-      left: 50%;
-      right: 0; }
     .gad-shell-sidenav-footer .main-social-links {
       display: table-cell;
       width: 30px; }
@@ -483,7 +512,6 @@ button {
         color: #aeadad; }
     .gad-shell-sidenav-footer .footer-links div {
       padding: 4px 0;
-      text-align: right;
       color: #cfcfcf;
       font-size: 14px; }
 
@@ -548,8 +576,8 @@ button {
       vertical-align: middle; }
   .gad-shell-sidebar .category-image {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px; }
   .gad-shell-sidebar .category-name {
     display: inline-block;
@@ -712,31 +740,38 @@ button {
 #home {
   height: 100%;
   overflow-y: auto; }
-  #home .forum-cta-container {
-    width: 100%;
-    height: 200px;
-    text-align: center; }
-  #home .forum-cta {
-    display: block;
-    height: 100%; }
-    #home .forum-cta h1 {
-      font-family: 'Fira Sans Extralight'; }
-    #home .forum-cta p {
-      margin: 3px auto 14px; }
-    #home .forum-cta button {
-      height: 36px;
-      width: 150px;
-      border-radius: 6px;
-      font-family: 'Fira Sans';
-      font-weight: bold; }
   #home .recent-devices-container {
     height: auto; }
 
 /********* End of Homepage Styles ********/
 /********* Begin Device Category Page Styles  ********/
+#device-category #category-header {
+  display: table;
+  height: 71px; }
+  #device-category #category-header .device-category-nav {
+    display: table-cell;
+    vertical-align: middle; }
+  #device-category #category-header .category-list {
+    white-space: nowrap;
+    height: auto;
+    width: auto;
+    overflow: auto; }
+    #device-category #category-header .category-list-item {
+      display: inline-block;
+      margin-inline-end: 10px;
+      height: 30px;
+      padding: 0 15px;
+      box-sizing: content-box;
+      line-height: 30px;
+      border: 1px solid #cfcfcf;
+      border-radius: 21px; }
+      #device-category #category-header .category-list-item.active {
+        background: linear-gradient(90deg, orangered, #e98614);
+        color: white;
+        font-weight: 600;
+        border: none; }
 #device-category .featured-news-wrapper .featured-news-carousel {
-  margin: 15px 0px;
-  border: 1px solid #ececec; }
+  margin: 15px 0px; }
   #device-category .featured-news-wrapper .featured-news-carousel .image {
     position: relative;
     height: 192px;
@@ -745,30 +780,11 @@ button {
     transition: 300ms ease-in; }
   #device-category .featured-news-wrapper .featured-news-carousel .content {
     height: auto;
-    padding: 14px 10px 0; }
+    padding-block-start: 8px;
+    padding-block-end: 13px; }
     #device-category .featured-news-wrapper .featured-news-carousel .content header {
       position: relative;
-      height: 90px; }
-      #device-category .featured-news-wrapper .featured-news-carousel .content header .stats {
-        position: absolute;
-        bottom: 8px; }
-      #device-category .featured-news-wrapper .featured-news-carousel .content header span {
-        font-size: 10px;
-        color: #aeadad; }
-#device-category .manufacturer-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #e7e7e7;
-  justify-content: space-between; }
-  #device-category .manufacturer-list .oem {
-    flex: 0 0 300px;
-    padding: 7px;
-    text-align: center;
-    font-family: 'Fira Sans Medium';
-    font-style: italic;
-    color: #ec0033; }
+      height: auto; }
 
 /********* End of Device Category Page Styles ********/
 /********* Begin Device Sub-Category Page Styles ********/
@@ -830,7 +846,7 @@ button {
         color: #3b3b3b; }
       #news .news-list-item .content section .social-share-article button {
         margin-right: 10px;
-        color: #00b3ff; }
+        color: #ff5e00; }
   #news .news-list-item.expand .image {
     height: 197px;
     transition: 400ms;
@@ -840,10 +856,8 @@ button {
 
 /********* End News CSS Styles ********/
 /********* Begin View Device Page Styles ********/
-.device-page h1 {
-  padding-top: 9px;
-  font-family: 'Fira Sans'; }
 .device-page .stats-pane {
+  position: relative;
   padding: 5px 0; }
   .device-page .stats-pane .stat {
     float: left;
@@ -900,7 +914,6 @@ button {
       margin: auto;
       padding-bottom: 62px;
       border-radius: 3px;
-      box-shadow: 0px 2px 99px rgba(78, 31, 31, 0.16);
       z-index: 100; }
       .device-page-main-content #prices .controls-modal .modal-title {
         font-size: 20px;
@@ -984,7 +997,7 @@ button {
         padding: 10px;
         border: 1px solid #a8a8a8; }
       .device-page-main-content #pictures .gallery-list-thumbnail .selected {
-        border: 1px solid #ec0033; }
+        border: 1px solid orangered; }
 .device-page-main #specifications {
   width: 100%; }
   .device-page-main #specifications .specs-category {
@@ -1012,7 +1025,7 @@ button {
           .device-page-main #specifications .specs-category-main-item table h3 {
             margin-bottom: 3px; }
           .device-page-main #specifications .specs-category-main-item table span {
-            font-family: 'Fira Sans Medium';
+            font-weight: 500;
             font-size: 12px;
             color: #aeadad; }
       .device-page-main #specifications .specs-category-main button {
@@ -1147,10 +1160,10 @@ button {
   left: 0;
   right: 0;
   z-index: 10; }
-  .create-backdrop.ng-leave .create-question-dialog {
-    animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
-  .create-backdrop.ng-leave-active .create-question-dialog {
-    animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+  .create-backdrop.ng-hide {
+    transition: 300ms; }
+    .create-backdrop.ng-hide .create-question-dialog {
+      animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .create-question-dialog {
   position: fixed;
@@ -1160,10 +1173,7 @@ button {
   height: 50%;
   background-color: #ffffff;
   border: 1px solid #cfcfcf;
-  animation: slideUp 400ms cubic-bezier(0.075, 0.82, 0.165, 1); }
-  .create-question-dialog.ng-hide {
-    transition: 300ms;
-    animation: slideDown 300ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+  animation: slideUp 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
   .create-question-dialog .wrapper {
     position: absolute;
     top: 22px;
@@ -1237,7 +1247,7 @@ button {
         margin: 0 auto; }
     .devices-row .item-name {
       height: 20%;
-      font-family: 'Fira Sans Medium';
+      font-weight: 500;
       font-size: 12px;
       text-align: center;
       white-space: initial; }
@@ -1257,7 +1267,7 @@ button {
         border: 1px solid #cfcfcf;
         border-radius: 3px; }
         #questions .main-controls-category-btn.selected {
-          background-color: #ec0033;
+          background-color: orangered;
           color: white; }
     #questions .main-controls-sort {
       float: right; }
@@ -1419,19 +1429,21 @@ button {
         width: 33.3333333333333%; }
         .page-nav nav ul li a {
           display: flex;
+          height: 40px;
           justify-content: center;
           align-items: center;
-          padding: 15px 2px;
-          font-weight: bold; }
+          font-weight: bold;
+          color: grey; }
           .page-nav nav ul li a > * {
             display: inline-block;
             vertical-align: middle; }
           .page-nav nav ul li a object {
             width: auto; }
         .page-nav nav ul li.active a {
-          color: #ec0033;
+          color: orangered;
           border: none;
-          border-bottom: 3px solid #ec0033; }
+          border-bottom: 3px solid orangered;
+          transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 /*************** End PageNav Styles ***************/
 /*************** Begin Form Styles ***************/
@@ -1492,7 +1504,7 @@ button {
   height: 50px;
   margin: 6px 0;
   font-weight: bold;
-  background-color: #ec0033;
+  background-color: orangered;
   color: #ffffff;
   border-radius: 3px;
   text-align: center;

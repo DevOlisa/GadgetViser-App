@@ -9,16 +9,6 @@
     -webkit-box-sizing: border-box;
 }
 
-body,
-html {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: $font3;
-    @include font-size(2);
-}
-
 h2 {
     @extend %header;
 }
@@ -43,7 +33,7 @@ input {
 
 button {
     height: 42px;
-    font-family: 'Fira Sans';
+    font-family: 'Aller';
     font-weight: bold;
     background-color: $bg;
     outline: none;
@@ -72,7 +62,7 @@ button {
 }
 
 .page {
-    margin: 10px;
+    margin: 0 7px;
 
     @include responsify($break-tablet) {
         margin: 20px 50px;
@@ -98,6 +88,38 @@ button {
     left: 0;
     opacity: 1;
     transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) all;
+}
+
+// Notitication Dialog Styles
+#gad-shell-notification-dialog {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 51px;
+    background: linear-gradient(90deg, white, whitesmoke);
+    z-index: 10;
+    box-shadow: 0px -2px 0px $bxshadow;
+    // #083270
+
+    table {
+        height: 100%;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .message, .action {
+        height: 100%;
+    }
+
+    .message {
+
+    }
+
+    .action {
+        width: 85px;
+    }
+
 }
 
 
@@ -146,6 +168,7 @@ button {
     height: 61px;
     z-index: 3;
     border-bottom: 1px solid $bc;
+    box-shadow: 0px 3px 0px 0px $bxshadow;
     overflow: initial;
 
     &-logo {
@@ -158,12 +181,11 @@ button {
             top: 0;
             left: 0;
             bottom: 0;
-            width: 50%;
 
             img {
                 display: block;
                 width: 40px;
-                margin: 7px auto;
+                margin: 10px auto;
             }
 
             @include responsify($break-mobile) {
@@ -221,7 +243,6 @@ button {
 
         & .main-search {
             height: 61px;
-            padding-left: 4px;
 
             & input {
                 font-family: $font1;
@@ -229,6 +250,7 @@ button {
                 background: url(../Icons/search.png) left center no-repeat;
                 background-size: 30px;
                 text-indent: 30px;
+                padding-inline-end: 10px;
                 opacity: 0;
                 outline: none;
             }
@@ -437,9 +459,7 @@ button {
         padding: auto;
 
         &-button {
-            width: 61p;
             height: 100%;
-            padding-top: 4px;
 
             img {
                 width: 40px;
@@ -459,6 +479,7 @@ button {
     top: 60px;
     bottom: 0;
     z-index: 5;
+    box-shadow: 3px 0px 0px -1px $bxshadow;
     background-color: #fff;
     transition: 200ms ease-in;
 
@@ -524,6 +545,7 @@ button {
                     color: $pri;
                     border: none;
                     border-right: 3px solid $pri;
+                    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
                 }
             }
         }
@@ -542,10 +564,7 @@ button {
         height: 230px;
 
         .social-connect {
-            position: absolute;
-            bottom: 137px;
-            left: 50%;
-            right: 0;
+
         }
 
         .main-social-links {
@@ -574,7 +593,6 @@ button {
 
         .footer-links div {
             padding: 4px 0;
-            text-align: right;
             color: $blk;
             font-size: 14px;
         }
@@ -666,8 +684,8 @@ button {
 
     .category-image {
         display: inline-block;
-        width: 24px;
-        height: 24px;
+        width: 30px;
+        height: 30px;
         margin-right: 5px;
     }
 
@@ -908,38 +926,6 @@ button {
     height: 100%;
     overflow-y: auto;
 
-    // Begin Call To Acton
-    .forum-cta-container {
-        width: 100%;
-        height: 200px;
-        text-align: center;
-
-    }
-
-    .forum-cta {
-        display: block;
-        height: 100%;
-
-        h1 {
-            font-family: 'Fira Sans Extralight';
-        }
-
-        p {
-            margin: 3px auto 14px;
-        }
-
-        button {
-            height: 36px;
-            width: 150px;
-            border-radius: 6px;
-            font-family: 'Fira Sans';
-            font-weight: bold;
-        }
-    }
-
-    // End Call to action
-
-
     // Begin Recent Devices Styles
     .recent-devices-container {
         // @extend .news-container;
@@ -955,11 +941,46 @@ button {
 
 
 #device-category {
+
+    #category-header {
+        display: table;
+        height: 71px;
+
+        .device-category-nav {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .category-list {
+            white-space: nowrap;
+            height: auto;
+            width: auto;
+            overflow: auto;
+            
+            &-item {
+                display: inline-block;
+                margin-inline-end: 10px;
+                height: 30px;
+                padding: 0 15px;
+                box-sizing: content-box;
+                line-height: 30px;
+                border: 1px solid $blk;
+                border-radius: 21px;
+
+                &.active {
+                    background: linear-gradient(90deg, $pri, $dp_orange) ;
+                    color: white;
+                    font-weight: 600;
+                    border: none;
+                }
+            }
+        }
+    }
+
     .featured-news-wrapper {
 
         .featured-news-carousel {
             margin: 15px 0px;
-            border: 1px solid #ececec;
 
             .image {
                 position: relative;
@@ -971,45 +992,36 @@ button {
 
             .content {
                 height: auto;
-                padding: 14px 10px 0;
+                padding-block-start: 8px;
+                padding-block-end: 13px;
 
                 header {
                     position: relative;
-                    height: 90px;
-
-                    .stats {
-                        position: absolute;
-                        bottom: 8px;
-                    }
-
-                    span {
-                        font-size: 10px;
-                        color: $blk1;
-                    }
+                    height: auto;
                 }
             }
         }
     }
 
-    .manufacturer {
-        &-list {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 15px;
-            padding: 10px;
-            background-color: #e7e7e7;
-            justify-content: space-between;
+    // .manufacturer {
+    //     &-list {
+    //         display: flex;
+    //         flex-wrap: wrap;
+    //         margin-top: 15px;
+    //         padding: 10px;
+    //         background-color: #e7e7e7;
+    //         justify-content: space-between;
 
-            .oem {
-                flex: 0 0 300px;
-                padding: 7px;
-                text-align: center;
-                font-family: 'Fira Sans Medium';
-                font-style: italic;
-                color: $pri;
-            }
-        }
-    }
+    //         .oem {
+    //             flex: 0 0 300px;
+    //             padding: 7px;
+    //             text-align: center;
+    //             font-family: 'Fira Sans Medium';
+    //             font-style: italic;
+    //             color: $pri;
+    //         }
+    //     }
+    // }
 }
 
 
@@ -1130,15 +1142,8 @@ button {
 
 /********* Begin View Device Page Styles ********/
 .device-page {
-
-    // &-main {}
-
-    h1 {
-        padding-top: 9px;
-        font-family: 'Fira Sans';
-    }
-
     .stats-pane {
+        position: relative;
         padding: 5px 0;
 
         .stat {
@@ -1224,7 +1229,7 @@ button {
                         margin: auto;
                         padding-bottom: 62px;
                         border-radius: 3px;
-                        box-shadow: 0px 2px 99px rgba($color: #4e1f1f, $alpha: 0.16);
+                        // box-shadow: 0px 2px 99px rgba($color: #4e1f1f, $alpha: 0.16);
                         z-index: 100;
 
                         .modal-title {
@@ -1413,7 +1418,7 @@ button {
                             }
 
                             span {
-                                font-family: 'Fira Sans Medium';
+                                font-weight: 500;
                                 font-size: 12px;
                                 color: $blk1;
                             }
@@ -1639,28 +1644,9 @@ button {
     right: 0;
     z-index: 10;
 
-    // &.ng-enter {
-    //     .create-question-dialog {
-    //         transform: translate(0, 400px);
-    //         opacity: 0;
-    //         transition: 500ms;
-    //     }
-    // }
+    &.ng-hide {
+        transition: 300ms;
 
-    // &.ng-enter-active {
-    //     .create-question-dialog {
-    //         transform: translate(0, 0);
-    //         opacity: 1;
-    //     }
-    // }
-
-    &.ng-leave {
-        .create-question-dialog {
-            animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-        }
-    }
-
-    &.ng-leave-active {
         .create-question-dialog {
             animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
         }
@@ -1675,13 +1661,7 @@ button {
     height: 50%;
     background-color: #ffffff;
     border: 1px solid $blk;
-    animation: slideUp 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
-    // border-radius: 30px 30px 0 0;
-
-    &.ng-hide {
-        transition: 300ms;
-        animation: slideDown 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
+    animation: slideUp 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
 
     .wrapper {
         position: absolute;
@@ -1794,7 +1774,7 @@ button {
 
         &-name {
             height: 20%;
-            font-family: 'Fira Sans Medium';
+            font-weight: 500;
             font-size: 12px;
             text-align: center;
             white-space: initial;
@@ -2097,10 +2077,11 @@ button {
 
                 a {
                     display: flex;
+                    height: 40px;
                     justify-content: center;
                     align-items: center;
-                    padding: 15px 2px;
                     font-weight: bold;
+                    color: grey;
 
                     &>* {
                         display: inline-block;
@@ -2116,6 +2097,7 @@ button {
                     color: $pri;
                     border: none;
                     border-bottom: 3px solid $pri;
+                    transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
                 }
             }
         }

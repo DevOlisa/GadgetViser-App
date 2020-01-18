@@ -123,18 +123,13 @@
                         <tr>
                             <td>
                                 <div class="form-control main-search">
-                                    <input id="search-input" name="searchText" ng-model="searchText" type="text"
+                                    <input id="search-input" name="searchText" ng-model="searchText" type="search"
                                         ng-model-options="{ debounce: 600}" placeholder="Search this site">
                                 </div>
                             </td>
-                            <td class="search-control">
-                                <button ng-click="headCtrl.showSearchBar()">
-                                    <img class="close" src="icons/close-black.png" />
-                                </button>
-                            </td>
                         </tr>
                         <tr ng-if="!SearchBarState.isSearchBarHidden">
-                            <td colspan="2">
+                            <td>
                                 <div ng-show="searching" class="loading-indicator in-search center">
                                     <?xml version="1.0" encoding="utf-8"?><svg width='90px' height='90px'
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
@@ -216,7 +211,7 @@
 
                 <!-- search toggle on mobile -->
                 <div class="gad-shell-header-toggle">
-                    <button class="gad-shell-header-toggle-button" ng-click="headCtrl.showSearchBar()">
+                    <button class="gad-shell-header-toggle-button" focus-on="#search-input" ng-click="headCtrl.showSearchBar()">
                         <img src="icons/search-48px.svg" alt="search-control">
                     </button>
                 </div>
@@ -226,9 +221,15 @@
             <!-- side nav layout -->
             <div class="gad-shell-sidenav" ng-class='{"extended": mainCtrl.NavState.isOpen}'>
                 <ul class="gad-shell-sidenav-navlist">
+                    <li class="nav-items" ui-sref="news" aria-label="Stories" ui-sref-active="active">
+                        <a>
+                            <img class="nav-items-image" alt="stories" title="Stories" src="../icons/tablet-48px.png">
+                            <span class="nav-items-text">Stories</span>
+                        </a>
+                    </li>
                     <li class="nav-items" ui-sref="phones" ui-sref-active="active">
                         <a>
-                            <img class="nav-items-image" alt="phones" title="Phones" src="../icons/phone.png">
+                            <img class="nav-items-image" aria-label="Phones" alt="phones" title="Phones" src="../icons/phone.png">
                             <span class="nav-items-text">Phones</span>
                         </a>
                     </li>
@@ -239,12 +240,6 @@
                                     src="../icons/laptop-48px.png">
                                 <span class="nav-items-text">Laptops</span>
                             </div>
-                        </a>
-                    </li>
-                    <li class="nav-items" ui-sref="news" ui-sref-active="active">
-                        <a>
-                            <img class="nav-items-image" alt="tablets" title="Tablets" src="../icons/tablet-48px.png">
-                            <span class="nav-items-text">Tablets</span>
                         </a>
                     </li>
                     <li class="nav-items" ui-sref-active="active">
@@ -271,23 +266,23 @@
                 </ul>
                 <div class="gad-shell-sidenav-footer">
 
-                    <!-- Begin Social Connect -->
-                    <div class="social-connect">
-                        <div class="main-social-links">
-                            <img src="icons/Twitter.png" width="20px">
-                        </div>
-                        <div class="main-social-links">
-                            <img src="icons/Facebook.png" width="20px">
-                        </div>
-                    </div>
-                    <!-- End Social Connect -->
-
                     <!-- Begin Footer Links -->
                     <div class="footer-links">
-                        <svg height="1" width="87" version="1.1"
+                        <!-- Begin Social Connect -->
+                        <div class="social-connect" ng-click="openAccountDialog()">
+                            <div class="main-social-links">
+                                <img src="icons/Twitter.png" width="35px">
+                            </div>
+                            <div class="main-social-links">
+                                <img src="icons/Facebook.png" width="35px">
+                            </div>
+                        </div>
+                        <!-- End Social Connect -->
+    
+                        <svg height="1" width="150" version="1.1"
                             style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
-                            <line x1="0" y1="0" x2="87" y2="0"
-                                style="stroke: rgb(200, 200, 200); stroke-width: 0.2; stroke-linecap:round " />
+                            <line x1="0" y1="0" x2="150" y2="0"
+                                style="stroke: rgb(200, 200, 200); stroke-width: 1; stroke-linecap:round " />
                         </svg>
                         <div>About</div>
                         <div>Privacy</div>
@@ -346,7 +341,14 @@
         <div ng-include="'./authorize/views/account-dialog.html'" ng-controller="AuthController"></div>
         <div ng-include="'./questions/views/add-question-dialog.html'"></div>
         <div ng-include=" './questions/views/add-answer-dialog.html' "></div>
-
+        <div id="gad-shell-notification-dialog" ng-show="false">
+            <table border="0">
+                <tr>
+                    <td class="message"></td>
+                    <td class="action"></td>
+                </tr>
+            </table>
+        </div>
 
     </div>
     <!-- End gad shell -->
