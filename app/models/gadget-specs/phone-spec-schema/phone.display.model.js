@@ -2,11 +2,11 @@ const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
 let PhoneDisplaySchema = new Schema({
-    displayTech: {
+    tech: {
         type: String,
         trim: true
     },
-    displaySize: {
+    size: {
         type: String,
         trim: true
     },
@@ -26,6 +26,6 @@ let PhoneDisplaySchema = new Schema({
         type: String,
         trim: true
     }
-})
+});
 
 mongoose.model('PhoneDisplay', PhoneDisplaySchema);

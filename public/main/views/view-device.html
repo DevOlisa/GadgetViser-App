@@ -4,51 +4,60 @@
         <div class="device-page-main-image">
             <img ng-src="{{gadget.image}}" />
         </div>
-        <h1>
-            {{gadget.oem + ' ' + gadget.name}}
-        </h1>
+        <div id="shadow"></div>
+        <div class="container">
+            <h1>
+                {{gadget.oem + ' ' + gadget.name}}
+            </h1>
 
-        <div class="stats-pane">
-            <div class="stat">
-                <img src="./Icons/visits-48px.png">
-                <h5>{{gadget.views}}</h5>
+            <div class="stats-pane">
+                <div class="stat">
+                    <img src="./Icons/visits-48px.png">
+                    <h5>{{gadget.views}}</h5>
+                </div>
+
+                <div class="stat">
+                    <img src="./Icons/watching-48px.png">
+                    <h5>167</h5>
+                </div>
+
+                <div class="stat fav" highlight="btn-pop" ng-click="gadgetCtrl.likeGadget()">
+                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="48px" height="48px"
+                        version="1.1" viewBox="0 0 48 48">
+                        <defs>
+                            <style type="text/css">
+                                .favstr0 {
+                                    stroke: #5D5C5C;
+                                    stroke-width: 1.99961;
+                                    stroke-linecap: round
+                                }
+
+                                .favfil0 {
+                                    fill: none
+                                }
+
+                                .liked {
+                                    stroke: orangered;
+                                    fill: orangered
+                                }
+                            </style>
+                        </defs>
+                        <g id="Layer_x0020_1">
+                            <metadata id="CorelCorpID_0Corel-Layer" />
+                            <rect class="favfil0" width="48.1189" height="48" />
+                            <path class="favfil0 favstr0"
+                                d="M24 21l0 0c0,-3 0,-7 -7,-8 -4,0 -12,6 -2,15l9 7 9 -7c10,-9 2,-15 -2,-15 -7,1 -7,5 -7,8z"
+                                ng-class="{'liked': isLiked}" />
+                        </g>
+                    </svg>
+                    <h5 ng-class="{'orange': isLiked}">{{gadget.likes.length}}</h5>
+                </div>
+                <div id="btn-pop" class="highlight"></div>
+
+
+                <button class="watch-btn" aria-pressed="false">
+                    <img src="./Icons/bell-24px.png" /> <span>Watch this device</span></button>
             </div>
-
-            <div class="stat">
-                <img src="./Icons/watching-48px.png">
-                <h5>167</h5>
-            </div>
-
-            <div class="stat fav" highlight="btn-pop" ng-click="gadgetCtrl.likeGadget()">
-                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="48px" height="48px" version="1.1"   viewBox="0 0 48 48" >
-                    <defs>
-                        <style type="text/css">
-                            .favstr {
-                                stroke: #4D4D4D;
-                                stroke-width: 1.99961;
-                                stroke-linecap: round
-                            }
-
-                            .liked {stroke: rgb(236, 100, 21);}
-
-                            .favfil0 {
-                                fill: none
-                            }
-                        </style>
-                    </defs>
-                    <g id="Layer_x0020_1">
-                        <metadata id="CorelCorpID_0Corel-Layer" />
-                        <rect class="favfil0" width="48.1189" height="48" />
-                        <path class="favfil0 favstr" ng-class="{'liked': isLiked}" d="M24 21c0,-3 0,-7 -7,-8 -4,0 -12,6 -2,15l9 7m0 -14c0,-3 0,-7 7,-8 4,0 12,6 2,15l-9 7" />
-                    </g>
-                </svg>
-                <h5>{{gadget.likes.length}}</h5>
-            </div>
-            <div id="btn-pop" class="highlight"></div>
-
-
-            <button class="watch-btn" aria-pressed="false">
-                <img src="./Icons/bell-24px.png" /> <span>Watch this device</span></button>
         </div>
 
         <header class="page-nav">
@@ -57,115 +66,53 @@
                     <li ui-sref=".questions" ui-sref-active="active">
                         <a>
                             Questions
-                            <?xml version="1.0" encoding="UTF-8"?>
-                            <!DOCTYPE svg
-                                PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                            <!-- Creator: CorelDRAW X7 -->
-                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24px" height="24px"
-                                version="1.1"
-                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                                viewBox="0 0 2400000 2400000" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24px" height="24px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                viewBox="0 0 24000 24000"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <defs>
-                                    <style type="text/css">
-                                        .str0 {
-                                            stroke: #5D5C5C;
-                                            stroke-width: 149972
-                                        }
-
-                                        .str0.active {
-                                            stroke: orangered;
-                                            stroke-width: 149972
-                                        }
-
-                                        .str1 {
-                                            stroke: #5D5C5C;
-                                            stroke-width: 28800
-                                        }
-
-                                        .str1.active {
-                                            stroke: orangered;
-                                            stroke-width: 28800
-                                        }
-
-                                        .fil0 {
-                                            fill: none
-                                        }
-
-                                        .fil2 {
-                                            fill: none;
-                                            fill-rule: nonzero
-                                        }
-
-                                        .fil1 {
-                                            fill: #5D5C5C;
-                                            fill-rule: nonzero
-                                        }
-
-                                        .fil1.active {
-                                            fill: orangered;
-                                            fill-rule: nonzero
-                                        }
-                                    </style>
+                                <style type="text/css">
+                                    .queststr0 {stroke:#4D4D4D;stroke-width:999.685}
+                                    .queststr0.active {stroke: orangered;}
+                                    .questfil0 {fill:none}
+                                </style>
                                 </defs>
                                 <g id="Layer_x0020_1">
-                                    <metadata id="CorelCorpID_0Corel-Layer" />
-                                    <rect ui-sref=".questions" ui-sref-active="active" class="fil0" width="2400000"
-                                        height="2400000" />
-                                    <rect ui-sref=".questions" ui-sref-active="active" class="fil0 str0" x="431244"
-                                        y="472608" width="1537512" height="1454762" rx="1218952" ry="1153347" />
-                                    <path ui-sref=".questions" ui-sref-active="active" class="fil1"
-                                        d="M1185562 1581921c-20674,1777 -39760,2684 -57222,2306 -17688,-151 -34771,-1436 -51855,-3402 -16970,-2116 -33902,-5329 -50683,-9638 -16933,-4233 -35301,-9411 -55068,-15458 491,-25890 3023,-52271 7483,-79030 4460,-26910 10318,-55786 17651,-86475 34734,11263 65801,19086 93430,23546 27628,4460 53858,5518 78614,3402 35452,-3213 62400,-11415 80579,-24794 18029,-13380 26079,-32655 23887,-57411 -1928,-22110 -11754,-38173 -29405,-48491 -17839,-10167 -39042,-19238 -64176,-27100l-58469 -18557c-22111,-7332 -43352,-15874 -63497,-25474 -20144,-9827 -37795,-21921 -53102,-36737 -15194,-14816 -27817,-32655 -37984,-53480 -10016,-21052 -16403,-46375 -18898,-76309 -5556,-62438 6917,-113802 37418,-154054 30500,-40327 75061,-68296 133757,-84170l-8428 -95924c11074,-4649 22337,-7862 33562,-10016 11376,-1927 20825,-3364 28687,-4082 7823,-680 17650,-869 29404,-869 11755,0 23169,1247 34243,3893l8012 92712c25134,718 50646,3061 76347,7332 25852,4120 53291,9978 82507,17461 -680,47963 -10847,99667 -30274,155150 -25134,-8580 -49739,-15345 -73814,-20334 -24114,-5178 -54577,-6085 -91465,-2872 -9297,907 -18217,2154 -27099,4082 -8769,1814 -16592,4989 -23735,9448 -7144,4649 -12851,10545 -16744,17689 -4119,7143 -5556,16403 -4649,27817 1777,20485 10507,35263 26041,44372 15307,9108 31900,16063 49550,20863l61531 17121c24945,7105 48642,15534 70941,24945 22300,9486 42482,22110 60284,37644 17839,15685 32617,35452 44409,59527 11755,24114 19238,54237 22299,90407 5141,57600 -6085,108245 -33373,152088 -27288,43880 -69354,76686 -126236,98079l11036 125707c-10318,4459 -21203,7823 -32957,9826 -11603,2079 -21203,3553 -29065,4233 -7861,719 -17461,908 -28875,908 -11604,-189 -23207,-1437 -34810,-3893l-9789 -111988z" />
-                                    <path ui-sref=".questions" ui-sref-active="active" id="1" class="fil2 str1"
-                                        d="M1185562 1581921c-20674,1777 -39760,2684 -57222,2306 -17688,-151 -34771,-1436 -51855,-3402 -16970,-2116 -33902,-5329 -50683,-9638 -16933,-4233 -35301,-9411 -55068,-15458 491,-25890 3023,-52271 7483,-79030 4460,-26910 10318,-55786 17651,-86475 34734,11263 65801,19086 93430,23546 27628,4460 53858,5518 78614,3402 35452,-3213 62400,-11415 80579,-24794 18029,-13380 26079,-32655 23887,-57411 -1928,-22110 -11754,-38173 -29405,-48491 -17839,-10167 -39042,-19238 -64176,-27100l-58469 -18557c-22111,-7332 -43352,-15874 -63497,-25474 -20144,-9827 -37795,-21921 -53102,-36737 -15194,-14816 -27817,-32655 -37984,-53480 -10016,-21052 -16403,-46375 -18898,-76309 -5556,-62438 6917,-113802 37418,-154054 30500,-40327 75061,-68296 133757,-84170l-8428 -95924c11074,-4649 22337,-7862 33562,-10016 11376,-1927 20825,-3364 28687,-4082 7823,-680 17650,-869 29404,-869 11755,0 23169,1247 34243,3893l8012 92712c25134,718 50646,3061 76347,7332 25852,4120 53291,9978 82507,17461 -680,47963 -10847,99667 -30274,155150 -25134,-8580 -49739,-15345 -73814,-20334 -24114,-5178 -54577,-6085 -91465,-2872 -9297,907 -18217,2154 -27099,4082 -8769,1814 -16592,4989 -23735,9448 -7144,4649 -12851,10545 -16744,17689 -4119,7143 -5556,16403 -4649,27817 1777,20485 10507,35263 26041,44372 15307,9108 31900,16063 49550,20863l61531 17121c24945,7105 48642,15534 70941,24945 22300,9486 42482,22110 60284,37644 17839,15685 32617,35452 44409,59527 11755,24114 19238,54237 22299,90407 5141,57600 -6085,108245 -33373,152088 -27288,43880 -69354,76686 -126236,98079l11036 125707c-10318,4459 -21203,7823 -32957,9826 -11603,2079 -21203,3553 -29065,4233 -7861,719 -17461,908 -28875,908 -11604,-189 -23207,-1437 -34810,-3893l-9789 -111988z" />
+                                <metadata id="CorelCorpID_0Corel-Layer"/>
+                                <rect ui-sref=".questions" ui-sref-active="active" class="fil0" width="24000" height="24000"/>
+                                <path ui-sref=".questions" ui-sref-active="active" class="questfil0 queststr0" d="M9586 5771l4828 0c2656,0 4828,2173 4828,4829 0,1598 -786,3021 -1991,3901l-10 3842 -3283 -2915 -4372 0c-2656,0 -4828,-2172 -4828,-4829 0,-2655 2172,-4828 4828,-4828z"/>
+                                <line ui-sref=".questions" ui-sref-active="active" class="questfil0 queststr0" x1="9313" y1="8578" x2="14688" y2= "8578" />
+                                <line ui-sref=".questions" ui-sref-active="active" class="questfil0 queststr0" x1="9337" y1="10543" x2="14712" y2= "10543" />
+                                <line ui-sref=".questions" ui-sref-active="active" class="questfil0 queststr0" x1="9313" y1="12513" x2="14688" y2= "12513" />
                                 </g>
-                            </svg></a></li>
+                        </svg></a></li>
 
                     <li ui-sref=".specs" ui-sref-active="active">
                         <a> Specs
                             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24px" height="24px"
                                 version="1.1"
                                 style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                                viewBox="0 0 2400000 2400000" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                viewBox="0 0 24000 24000" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <defs>
                                     <style type="text/css">
-                                        .str0 {
-                                            stroke: #5D5C5C;
-                                            stroke-width: 149972
-                                        }
-
-                                        .str0.active {
-                                            stroke: orangered
-                                        }
-
-                                        .str1 {
-                                            stroke: #5D5C5C;
-                                            stroke-width: 99968.5;
-                                            stroke-linejoin: round
-                                        }
-
-                                        .str1 {
-                                            stroke: orangered;
-                                            stroke-width: 99968.5;
-                                            stroke-linejoin: round
-                                        }
-
-                                        .fil0 {
-                                            fill: none
-                                        }
-
-                                        .fil1 {
-                                            fill: white
-                                        }
+                                        .specstr0.active {stroke: orangered;}
+                                        .specstr0 {stroke: #5D5C5C;stroke-width: 1499.72}
+                                        .specstr1.active {stroke: orangered;}
+                                        .specstr1 {stroke: #5D5C5C;stroke-width: 999.685;stroke-linejoin: round}
+                                        .specfil0 {fill: none}
+                                        .specfil1 {fill: white}
                                     </style>
                                 </defs>
-                                <rect ui-sref=".specs" ui-sref-active="active" class="fil0" width="2400000"
-                                    height="2400000" />
-                                <rect ui-sref=".specs" ui-sref-active="active" class="fil0 str0" x="1049991" y="399987"
-                                    width="923376" height="1572888" rx="99993" ry="170329" />
-                                <rect ui-sref=".specs" ui-sref-active="active" class="fil1" x="899981" y="532838"
-                                    width="275036" height="1131288" />
-                                <path ui-sref=".specs" ui-sref-active="active" class="fil0 str1"
-                                    d="M899981 740674c22035,0 43578,2003 64479,5820l64252 -111344c36283,10582 71924,25587 106091,45316 39572,22866 74646,50457 104920,81714l-63118 109341c25701,31295 46186,66973 60170,105827l129411 0c8995,36699 13795,75061 13795,114520 0,45656 -6387,89839 -18293,131678l-126349 0c-14438,38665 -35339,74117 -61418,105147l65802 113953c-27288,26116 -58129,49474 -92296,69203 -39572,22828 -80996,39382 -123213,50003l-63874 -110627c-19616,3326 -39760,5103 -60359,5103 -19880,0 -39345,-1663 -58318,-4763l-63685 110287c-42180,-10621 -83641,-27175 -123175,-50003 -34205,-19729 -65008,-43087 -92296,-69203l64857 -112403c-26684,-31371 -48038,-67389 -62703,-106697l-126387 0c-11905,-41839 -18293,-86022 -18293,-131678 0,-39459 4800,-77821 13795,-114520l129449 0c14211,-39496 35150,-75779 61493,-107414l-62211 -107754c30274,-31257 65348,-58848 104882,-81714 34205,-19729 69808,-34734 106091,-45316l64063 110967c20259,-3553 41159,-5443 62438,-5443zm0 223446c74230,0 134400,60170 134400,134362 0,74230 -60170,134400 -134400,134400 -74230,0 -134400,-60170 -134400,-134400 0,-74192 60170,-134362 134400,-134362z" />
+                                <g id="Layer_x0020_1">
+                                    <metadata id="CorelCorpID_0Corel-Layer" />
+                                    <rect ui-sref=".specs"  class="specfil0" width="24000" height="24000" />
+                                    <g id="_2590954182768">
+                                        <rect ui-sref=".specs" ui-sref-active="active"  class="specfil0 specstr0" x="10500" y="4000" width="9234" height="15729" rx="1000"
+                                            ry="1703" />
+                                        <rect ui-sref=".specs" ui-sref-active="active"  class="specfil1" x="9000" y="5328" width="2750" height="11313" />
+                                        <path ui-sref=".specs" ui-sref-active="active"  class="specfil0 specstr1"
+                                            d="M9000 7407c220,0 436,20 645,58l642 -1114c363,106 719,256 1061,454 396,228 746,504 1049,817l-631 1093c257,313 462,670 602,1058l1294 0c90,367 138,751 138,1146 0,456 -64,898 -183,1316l-1264 0c-144,387 -353,742 -614,1052l658 1139c-273,262 -581,495 -923,692 -395,229 -810,394 -1232,501l-639 -1107c-196,34 -397,51 -603,51 -199,0 -394,-16 -583,-47l-637 1103c-422,-107 -837,-272 -1232,-501 -342,-197 -650,-430 -923,-692l649 -1124c-267,-313 -481,-673 -627,-1067l-1264 0c-119,-418 -183,-860 -183,-1316 0,-395 48,-779 138,-1146l1294 0c142,-394 352,-757 615,-1074l-622 -1077c303,-313 654,-589 1049,-817 342,-198 698,-348 1061,-454l640 1110c203,-35 412,-54 625,-54zm0 2234c742,0 1344,602 1344,1344 0,742 -602,1344 -1344,1344 -742,0 -1344,-602 -1344,-1344 0,-742 602,-1344 1344,-1344z" />
+                                    </g>
+                                </g>
                             </svg></a>
                     </li>
 
@@ -269,8 +216,8 @@
             <!-- End Device Main Content -->
 
             <!-- Begin People Also Viewed -->
-            <div class="devices-row">
-                <h3>PEOPLE ALSO VIEWED</h3>
+            <div class="devices-row container">
+                <h2>PEOPLE ALSO VIEWED</h2>
                 <!-- Begin Device Row Wrapper -->
                 <div class="devices-row-wrapper">
                     <div class="item-wrapper" ng-repeat="gadget in similarGadgets">
@@ -282,8 +229,8 @@
             <!-- End People Also Viewed -->
 
             <!-- Begin More From OEM -->
-            <div class="devices-row">
-                <h3>MORE FROM <span ng-bind="gadget.oem" style="text-transform: uppercase;"></span></h3>
+            <div class="devices-row container">
+                <h2>MORE FROM <span ng-bind="gadget.oem" style="text-transform: uppercase;"></span></h2>
                 <!-- Begin Device Row Wrapper -->
                 <div class="devices-row-wrapper">
                     <div class="item-wrapper" ng-repeat="gadget in similarGadgets">

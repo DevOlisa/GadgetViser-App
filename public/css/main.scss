@@ -49,7 +49,7 @@
      }
 
      @else if ($size==2) {
-         font-size: 14 + px;
+         font-size: 0.8646em;
      }
 
      @else if ($size==3) {
@@ -93,7 +93,14 @@
      font-family: 'Fira Sans Extrabold';
  }
 
+ %bxshadow {
+    box-shadow: 0 1px 3px 0 #2a2a2a30, 0 3px 5px 6px #5e5a450a
+ }
  
+ %bxshadowUp {
+    box-shadow: 1px 0 3px 0 #2a2a2a30, 3px 0 5px 6px #5e5a450a
+ }
+
 body,
 html {
     width: 100%;
@@ -210,6 +217,12 @@ html {
         background-color: rgb(22, 115, 190);
     }
  }
+
+@keyframes line-anim {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
 
  /*########### END Animation Keyframe ###############*/
 

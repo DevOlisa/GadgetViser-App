@@ -1,83 +1,60 @@
-
-<!--------------------------------------------- BEGIN HOMEPAGE HTML --------------------------------------------->
-<div id="home">
-    <div class="page">
-
-        <!-- Forum CTA -->
-        <div class="forum-cta-container">
-            <div class="forum-cta">
-                <h1>Questions About Any Device?</h1>
-                <p>Our community of users are waiting to help out!</p>
-                <button>Discover</button>
+<!------------------------------------------ BEGIN DEVICE CATEGORY HTML ----------------------------------------->
+<div id="device-category" class="page-margin-top">
+    <div class="featured-news-wrapper" ng-controller="FeaturedArticleController as fCtrl">
+        <div class="container">
+            <h2>FEATURED NEWS</h2>
+        </div>
+        <div class="featured-news-carousel">
+            <div class="image" style="background-image: url({{fCtrl.currentFeaturedArticle.image}})">
+                <span class="slide-indicator-wrapper">
+                    <slide-indicator class="slide-indicator" ng-click="showLinkedItem()"
+                        ng-repeat="item in fCtrl.FeaturedArticles"
+                        ng-class="{'selected': fCtrl.currentFeaturedArticle._id === item._id}"></slide-indicator>
+                </span>
             </div>
-        </div>
-
-        <!---------------------------------------- Begin News Column -------------------------------------------->
-        <div class="news-container">
-            <!-- <header>
-                <h2>Featured News</h2>
-            </header>
-            <div class="news-wrapper">
-                <ul class="news-list">
-                    <li class="news-item important">
-                        <div ng-click="dCtrl.ToggleDialog()">
-                            <div class="headline">
-                                Foldable Phones Are Cool But the Tech Isn't Ready For Prime Time
-                            </div>
-                        </div>
-                    </li>
-                    <li class="news-item">
-                        <div>
-                            <div class="headline">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor
-                            </div>
-                        </div>
-                    </li>
-                    <li class="news-item">
-                        <div>
-                            <div class="headline">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-                            </div>
-                        </div>
-                    </li>
-                    <li class="news-item">
-                        <div>
-                            <div class="headline">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                t
-                            </div>
-                        </div>
-                    </li>
-                    <li class="news-item">
-                        <div>
-                            <div class="headline">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div> -->
-
-            <!-- Go to news button -->
-            <button>Go To News</button>
-
+            <article class="content container">
+                <header>
+                    <h3>{{fCtrl.currentFeaturedArticle.title}}</h3>
+                </header>
+            </article>
 
         </div>
-        <!------------------------------------------ End of News Column ----------------------------------------->
+    </div>
 
-        <!---------------------------------------- Begin Recent Devices Column -------------------------------------------->
-        <div class="recent-devices-container">
+    <header id="category-header">
+        <nav class="device-category-nav" role="navigation">
+            <ul class="category-list">
+                <li class="category-list-item" ui-sref=".phones" ui-sref-active="active">
+                    <div>Phones</div>
+                    <div class="indicator"></div>
+                </li>
+                <li class="category-list-item" ui-sref=".laptops" ui-sref-active="active">
+                    <div>Laptops</div>
+                    <div class="indicator"></div>
+                </li>
+                <li class="category-list-item" ui-sref=".smartwatches" ui-sref-active="active">
+                    <div>Smartwatches</div>
+                    <div class="indicator"></div>
+                </li>
+                <li class="category-list-item" ui-sref=".tv" ui-sref-active="active">
+                    <div>TV</div>
+                    <div class="indicator"></div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="categories" ui-view>
+        <div class="coming-soon container">
             <header>
-                <h2>Recently Added</h2>
+                <h2>LATEST</h2>
+                <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
             </header>
-            <!-- Device Row -->
             <div class="devices-row">
                 <!-- Begin Item Wrapper -->
                 <div class="devices-row-wrapper">
                     <!-- Begin Item Wrapper -->
-                    <div class="item-wrapper test" ng-repeat="gadget in pCtrl.gadgets">
+                    <div class="item-wrapper" ng-repeat="gadget in latestGadgets">
                         <gadget-shell></gadget-shell>
                     </div>
                     <!-- End Item Wrapper -->
@@ -86,9 +63,75 @@
             </div>
         </div>
 
+        <div class="new-release container">
+            <header>
+                <h2>EDITOR'S CHOICE</h2>
+                <object type="image/svg+xml" data="Icons/best-24px.svg"></object>
+            </header>
+            <div class="devices-row">
+                <!-- Begin Item Wrapper -->
+                <div class="devices-row-wrapper">
+                    <!-- Begin Item Wrapper -->
+                    <div class="item-wrapper" ng-repeat="gadget in topChoice">
+                        <gadget-shell></gadget-shell>
+                    </div>
+                    <!-- End Item Wrapper -->
+                </div>
+                <!-- End Device Row Wrapper -->
+            </div>
+        </div>
+
+        <div class="new-release container">
+            <header>
+                <h2>UPCOMING</h2>
+                <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
+            </header>
+            <div class="devices-row">
+                <!-- Begin Item Wrapper -->
+                <div class="devices-row-wrapper">
+                    <!-- Begin Item Wrapper -->
+                    <div class="item-wrapper" ng-repeat="gadget in upcomingGadgets">
+                        <gadget-shell></gadget-shell>
+                    </div>
+                    <!-- End Item Wrapper -->
+                </div>
+                <!-- End Device Row Wrapper -->
+            </div>
+        </div>
+
+        <div class="new-release container">
+            <header>
+                <h2>GAMING </h2>
+                <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
+            </header>
+            <div class="devices-row">
+                <!-- Begin Item Wrapper -->
+                <div class="devices-row-wrapper">
+                    <!-- Begin Item Wrapper -->
+                    <div class="item-wrapper" ng-repeat="gadget in latestGadgets">
+                        <gadget-shell></gadget-shell>
+                    </div>
+                    <!-- End Item Wrapper -->
+                </div>
+                <!-- End Device Row Wrapper -->
+            </div>
+        </div>
+
+    </div>
+
+    <div id="questions" class="new-release">
+        <div class="container">
+            <h2>TRENDING QUESTIONS</h2>
+        </div>
+        <question-panel></question-panel>
+        <question-panel></question-panel>
 
     </div>
 </div>
+<!------------------------------------------ END DEVICE CATEGORY HTML ----------------------------------------->
+
+<!------------------------------------------ BEGIN SIDEBAR HTML ----------------------------------------->
+<div class="gad-shell-sidebar" ng-include="'./main/views/sidebar.html'"></div>
 <!-- <style type="text/css">
 .circle {
     position: absolute;

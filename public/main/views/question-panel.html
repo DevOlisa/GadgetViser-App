@@ -1,5 +1,5 @@
 <article class="main-content-question">
-    <h3>{{questionData.title}}</h3>
+    <h3>{{::questionData.title}}</h3>
     <p class="no-answers" ng-if="questionData.answers.length === 0">
         No answers yet
     </p>
@@ -22,7 +22,7 @@
 
             <div class="main-content-question-description" ng-class="{'show': visible}">
                 <p>
-                    {{questionData.answers[0].content }}
+                    {{::questionData.answers[0].content }}
                 </p>
                 <!-- <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, incidunt tenetur,
@@ -54,7 +54,7 @@
         </div>
         <!-- End Options dialog -->
         <span class="label time-ago" am-time-ago="questionData.created | amUtc | amLocal"></span>
-        <span class="label number-answers"> {{questionData.answers.length}} answers</span>
+        <span class="label number-answers" ng-if="questionData.answers.length > 1"> {{::questionData.answers.length}} answers</span>
         <button ng-click="createReply(questionData)" focus-on="#answer-input" class="reply small">Reply </button>
         <button  ng-click="socialShare()" class="share small">Share</button>
         <div class="reply-pics">

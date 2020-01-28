@@ -1,10 +1,10 @@
 angular.module('Main')
-    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'NavState', 'QuestionDialogService', 'AnswerDialogService',
-        function ($scope, BgMask, SearchBarState, NavState, QuestionDialogService, AnswerDialogService) {
+    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'NavState', 'QuestionDialogService', 'AnswerDialogService', 'NotificationDialog',
+        function ($scope, BgMask, SearchBarState, NavState, QuestionDialogService, AnswerDialogService, NotificationDialog) {
             let self = this;
             self.NavState = NavState;
             $scope.isDialogOpen = false;
-            
+
 
             $scope.closeAccountDialog = function () {
                 if ($scope.isDialogOpen === false) return;
@@ -18,22 +18,25 @@ angular.module('Main')
                 BgMask.toggle();
             };
 
+            $scope.NotificationDialog = NotificationDialog;
             $scope.QuestionDialogService = QuestionDialogService;
             $scope.AnswerDialogService = AnswerDialogService;
             $scope.SearchBarState = SearchBarState;
             $scope.SearchBarState = SearchBarState;
         }])
-    .controller('GadgetController', ['$scope', '$state', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService', 'UserService',
-        function ($scope, $state, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService, UserService) {
-            let self = this;
-            let userID = UserService.userID || sessionStorage.getItem('userId');
+    .controller('GadgetController', ['$scope', '$state', '$timeout', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService', 'UserService', 'NotificationDialog',
+        function ($scope, $state, $timeout, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService, UserService, NotificationDialog) {
+            let self = this,
+                userID = UserService.userID || sessionStorage.getItem('userId');
+
             $scope.gadget = selectedGadget;
             $scope.similarGadgets = [];
+            self.processingLike = false;
             QuestionDialogService.selectedGadget = selectedGadget;
             QuestionService.selectedGadget = selectedGadget._id;
 
-            self.isGadgetLiked = function(_user) {
-                if (selectedGadget.likes.includes(_user)) {
+            self.isGadgetLiked = function (_user) {
+                if ($scope.gadget.likes.includes(_user)) {
                     $scope.isLiked = true;
                 } else {
                     $scope.isLiked = false;
@@ -55,41 +58,56 @@ angular.module('Main')
                     });
             };
 
-            self.highlight = function() {
-                
+            self.highlight = function () {
+
 
             };
 
             self.likeGadget = function () {
-                self.processingLike = true;
-                if ($scope.isLiked && !self.processingLike) {
-                    selectedGadget.likes.splice(selectedGadget.likes.indexOf(userID), 1);
-                    GadgetFactory.like(selectedGadget)
-                        .then(function (response) {
-                            console.log('User unliked this');
-                            // console.log(userID);
-                            $scope.isLiked = false;
-                            $scope.gadget = selectedGadget;
-                            self.processingLike = false;
-                        }, function(error) {
-                            console.error(error);
-                        })
-                } else if (!$scope.isLiked && !self.processingLike) {
-                    selectedGadget.likes.push(userID);
-                    GadgetFactory.like(selectedGadget)
-                        .then(function (response) {
-                            console.log('User liked this');
-                            $scope.isLiked = true;
-                            $scope.gadget = selectedGadget;
-                            self.processingLike = false;
-                        }, function(error) {
-                            console.error(error);
-                        })
+                if (!self.processingLike) {
+                    let _selectedGadget = angular.copy($scope.gadget);
+
+                    if ($scope.isLiked) {
+                        self.processingLike = true;
+                        selectedGadget.likes.splice(selectedGadget.likes.indexOf(userID), 1);
+                        GadgetFactory.like(selectedGadget)
+                            .then(function (response) {
+                                $scope.isLiked = false;
+                                $scope.gadget = selectedGadget;
+                                self.processingLike = false;
+                            }, function (error) {
+                                console.error(error);
+                                NotificationDialog.alertUser(error.data);
+                                $timeout(function () {
+                                    $scope.gadget = _selectedGadget;
+                                    $scope.isLiked = true;
+                                    self.processingLike = false;
+                                }, 2000);
+                            })
+                    } else {
+                        self.processingLike = true;
+                        if (selectedGadget.likes.includes(userID)) return;
+                        selectedGadget.likes.push(userID);
+                        GadgetFactory.like(selectedGadget)
+                            .then(function (response) {
+                                $scope.gadget = selectedGadget;
+                                $scope.isLiked = true;
+                                self.processingLike = false;
+                            }, function (error) {
+                                NotificationDialog.alertUser(error.data);
+                                $timeout(function () {
+                                    $scope.gadget = _selectedGadget;
+                                    $scope.isLiked = false;
+                                    self.processingLike = false;
+                                }, 2000);
+                                console.error(error);
+                            })
+                    }
                 }
             };
 
             self.getOemDevice();
-            $state.go('view-device.questions');
+            $state.go('view-device.specs');
             console.log(userID);
             self.isGadgetLiked(userID);
         }])

@@ -16,14 +16,14 @@ viewBox="0 0 48 48"
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
   <rect class="fil0" width="47.8752" height="47.8748"/>
-  <rect class="fil1 str0" x="10" y="10" width="6" height="6"/>
-  <rect class="fil1 str0" x="10" y="21" width="6" height="6"/>
-  <rect class="fil1 str0" x="10" y="32" width="6" height="6"/>
-  <rect class="fil1 str0" x="21" y="32" width="6" height="6"/>
-  <rect class="fil1 str0" x="32" y="32" width="6" height="6"/>
-  <rect class="fil1 str0" x="32" y="21" width="6" height="6"/>
-  <rect class="fil1 str0" x="21" y="21" width="6" height="6"/>
-  <rect class="fil1 str0" x="21" y="10" width="6" height="6"/>
-  <rect class="fil1 str0" x="32" y="10" width="6" height="6"/>
+  <rect class="fil1 str0" x="11" y="11" width="4" height="4"/>
+  <rect class="fil1 str0" x="11" y="22" width="4" height="4"/>
+  <rect class="fil1 str0" x="11" y="33" width="4" height="4"/>
+  <rect class="fil1 str0" x="22" y="33" width="4" height="4"/>
+  <rect class="fil1 str0" x="33" y="33" width="4" height="4"/>
+  <rect class="fil1 str0" x="33" y="22" width="4" height="4"/>
+  <rect class="fil1 str0" x="22" y="22" width="4" height="4"/>
+  <rect class="fil1 str0" x="22" y="11" width="4" height="4"/>
+  <rect class="fil1 str0" x="33" y="11" width="4" height="4"/>
  </g>
 </svg>

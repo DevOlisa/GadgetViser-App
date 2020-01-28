@@ -55,14 +55,17 @@ button {
     }
 }
 
+.page-margin-top {
+    margin-block-start: 10px;
+}
 // Generic Classes Definition
 
 .centertext {
     text-align: center;
 }
 
-.page {
-    margin: 0 7px;
+.container {
+    padding: 3px 4px;
 
     @include responsify($break-tablet) {
         margin: 20px 50px;
@@ -90,39 +93,6 @@ button {
     transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) all;
 }
 
-// Notitication Dialog Styles
-#gad-shell-notification-dialog {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 51px;
-    background: linear-gradient(90deg, white, whitesmoke);
-    z-index: 10;
-    box-shadow: 0px -2px 0px $bxshadow;
-    // #083270
-
-    table {
-        height: 100%;
-        width: 100%;
-        border-collapse: collapse;
-    }
-    
-    .message, .action {
-        height: 100%;
-    }
-
-    .message {
-
-    }
-
-    .action {
-        width: 85px;
-    }
-
-}
-
-
 // Layout Styles
 #gad {
     position: absolute;
@@ -147,6 +117,51 @@ button {
     }
 }
 
+// Notitication Dialog Styles
+#gad-shell-notification-dialog {
+    position: absolute;
+    bottom: -55px;
+    left: 0;
+    right: 0;
+    height: 51px;
+    // display: none;
+    background: linear-gradient(90deg, white, whitesmoke);
+    z-index: 10;
+    box-shadow: 0px -2px 0px $bxshadow;
+    transition: 500ms;
+    // #083270
+
+    &.show {
+        // display: initial;
+        bottom: 0;
+        transition: all 700ms linear;
+    }
+
+    table {
+        height: 100%;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .message, .action {
+        height: 100%;
+    }
+
+    .message {
+        padding-inline-start: 0;
+    }
+
+    .action {
+        width: 54px;
+
+        .image {
+            display: inline-block;
+            width: 48px;
+            margin: auto;
+        }
+    }
+}
+
 .gad-shell-mask {
     width: 100vw;
     height: 100vh;
@@ -167,8 +182,7 @@ button {
     right: 0;
     height: 61px;
     z-index: 3;
-    border-bottom: 1px solid $bc;
-    box-shadow: 0px 3px 0px 0px $bxshadow;
+    @extend %bxshadow;
     overflow: initial;
 
     &-logo {
@@ -473,18 +487,19 @@ button {
 }
 
 .gad-shell-sidenav {
-    position: fixed;
-    width: 0%;
-    left: 0;
+    width: 80%;
+    left: -81%;
     top: 60px;
     bottom: 0;
     z-index: 5;
     box-shadow: 3px 0px 0px -1px $bxshadow;
     background-color: #fff;
+    opacity: 0.4;
     transition: 200ms ease-in;
 
     &.extended {
-        width: 80%;
+        left: 0;
+        opacity: 1;
         transition: 300ms ease;
     }
 
@@ -943,36 +958,59 @@ button {
 #device-category {
 
     #category-header {
-        display: table;
-        height: 71px;
-
-        .device-category-nav {
-            display: table-cell;
-            vertical-align: middle;
-        }
-
+        height: 51px;
+        width: 100%;
+        
         .category-list {
             white-space: nowrap;
             height: auto;
             width: auto;
-            overflow: auto;
+            overflow: visible;
             
             &-item {
+                position: relative;
                 display: inline-block;
                 margin-inline-end: 10px;
                 height: 30px;
-                padding: 0 15px;
+                padding: 0 12px;
                 box-sizing: content-box;
                 line-height: 30px;
-                border: 1px solid $blk;
-                border-radius: 21px;
+                color: $blk1;
+
+                .indicator {
+                    background: linear-gradient(90deg, red, $dp_orange) ;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    right: 50%;
+                    width: 0%;
+                    height: 2px;
+                    transition: 500ms;
+                }
 
                 &.active {
-                    background: linear-gradient(90deg, $pri, $dp_orange) ;
-                    color: white;
-                    font-weight: 600;
-                    border: none;
+                    color: initial;
+                    font-weight: 700;
+
+                    .indicator {
+                        left: 0;
+                        right: 0;
+                        width: 100%;
+                        transition: 300ms;
+                    }
                 }
+            }
+        }
+    }
+
+    #categories {
+        header {
+            display: table;
+            height: 30px;
+
+            object, h2 {
+                display: inline-block;
+                vertical-align: middle;
             }
         }
     }
@@ -1079,8 +1117,8 @@ button {
     }
 
     .news-list-item {
-        margin: 10px 0;
-        border: 1px solid #ececec;
+        margin: 14px 0;
+        @extend %bxshadow;
 
         .image {
             height: 95px;
@@ -1142,6 +1180,9 @@ button {
 
 /********* Begin View Device Page Styles ********/
 .device-page {
+    #shadow {
+        @extend %bxshadowUp;
+    }
     .stats-pane {
         position: relative;
         padding: 5px 0;
@@ -1402,8 +1443,8 @@ button {
                     justify-content: space-between;
 
                     &-item {
-                        margin: 10px;
-                        flex: 0 1 120px;
+                        margin: 10px 4px;
+                        flex: 0 1 45%;
 
                         table {
                             margin: 4px auto;
@@ -1645,10 +1686,10 @@ button {
     z-index: 10;
 
     &.ng-hide {
-        transition: 300ms;
+        transition: 400ms;
 
         .create-question-dialog {
-            animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+            animation: slideDown 1200ms cubic-bezier(0.075, 0.82, 0.165, 1);
         }
     }
 }
@@ -1665,20 +1706,20 @@ button {
 
     .wrapper {
         position: absolute;
-        top: 22px;
-        right: 10px;
-        left: 15px;
-        bottom: 14px;
+        top: 10px;
+        right: 9px;
+        left: 9px;
+        bottom: 10px;
     }
 
     textarea {
         position: absolute;
-        bottom: 120px;
+        bottom: 74px;
         top: 0;
         width: 100%;
         @extend %ffB;
         line-height: 1.68;
-        font-size: 20px;
+        font-size: 1.5rem;
         outline: none;
     }
 
@@ -1703,28 +1744,28 @@ button {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 94px;
+        height: 40px;
 
         &-setting {
             position: absolute;
-            right: 71px;
+            right: 26%;
             left: 0;
-            height: 54px;
+            height: 100%;
         }
 
         &-submit {
             position: absolute;
             right: 0;
-            height: 54px;
-            width: 71px;
-            border-left: 1px solid $blk;
+            height: 100%;
+            width: 25%;
 
             input[type="submit"] {
-                background: url(../icons/arrow-48px.png) center no-repeat;
-                transform: rotateZ(180deg)
+                border: 2px #0d497a solid;
+                color: #0d497a ;
+                background-color: transparent;
+                border-radius: 3px;
             }
         }
-
     }
 }
 
@@ -1831,9 +1872,8 @@ button {
             &-question {
                 position: relative;
                 margin: 15px 0;
-                padding: 15px 10px 8px;
-                border: 1px solid #ececec;
-                border-radius: 3px;
+                padding: 15px 5px 0;
+                box-shadow:  0 0 3px 0 #2a2a2a30, 0 3px 5px 6px #5e5a450a;
 
                 h2 {
                     @extend %ffB;
@@ -1917,7 +1957,7 @@ button {
                     }
                 }
 
-                button.more {
+                .more {
                     height: 50px;
                     width: 100%;
                     margin-top: -20px;
@@ -1929,7 +1969,7 @@ button {
                     border-radius: 0px;
 
                     &-answers {
-                        @extend button.more;
+                        @extend .more;
                         height: 40px;
                         margin: 4px 0;
                         padding-top: initial;
@@ -2120,8 +2160,7 @@ button {
         }
     }
 
-    input:not([type="submit"]) {
-        float: left;
+    input[type=text] {
         padding: 9px 35px;
         font-size: 14px;
         outline: none;
@@ -2130,6 +2169,7 @@ button {
         border-radius: 3px;
         @extend %ffB;
     }
+
 
     input.ng-invalid.ng-dirty {
         border-bottom: 2px solid orangered;
@@ -2140,7 +2180,7 @@ button {
         width: 100%;
         height: 37px;
         padding: 4px 8px;
-        border: 2px solid $blk;
+        border-bottom: 2px solid $blk;
         border-radius: 3px;
     }
 
@@ -2159,7 +2199,7 @@ button {
         right: 0px;
         height: 37px;
         color: $blk3;
-        background-color: #F5F5F5;
+        // background-color: #F5F5F5;
     }
 
     .add-opt {

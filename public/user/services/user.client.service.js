@@ -1,5 +1,5 @@
-angular.module('User').factory('UserService', ['$http', '$q', '$resource', '$rootScope', 
-function ($http, $q, $resource, $rootScope) {
+angular.module('User').factory('UserService', ['$http', '$q', '$resource', '$rootScope', 'NotificationDialog',
+function ($http, $q, $resource, $rootScope, NotificationDialog) {
     var service = {};
     service.user = {};
 
@@ -14,12 +14,14 @@ function ($http, $q, $resource, $rootScope) {
                 sessionStorage.setItem('image', response.data.user.image);
                 service.isLoggedIn = true;
                 service.userID = response.data.user.id;
-                console.log(service.userID)
+                NotificationDialog.alertUser({type: 'success', message: 'Sign in successful'});
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + response.data.user._id;
                 $rootScope.$broadcast('userAuthenticated');
             }
         }, (err) => {
             console.error(err);
+            NotificationDialog.alertUser({type: 'warning', message: 'Sign in failed'});
+
         })
     };
     

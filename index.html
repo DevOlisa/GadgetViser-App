@@ -16,6 +16,7 @@
     <!-- <link rel="stylesheet" href="../css/vendor/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/admin.css">
 
     <!-- third party javascript -->
 
@@ -66,8 +67,10 @@
     <script src="./main/services/main.client.services.js"></script>
     <script src="./main/routes/main.client.routes.js"></script>
     <script src="./main/controllers/main.client.controllers.js"></script>
+    <script src="./main/controllers/specs.client.controller.js"></script>
     <script src="./main/controllers/device.category.controllers.js"></script>
     <script src="./main/services/main.client.gadgetprovider.js"></script>
+    <script src="./main/services/client.notification.service.js"></script>
     <script src="./main/directives/main.client.directive.js"></script>
 
     <script src="./news/routes/news.client.routes.js"></script>
@@ -341,14 +344,38 @@
         <div ng-include="'./authorize/views/account-dialog.html'" ng-controller="AuthController"></div>
         <div ng-include="'./questions/views/add-question-dialog.html'"></div>
         <div ng-include=" './questions/views/add-answer-dialog.html' "></div>
-        <div id="gad-shell-notification-dialog" ng-show="false">
+        <div id="gad-shell-notification-dialog" ng-class="{'show': NotificationDialog.isDialogVisible}" ng-if="NotificationDialog.isDialogVisible">
             <table border="0">
                 <tr>
-                    <td class="message"></td>
-                    <td class="action"></td>
+                    <td class="action">
+                        <div ng-switch on="NotificationDialog.type">
+                            <div class="image" ng-switch-when="warning">
+                                <svg width="0.48in" height="0.479992in" version="1.1" viewBox="0 0 480 480">
+                                  <rect class="fil0" x="-1" style="fill:none" width="481" height="480"/>
+                                  <circle class="fil0 str0" style="stroke:#A63F00;stroke-width:19.9961;fill:none" cx="240" cy="240" r="138"/>
+                                  <path class="fil1" style="fill:black;fill-rule:nonzero; animation: line-anim 200ms ease-in-out forwards 700ms; stroke-dashoffset: 318.3420715332031px; stroke-dasharray: 318.3420715332031px;" d="M234 275l-5 -73 0 -31 21 0 0 31 -5 73 -11 0zm-4 35l0 -20 19 0 0 20 -19 0z"/>
+                                </svg>
+                            </div>
+                            <div class="image" ng-switch-when="error"></div>
+                            <div class="image" ng-switch-when="success">
+                                <svg width="48px" height="48px" version="1.1" viewBox="0 0 4800 4800">
+                                  <rect fill="none" x="-10" y="3" width="4813" height="4800"/>
+                                  <polyline fill="none" style=" animation: line-anim 200ms ease-in-out forwards 700ms; stroke-dashoffset: 21849.72265625px; stroke-dasharray: 21849.72265625px;" stroke="#99CC66" stroke-width="199.961" points="955,2400 1919,3415 3919,1315 "/>
+                                </svg>
+                                
+                                <script type="text/javascript" def>
+                                    const tick = document.querySelector('circle + path');
+                                    console.log(tick);
+                                    console.log(tick.getTotalLength());
+                                </script>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="message">{{NotificationDialog.message}} </td>
                 </tr>
             </table>
         </div>
+
 
     </div>
     <!-- End gad shell -->

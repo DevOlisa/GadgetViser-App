@@ -18,7 +18,7 @@ angular.module('News')
                     self.FeaturedArticles = ArticleProvider.PhoneArticles.query();
                     break;
                 default:
-                    return;
+                    self.FeaturedArticles = ArticleProvider.Articles.query();
             }
 
             self.currentFeaturedArticle = self.FeaturedArticles[0];

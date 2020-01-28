@@ -27,7 +27,7 @@ angular.module('Questions')
                     };
 
                     $scope.socialShare = function () {
-                        console.log('Sharing button click!')
+                        console.log('Sharing button click!');
                     };
                 }
             };

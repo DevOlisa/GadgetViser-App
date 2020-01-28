@@ -13,12 +13,18 @@ h2, .device-page-main #specifications .specs-category-main-item table h3 {
 .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title, .create-question-dialog .char-count {
   font-family: 'Fira Sans Medium'; }
 
-.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, .create-question-dialog .char-count.error, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input:not([type="submit"]), .has-form select, .has-form .alert-label {
+.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, .create-question-dialog .char-count.error, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input[type=text], .has-form select, .has-form .alert-label {
   font-family: 'Aller';
   font-weight: bold; }
 
 .device-page-main-content #prices .store-list .store-item-unit .detail-price {
   font-family: 'Fira Sans Extrabold'; }
+
+.gad-shell-header, #news .news-list-item {
+  box-shadow: 0 1px 3px 0 #2a2a2a30, 0 3px 5px 6px #5e5a450a; }
+
+.device-page #shadow {
+  box-shadow: 1px 0 3px 0 #2a2a2a30, 3px 0 5px 6px #5e5a450a; }
 
 body,
 html {
@@ -27,7 +33,7 @@ html {
   margin: 0;
   padding: 0;
   font-family: 'Aller';
-  font-size: 14px; }
+  font-size: 0.8646em; }
 
 /*########### MEDIA QUERY DEPENDENT STYLES ###############*/
 /*########### END MEDIA QUERY DEPENDENT STYLES ############*/
@@ -93,6 +99,9 @@ html {
     height: 80px;
     transform: translate(28px, -29px);
     background-color: #1673be; } }
+@keyframes line-anim {
+  to {
+    stroke-dashoffset: 0; } }
 /*########### END Animation Keyframe ###############*/
 /*########### NGVIEW ANIMATION STYLES ###############*/
 main[ng-view] .ng-enter,
@@ -125,7 +134,7 @@ main[ng-view] .ng-leave-active {
 a {
   text-decoration: none;
   color: initial;
-  font-size: 14px; }
+  font-size: 0.8646em; }
 
 label {
   font-size: 12px;
@@ -157,13 +166,16 @@ button {
     position: relative;
     transform: translate(-50%, 0%); }
 
+.page-margin-top {
+  margin-block-start: 10px; }
+
 .centertext {
   text-align: center; }
 
-.page {
-  margin: 0 7px; }
+.container {
+  padding: 3px 4px; }
   @media (min-width: 800px) {
-    .page {
+    .container {
       margin: 20px 50px; } }
 
 .orange {
@@ -183,24 +195,6 @@ button {
   opacity: 1;
   transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) all; }
 
-#gad-shell-notification-dialog {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 51px;
-  background: linear-gradient(90deg, white, whitesmoke);
-  z-index: 10;
-  box-shadow: 0px -2px 0px #b2916830; }
-  #gad-shell-notification-dialog table {
-    height: 100%;
-    width: 100%;
-    border-collapse: collapse; }
-  #gad-shell-notification-dialog .message, #gad-shell-notification-dialog .action {
-    height: 100%; }
-  #gad-shell-notification-dialog .action {
-    width: 85px; }
-
 #gad {
   position: absolute;
   height: 100vh;
@@ -209,6 +203,34 @@ button {
 .gad-shell-header, .gad-shell-main, .gad-shell-header-searchbar, .gad-shell-header-account, .gad-shell-header-notification, .gad-shell-sidenav, .gad-shell-sidenav-footer, .gad-shell-modal, .gad-shell-sidebar, .gad-shell-mask, .gad-shell-inner-mask {
   position: absolute;
   overflow: hidden; }
+
+#gad-shell-notification-dialog {
+  position: absolute;
+  bottom: -55px;
+  left: 0;
+  right: 0;
+  height: 51px;
+  background: linear-gradient(90deg, white, whitesmoke);
+  z-index: 10;
+  box-shadow: 0px -2px 0px #b2916830;
+  transition: 500ms; }
+  #gad-shell-notification-dialog.show {
+    bottom: 0;
+    transition: all 700ms linear; }
+  #gad-shell-notification-dialog table {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse; }
+  #gad-shell-notification-dialog .message, #gad-shell-notification-dialog .action {
+    height: 100%; }
+  #gad-shell-notification-dialog .message {
+    padding-inline-start: 0; }
+  #gad-shell-notification-dialog .action {
+    width: 54px; }
+    #gad-shell-notification-dialog .action .image {
+      display: inline-block;
+      width: 48px;
+      margin: auto; }
 
 .gad-shell-mask {
   width: 100vw;
@@ -228,8 +250,6 @@ button {
   right: 0;
   height: 61px;
   z-index: 3;
-  border-bottom: 1px solid #dbdbdb;
-  box-shadow: 0px 3px 0px 0px #b2916830;
   overflow: initial; }
   .gad-shell-header-logo {
     position: absolute;
@@ -287,7 +307,7 @@ button {
       height: 61px; }
       .gad-shell-header-searchbar .main-search input {
         font-family: "Aller";
-        font-size: 14px;
+        font-size: 0.8646em;
         background: url(../Icons/search.png) left center no-repeat;
         background-size: 30px;
         text-indent: 30px;
@@ -430,19 +450,20 @@ button {
         display: none; } }
 
 .gad-shell-sidenav {
-  position: fixed;
-  width: 0%;
-  left: 0;
+  width: 80%;
+  left: -81%;
   top: 60px;
   bottom: 0;
   z-index: 5;
   box-shadow: 3px 0px 0px -1px #b2916830;
   background-color: #fff;
+  opacity: 0.4;
   transition: 200ms ease-in;
   border: 0.2px solid #dbdbdb;
   border-width: 0 0.2px 0 0; }
   .gad-shell-sidenav.extended {
-    width: 80%;
+    left: 0;
+    opacity: 1;
     transition: 300ms ease; }
   @media (min-width: 640px) {
     .gad-shell-sidenav {
@@ -676,7 +697,7 @@ button {
       display: block;
       height: 30px;
       margin: auto;
-      font-size: 14px;
+      font-size: 0.8646em;
       color: #707070; }
     .gad-shell-dialog-content .content-wrapper {
       position: absolute;
@@ -746,30 +767,45 @@ button {
 /********* End of Homepage Styles ********/
 /********* Begin Device Category Page Styles  ********/
 #device-category #category-header {
-  display: table;
-  height: 71px; }
-  #device-category #category-header .device-category-nav {
-    display: table-cell;
-    vertical-align: middle; }
+  height: 51px;
+  width: 100%; }
   #device-category #category-header .category-list {
     white-space: nowrap;
     height: auto;
     width: auto;
-    overflow: auto; }
+    overflow: visible; }
     #device-category #category-header .category-list-item {
+      position: relative;
       display: inline-block;
       margin-inline-end: 10px;
       height: 30px;
-      padding: 0 15px;
+      padding: 0 12px;
       box-sizing: content-box;
       line-height: 30px;
-      border: 1px solid #cfcfcf;
-      border-radius: 21px; }
+      color: #aeadad; }
+      #device-category #category-header .category-list-item .indicator {
+        background: linear-gradient(90deg, red, #e98614);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        width: 0%;
+        height: 2px;
+        transition: 500ms; }
       #device-category #category-header .category-list-item.active {
-        background: linear-gradient(90deg, orangered, #e98614);
-        color: white;
-        font-weight: 600;
-        border: none; }
+        color: initial;
+        font-weight: 700; }
+        #device-category #category-header .category-list-item.active .indicator {
+          left: 0;
+          right: 0;
+          width: 100%;
+          transition: 300ms; }
+#device-category #categories header {
+  display: table;
+  height: 30px; }
+  #device-category #categories header object, #device-category #categories header h2, #device-category #categories header .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #device-category #categories header h3 {
+    display: inline-block;
+    vertical-align: middle; }
 #device-category .featured-news-wrapper .featured-news-carousel {
   margin: 15px 0px; }
   #device-category .featured-news-wrapper .featured-news-carousel .image {
@@ -821,8 +857,7 @@ button {
   padding: 0;
   list-style: none; }
 #news .news-list-item {
-  margin: 10px 0;
-  border: 1px solid #ececec; }
+  margin: 14px 0; }
   #news .news-list-item .image {
     height: 95px;
     background: url("./images/129644_adapted_1440x2560.jpg") center no-repeat;
@@ -966,7 +1001,7 @@ button {
             display: block;
             margin: 2px 0; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-name {
-            font-size: 14px; }
+            font-size: 0.8646em; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-condition {
             font-size: 12px; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-seller {
@@ -1014,8 +1049,8 @@ button {
       flex-wrap: wrap;
       justify-content: space-between; }
       .device-page-main #specifications .specs-category-main-item {
-        margin: 10px;
-        flex: 0 1 120px; }
+        margin: 10px 4px;
+        flex: 0 1 45%; }
         .device-page-main #specifications .specs-category-main-item table {
           margin: 4px auto;
           padding: 10px;
@@ -1161,9 +1196,9 @@ button {
   right: 0;
   z-index: 10; }
   .create-backdrop.ng-hide {
-    transition: 300ms; }
+    transition: 400ms; }
     .create-backdrop.ng-hide .create-question-dialog {
-      animation: slideDown 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+      animation: slideDown 1200ms cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .create-question-dialog {
   position: fixed;
@@ -1176,17 +1211,17 @@ button {
   animation: slideUp 500ms cubic-bezier(0.075, 0.82, 0.165, 1); }
   .create-question-dialog .wrapper {
     position: absolute;
-    top: 22px;
-    right: 10px;
-    left: 15px;
-    bottom: 14px; }
+    top: 10px;
+    right: 9px;
+    left: 9px;
+    bottom: 10px; }
   .create-question-dialog textarea {
     position: absolute;
-    bottom: 120px;
+    bottom: 74px;
     top: 0;
     width: 100%;
     line-height: 1.68;
-    font-size: 20px;
+    font-size: 1.5rem;
     outline: none; }
   .create-question-dialog textarea#answer-input {
     font-size: 14px; }
@@ -1200,21 +1235,22 @@ button {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 94px; }
+    height: 40px; }
     .create-question-dialog .question-controls-setting {
       position: absolute;
-      right: 71px;
+      right: 26%;
       left: 0;
-      height: 54px; }
+      height: 100%; }
     .create-question-dialog .question-controls-submit {
       position: absolute;
       right: 0;
-      height: 54px;
-      width: 71px;
-      border-left: 1px solid #cfcfcf; }
+      height: 100%;
+      width: 25%; }
       .create-question-dialog .question-controls-submit input[type="submit"] {
-        background: url(../icons/arrow-48px.png) center no-repeat;
-        transform: rotateZ(180deg); }
+        border: 2px #0d497a solid;
+        color: #0d497a;
+        background-color: transparent;
+        border-radius: 3px; }
 
 /*************** End Question Dialog Styles ***************/
 /*************** Begin Gadget Item List Styles ***************/
@@ -1283,9 +1319,8 @@ button {
     #questions .main-content-question {
       position: relative;
       margin: 15px 0;
-      padding: 15px 10px 8px;
-      border: 1px solid #ececec;
-      border-radius: 3px; }
+      padding: 15px 5px 0;
+      box-shadow: 0 0 3px 0 #2a2a2a30, 0 3px 5px 6px #5e5a450a; }
       #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3 {
         font-size: 18px; }
       #questions .main-content-question .no-answers {
@@ -1329,7 +1364,7 @@ button {
               position: relative;
               bottom: 7px;
               left: 4px; }
-      #questions .main-content-question button.more, #questions .main-content-question button.more-answers {
+      #questions .main-content-question .more, #questions .main-content-question .more-answers {
         height: 50px;
         width: 100%;
         margin-top: -20px;
@@ -1339,7 +1374,7 @@ button {
         background: linear-gradient(#ffffff24 10%, #ffffff 40%);
         border: none;
         border-radius: 0px; }
-        #questions .main-content-question button.more-answers {
+        #questions .main-content-question .more-answers {
           height: 40px;
           margin: 4px 0;
           padding-top: initial;
@@ -1452,8 +1487,7 @@ button {
   bottom: 0; }
   .has-form label.error {
     color: orangered; }
-.has-form input:not([type="submit"]) {
-  float: left;
+.has-form input[type=text] {
   padding: 9px 35px;
   font-size: 14px;
   outline: none;
@@ -1466,7 +1500,7 @@ button {
   width: 100%;
   height: 37px;
   padding: 4px 8px;
-  border: 2px solid #cfcfcf;
+  border-bottom: 2px solid #cfcfcf;
   border-radius: 3px; }
 .has-form .form-wrapper {
   position: relative; }
@@ -1478,8 +1512,7 @@ button {
   left: 0px;
   right: 0px;
   height: 37px;
-  color: #3b3b3b;
-  background-color: #F5F5F5; }
+  color: #3b3b3b; }
 .has-form .add-opt {
   position: absolute;
   right: 5px;
@@ -1511,7 +1544,7 @@ button {
   text-indent: 0px; }
 .has-form .overtext {
   margin: 0px auto 0px;
-  font-size: 14px;
+  font-size: 0.8646em;
   color: #aeadad; }
   @media (min-width: 360px) {
     .has-form .overtext {

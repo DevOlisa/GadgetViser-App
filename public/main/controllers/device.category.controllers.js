@@ -1,6 +1,6 @@
 angular.module('Main')
-    .controller('CategoryController', ['$scope', 'topChoice',
-        function ($scope, topChoice) {
+    .controller('CategoryController', ['$scope', '$state', 'topChoice',
+        function ($scope, $state, topChoice) {
             var self = this;
             $scope.topChoice = topChoice;
 

@@ -1,35 +1,9 @@
 <!------------------------------------------ BEGIN DEVICE CATEGORY HTML ----------------------------------------->
-<div id="device-category" class="page">
-    <header id="category-header">
-        <nav class="device-category-nav" role="navigation">
-            <ul class="category-list">
-                <li class="category-list-item" ui-sref="phones" ui-sref-active="active"><div>Phones</div></li>
-                <li class="category-list-item" ui-sref="laptops" ui-sref-active="active"><div>Laptops</div></li>
-                <li class="category-list-item" ui-sref="smartwatches" ui-sref-active="active"><div>Smartwatches</div></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="featured-news-wrapper" ng-controller="FeaturedArticleController as fCtrl">
-        <h3>FEATURED NEWS</h3>
-        <div class="featured-news-carousel">
-            <div class="image" style="background-image: url({{fCtrl.currentFeaturedArticle.image}})">
-                <span class="slide-indicator-wrapper">
-                    <slide-indicator class="slide-indicator" ng-click="showLinkedItem()"
-                        ng-repeat="item in fCtrl.FeaturedArticles"
-                        ng-class="{'selected': fCtrl.currentFeaturedArticle._id === item._id}"></slide-indicator>
-                </span>
-            </div>
-            <article class="content">
-                <header>
-                    <h3>{{fCtrl.currentFeaturedArticle.title}}</h3>
-                </header>
-            </article>
-
-        </div>
-    </div>
-    <div>
-        <div class="coming-soon">
-            <h3>LATEST</h3>
+        <div class="coming-soon container">
+            <header>
+                <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
+                <h2>LATEST</h2>
+            </header>
             <div class="devices-row">
                 <!-- Begin Item Wrapper -->
                 <div class="devices-row-wrapper">
@@ -43,8 +17,11 @@
             </div>
         </div>
 
-        <div class="new-release">
-            <h3>TOP CHOICE</h3>
+        <div class="new-release container">
+            <header>
+                <object type="image/svg+xml" data="Icons/best-24px.svg"></object>
+                <h2>EDITOR'S CHOICE</h2>
+            </header>
             <div class="devices-row">
                 <!-- Begin Item Wrapper -->
                 <div class="devices-row-wrapper">
@@ -58,8 +35,11 @@
             </div>
         </div>
 
-        <div class="new-release">
-            <h3>UPCOMING</h3>
+        <div class="new-release container">
+            <header>
+                <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
+                <h2>UPCOMING</h2>
+            </header>
             <div class="devices-row">
                 <!-- Begin Item Wrapper -->
                 <div class="devices-row-wrapper">
@@ -72,12 +52,12 @@
                 <!-- End Device Row Wrapper -->
             </div>
         </div>
-        
-        <div class="new-release">
-            <div class="category-image">
+
+        <div class="new-release container">
+            <header>
                 <object type="image/svg+xml" data="Icons/gaming-24px.svg"></object>
-            </div>
-            <h3>GAMING </h3>
+                <h2>GAMING </h2>
+            </header>
             <div class="devices-row">
                 <!-- Begin Item Wrapper -->
                 <div class="devices-row-wrapper">
@@ -90,15 +70,6 @@
                 <!-- End Device Row Wrapper -->
             </div>
         </div>
-
-    </div>
-
-    <div id="questions" class="new-release">
-        <h3>TRENDING QUESTIONS</h3>
-        <question-panel></question-panel>
-        <question-panel></question-panel>
-
-    </div>
 
     <!-- 
     <div class="manufacturer">
@@ -128,8 +99,4 @@
             
         </div>
     </div> -->
-</div>
 <!------------------------------------------ END DEVICE CATEGORY HTML ----------------------------------------->
-
-<!------------------------------------------ BEGIN SIDEBAR HTML ----------------------------------------->
-<div class="gad-shell-sidebar" ng-include="'./main/views/sidebar.html'"></div>

@@ -6,7 +6,7 @@
             <form name="AnswerForm" ng-submit="adCtrl.submit()" novalidate>
                 <div>
                     <textarea id="answer-input" name="answer" ng-model="answer.content" maxlength="{{maxlength}}"
-                        placeholder="Type a reply">
+                        placeholder="Type a reply" required>
                     </textarea>
                     <label class="char-count" ng-if="answer.content.length"
                     ng-class="{'error': answer.content.length > maxlength }">{{ answer.content.length}}/{{maxlength}}</label>
@@ -15,7 +15,7 @@
                     <div class="question-controls-setting">
                     </div>
                     <div class="question-controls-submit">
-                        <input type="submit" value=""/>
+                        <input type="submit" value="REPLY"/>
                     </div>
                 </div>
             </form>

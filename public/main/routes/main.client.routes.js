@@ -2,11 +2,11 @@ angular.module('Main')
     .config(function ($routeProvider, $stateProvider, $locationProvider, $urlRouterProvider, $sceDelegateProvider) {
         $stateProvider
             .state('home', {
-                url: '/',
+                url: '',
                 templateUrl: './main/views/home.html',
             })
-            .state('phones', {
-                url: '/phones',
+            .state('home.phones', {
+                url: '/',
                 templateUrl: './main/views/device-category.html',
                 params: {
                     category: 'Phone'
@@ -24,8 +24,8 @@ angular.module('Main')
                     }]
                 }
             })
-            .state('laptops', {
-                url: '/laptops',
+            .state('home.laptops', {
+                url: 'laptops',
                 templateUrl: './main/views/device-category.html',
                 params: {
                     category: 'Laptop'
@@ -45,7 +45,8 @@ angular.module('Main')
                 templateUrl: './questions/views/questions-tab.html',
                 controller: 'QuestionsTabController as vm'
             }).state('view-device.specs', {
-                templateUrl: './main/views/mobile/specs-tab.html'
+                templateUrl: './main/views/mobile/specs-tab.html',
+                controller: 'SpecsTabController as specCtrl',
             }).state('view-device.prices', {
                 templateUrl: './prices/views/prices-tab.html'
             })

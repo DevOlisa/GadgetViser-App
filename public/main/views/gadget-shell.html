@@ -1,15 +1,15 @@
-<a href="{{gadget.type + '/v/' + gadget.link | lowercase}}">
+<a href="{{::gadget.type + '/v/' + gadget.link | lowercase}}">
 <table class="item">
     <tr class="item-image">
         <td>
             <div>
-                <img ng-src="{{gadget.image}}">
+                <img ng-src="{{::gadget.image}}">
             </div>
         </td>
     </tr>
     <tr class="item-name">
         <td>
-            <p>{{gadget.oem}} {{gadget.name}}</p>
+            <p>{{::gadget.oem}} {{::gadget.name}}</p>
         </td>
     </tr>
 </table>

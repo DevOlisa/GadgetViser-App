@@ -3,7 +3,7 @@ Schema = mongoose.Schema;
 
 let PhoneAudioSchema = new Schema({
     stereoSpeakers: {
-        type: Boolean,
+        type: String,
     },
     audioPort: {
         type: String,
@@ -14,7 +14,7 @@ let PhoneAudioSchema = new Schema({
         trim: true
     },
     mics: {
-        type: Number,
+        type: String,
         trim: true
     },
     others: {

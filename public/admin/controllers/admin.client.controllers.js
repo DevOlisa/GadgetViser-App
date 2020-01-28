@@ -13,8 +13,16 @@ function ($scope, GadgetFactory) {
         { label: 'Best Camera', value: 'camera' },
     ];
 
+    self.gadgetCameras = [];
+
+    self.addCam = function() {
+        let cam = {};
+        cam.id = 'camera-' + (self.gadgetCameras.length + 1);
+        self.gadgetCameras.push(cam);
+        console.log(self.gadgetCameras);
+    };
+
     self.submit = function () {
-        // console.log($scope.addDeviceForm);
         // console.log(GadgetFactory);
 
         if (!$scope.addDeviceForm.$invalid) {
@@ -30,9 +38,15 @@ function ($scope, GadgetFactory) {
                 default:
                     device.image = './img/phone_pics/' + $scope.device.image;
             }
+            console.log(device);
 
-            GadgetFactory.addGadget(device);
-            $scope.addDeviceForm.$setPristine();
+            GadgetFactory.addGadget(device)
+            .then(function(response) {
+                
+            }, function(error) {
+
+            })
+            // $scope.addDeviceForm.$setPristine();
         }
     };
 }]);

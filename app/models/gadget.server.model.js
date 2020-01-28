@@ -61,7 +61,30 @@ let GadgetSchema = new Schema({
         type: Number,
         default: 0
     },
-    // specs: []
+    displaySpec: {
+        type: Schema.ObjectId,
+        ref: 'PhoneDisplay'
+    },
+    performanceSpec: {
+        type: Schema.ObjectId,
+        ref: 'PhonePerformance'
+    },
+    memorySpec: {
+        type: Schema.ObjectId,
+        ref: 'PhoneMemory'
+    },
+    powerSpec: {
+        type: Schema.ObjectId,
+        ref: 'PhonePower'
+    },
+    audioSpec: {
+        type: Schema.ObjectId,
+        ref: 'PhoneAudio'
+    },
+    softwareSpec: {
+        type: Schema.ObjectId,
+        ref: 'PhoneSoftware'
+    },
     questions: [{
         type: Schema.ObjectId,
         ref: 'Question'
@@ -89,6 +112,7 @@ GadgetSchema.post('save', function (next) {
         console.log('A new gadget was sucessfully created');
         console.log(isNew);
     } else {
+        console.log(this);
         console.log('A gadget info was updated');
     }
 });

@@ -1,15 +1,66 @@
-const Gadget = require('mongoose').model('Gadget');
+const Gadget = require('mongoose').model('Gadget'),
+    PhoneDisplay = require('mongoose').model('PhoneDisplay'),
+    PhonePerformance = require('mongoose').model('PhonePerformance'),
+    PhoneMemory = require('mongoose').model('PhoneMemory'),
+    PhoneAudio = require('mongoose').model('PhoneAudio'),
+    PhoneCamera = require('mongoose').model('PhoneCamera'),
+    PhoneSoftware = require('mongoose').model('PhoneSoftware'),
+    PhonePower = require('mongoose').model('PhonePower');
 
 exports.create = (req, res, next) => {
     let gadget = new Gadget(req.body);
-
+    gadget.displaySpec = req.displaySpec;
+    gadget.performanceSpec = req.performanceSpec;
+    gadget.memorySpec = req.memorySpec;
+    gadget.powerSpec = req.powerSpec;
+    gadget.softwareSpec = req.softwareSpec;
+    gadget.audioSpec = req.audioSpec;
+    console.log(gadget)
     gadget.save((err) => {
         if (err) {
             return next(err);
         } else {
-            res.json(gadget);
+            return res.json(req.gadget);
         }
     });
+};
+
+exports.saveSpecs = (req, res, next) => {
+    if (req.body.type === 'Phone') {
+        let displaySpec = new PhoneDisplay(req.body.specs.display),
+        performanceSpec = new PhonePerformance(req.body.specs.performance),
+        memorySpec = new PhoneMemory(req.body.specs.memory),
+        powerSpec = new PhonePower(req.body.specs.power),
+        softwareSpec = new PhoneSoftware(req.body.specs.software),
+        audioSpec = new PhoneAudio(req.body.specs.audio);
+
+        console.log(softwareSpec);
+
+        performanceSpec.save();
+        memorySpec.save();
+        powerSpec.save();
+        audioSpec.save();
+        softwareSpec.save((err) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+        displaySpec.save((err) => {
+            if (err) {
+                return next(err);
+            } else {
+                req.displaySpec = displaySpec;
+                req.performanceSpec = performanceSpec;
+                req.memorySpec = memorySpec;
+                req.powerSpec = powerSpec;
+                req.audioSpec = audioSpec;
+                req.softwareSpec = softwareSpec;
+                return next();
+            }
+        });
+    } else {
+        return next();
+    }
 };
 
 exports.list = (req, res, next) => {
@@ -32,7 +83,7 @@ exports.list = (req, res, next) => {
 
 exports.fetchLatest = (req, res, next) => {
     if (req.query.function === "latest") {
-        console.log('fetching latest')
+        console.log('fetching latest');
 
         Gadget.find({
             type: req.query.type,
@@ -142,12 +193,13 @@ exports.read = (req, res) => {
 exports.log = (req, res, next) => {
     console.log('The device viewed is %s and type %s', req.gadget.name, req.gadget.type);
     next();
+    console.log(req.gadget);
 };
 
 exports.fetchGadget = (req, res, next, url) => {
     Gadget.findOne({
         link: url
-    }, "", (err, gadget) => {
+    }, "",{}).populate('displaySpec performanceSpec audioSpec powerSpec softwareSpec cameraSpec memorySpec').exec((err, gadget) => {
         if (err) {
             console.log(err);
             return next(err);
@@ -159,7 +211,7 @@ exports.fetchGadget = (req, res, next, url) => {
 };
 
 exports.update = (req, res, next) => {
-    if (req.user)  {
+    if (req.user) {
         Gadget.updateOne({
             _id: req.body._id
         }, req.body, (err, info) => {
@@ -171,7 +223,7 @@ exports.update = (req, res, next) => {
             }
         });
     } else {
-        return res.json({error: "User not logged in!"});
+        return res.json({ error: "User not logged in!" });
     }
 };
 

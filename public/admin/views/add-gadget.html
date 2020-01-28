@@ -1,5 +1,5 @@
-<div class="page has-form" id="add-device">
-    <h3>Add Device</h3><br>
+<div id="add-device" class="page has-form container">
+    <h1>Add Device</h1><br>
     <form name="addDeviceForm" ng-submit="addCtrl.submit()" novalidate>
 
         <div class="form-group">
@@ -22,12 +22,13 @@
 
         <div class="form-group">
             <div class="form-control">
-                    <label>Selct Device Category</label>
+                <label>Selct Device Category</label>
                 <select name="type" ng-model="device.category" ng-options="category.value as category.label
                  for category in addCtrl.deviceCategory">
                 </select>
                 <!-- Error Alert Icon -->
-                <div class="add-opt error" ng-show="addDeviceForm.category.$error.required && addDeviceForm.category.$dirty">
+                <div class="add-opt error"
+                    ng-show="addDeviceForm.category.$error.required && addDeviceForm.category.$dirty">
                     <img src="./Icons/error-24px.png">
                 </div>
             </div>
@@ -84,31 +85,703 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label>Released
-                <input  style="margin-right: 60px; width: 28px; float: left;"type="radio" name="released" value="true" ng-model="device.released" placeholder="" required>
+        <div class="radio-group">
+            <label>
+                <input id="#released" class="radio" type="radio" name="released" value="true" ng-model="device.released"
+                    placeholder="" required>
+                <div aria-label="released" class="radio-label">Released</div>
             </label>
-            <label>Upcoming
-                    <input  style="margin-right: 60px; width: 28px; float: left;"  type="radio" name="released" value="false" ng-model="device.released" placeholder="" required>
-                </label>
+            <label>
+                <input class="radio" type="radio" name="released" value="false" ng-model="device.released"
+                    placeholder="" required>
+                <div aria-label="upcoming" class="radio-label">Upcoming</div>
+            </label>
             <!-- Error Alert Icon -->
             <div class="add-opt error"
                 ng-show="addDeviceForm.$error.released.required && addDeviceForm.released.$dirty">
                 <img src="./Icons/error-24px.png">
             </div>
         </div>
-        <div ng-messages="addDeviceForm.released.$error"
-            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
-            ng-show="addDeviceForm.released.$dirty">
-            <label ng-message="required" class="error">Image Path field is empty</label>
-        </div>
 
-        
-        <div class="form-group">
-            <label>Top Choice
-                <input style="margin-right: 60px; width: 28px; float: left;" type="checkbox" name="topChoice" value="true" ng-model="device.topChoice" placeholder="" required>
+        <div class="checkbox-group">
+            <label>
+                <input class="checkbox" type="checkbox" name="topChoice" value="true" ng-model="device.topChoice">
+                <div class="checkbox-label">Top Choice</div>
             </label>
+        </div>
+        <hr>
 
-        <input class="submit" type="submit" value="Add Device" />
+        <!--################ BEGIN SPECS FORM ###################-->
+        <ng-form name="specs">
+            <!-- Start Display Specs -->
+            <div class="spec-group" class="container">
+                <ng-form name="display">
+                    <h4>DISPLAY</h4>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="size" ng-model="device.specs.display.size"
+                                placeholder="Display Size" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="display.size.$error.required && display.size.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="display.size.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="display.size.$dirty">
+                            <label ng-message="required" class="error">Size cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="tech" ng-model="device.specs.display.tech"
+                                placeholder="Display Tech" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="display.tech.$error.required && display.tech.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="display.tech.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="display.tech.$dirty">
+                            <label ng-message="required" class="error">Display size field is empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="resolution" ng-model="device.specs.display.resolution"
+                                placeholder="Display Resolution" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="display.resolution.$error.required && display.resolution.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="display.resolution.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="display.resolution.$dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="refreshRate" ng-model="device.specs.display.refreshRate"
+                                placeholder="Refresh Rate" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="display.refreshRate.$error.required && display.refreshRate.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="display.refreshRate.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="display.refreshRate.$dirty">
+                            <label ng-message="required" class="error">Refresh Rate cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="aspectRatio" ng-model="device.specs.display.aspectRatio"
+                                placeholder="Aspect Ratio" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="display.aspectRatio.$error.required && display.aspectRatio.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="display.aspectRatio.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="display.aspectRatio.$dirty">
+                            <label ng-message="required" class="error">Aspect Ratio cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <div>
+                            <textarea name="others" ng-model="device.specs.display.others" placeholder="Others">
+                        </textarea>
+                            <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="display.others.$error.required && display.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="display.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="display.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                        </div>
+                    </div>
+
+                </ng-form>
+            </div>
+            <!-- End Display Specs -->
+
+            <!-- Start Performance Specs -->
+
+            <div class="spec-group" class="container">
+                <ng-form name="Performance">
+                    <h4>PERFORMANCE</h4>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="cpu" ng-model="device.specs.performance.CPU" placeholder="CPU"
+                                required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="performance.cpu.$error.required && performance.cpu.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="performance.cpu.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="performance.cpu.$dirty">
+                            <label ng-message="required" class="error">CPU cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="coreCount" ng-model="device.specs.performance.coreCount"
+                                placeholder="Core Count" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="performance.coreCount.$error.required && performance.coreCount.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="performance.coreCount.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="performance.coreCount.$dirty">
+                            <label ng-message="required" class="error">Core Count cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="clockSpeed" ng-model="device.specs.performance.clockSpeed"
+                                placeholder="Clock Speed" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="performance.clockSpeed.$error.required && performance.clockSpeed.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="performance.clockSpeed.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="performance.clockSpeed.$dirty">
+                            <label ng-message="required" class="error">Clock Speed field cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="GPU" ng-model="device.specs.performance.GPU" placeholder="GPU"
+                                required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="performance.GPU.$error.required && performance.GPU.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="performance.GPU.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="performance.GPU.$dirty">
+                            <label ng-message="required" class="error">GPU cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <div>
+                            <textarea name="others" ng-model="device.specs.performance.others" placeholder="Others">
+                        </textarea>
+                            <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="performance.others.$error.required && performance.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="performance.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="performance.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                        </div>
+                    </div>
+
+                </ng-form>
+            </div>
+            <!-- End performance Specs -->
+
+            <!-- Start memory Specs -->
+
+            <div class="spec-group" class="container">
+                <ng-form name="memory">
+                    <h4>MEMORY & STORAGE</h4>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="storage" ng-model="device.specs.memory.storage"
+                                placeholder="Storage" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="memory.storage.$error.required && memory.storage.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="memory.storage.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="memory.storage.$dirty">
+                            <label ng-message="required" class="error">Storage cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="type" ng-model="device.specs.memory.type"
+                                placeholder="Storage Type" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="memory.type.$error.required && memory.type.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="memory.type.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="memory.type.$dirty">
+                            <label ng-message="required" class="error">Storage type cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="memory" ng-model="device.specs.memory.memory" placeholder="Memory"
+                                required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="memory.memory.$error.required && memory.memory.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="memory.memory.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="memory.memory.$dirty">
+                            <label ng-message="required" class="error">Memory cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="microSD" ng-model="device.specs.memory.microSD"
+                                placeholder="microSD" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="memory.microSD.$error.required && memory.microSD.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="memory.microSD.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="memory.microSD.$dirty">
+                            <label ng-message="required" class="error">microSD cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <div>
+                            <textarea name="others" ng-model="device.specs.memory.others" placeholder="Others">
+                        </textarea>
+                            <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="memory.others.$error.required && memory.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="memory.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="memory.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                        </div>
+                    </div>
+
+                </ng-form>
+            </div>
+            <!-- End memory Specs -->
+
+            <!-- Start Power Specs -->
+
+            <div class="spec-group" class="container">
+                <ng-form name="power">
+                    <h4>BATTERY & POWER</h4>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="capacity" ng-model="device.specs.power.capacity"
+                                placeholder="Capacity" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="power.capacity.$error.required && power.capacity.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="power.capacity.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="power.capacity.$dirty">
+                            <label ng-message="required" class="error">Capacity cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="batteryTech" ng-model="device.specs.power.batteryTech"
+                                placeholder="BatteryTech" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="power.batteryTech.$error.required && power.batteryTech.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="power.batteryTech.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="power.batteryTech.$dirty">
+                            <label ng-message="required" class="error">BatteryTech cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="charging" ng-model="device.specs.power.charging"
+                                placeholder="Charging" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="power.charging.$error.required && power.charging.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="power.charging.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="power.charging.$dirty">
+                            <label ng-message="required" class="error">Charging cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="port" ng-model="device.specs.power.port" placeholder="Port"
+                                required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="power.port.$error.required && power.port.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="power.port.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="power.port.$dirty">
+                            <label ng-message="required" class="error">Port cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <div>
+                            <textarea name="others" ng-model="device.specs.power.others" placeholder="Others">
+                        </textarea>
+                            <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="power.others.$error.required && power.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="power.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="power.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                        </div>
+                    </div>
+
+                </ng-form>
+            </div>
+            <!-- End power Specs -->
+
+            <!-- Start Camera Specs -->
+
+            <div class="spec-group" class="container">
+                <ng-form name="cameras">
+                    <ng-form name="camera" >
+                        <div id="camera-{{addCtrl.gadgetCameras.length}}" ng-repeat="cam in addCtrl.gadgetCameras">
+                            <h4>CAMERA</h4>
+                            <label>Select type</label>
+                            <select name="type" ng-model="device.specs.cameras.camera.type">
+                                <option>Main</option>
+                                <option>Low Light Shooter</option>
+                                <option>Ultrawide</option>
+                                <option>Telescopic</option>
+                                <option>Monochrome</option>
+                                <option>Macro</option>
+                            </select>
+                            <div class="form-group">
+                                <div class="form-control">
+                                    <input type="text" name="resolution"
+                                        ng-model="device.specs.cameras.camera.resolution" placeholder="Resolution"
+                                        required>
+                                    <!-- Error Alert Icon -->
+                                    <div class="add-opt error"
+                                        ng-show="camera.resolution.$error.required && camera.resolution.$dirty">
+                                        <img src="./Icons/error-24px.png" />
+                                    </div>
+                                </div>
+                                <div ng-messages="camera.resolution.$error"
+                                    ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                                    ng-show="camera.resolution.$dirty">
+                                    <label ng-message="required" class="error">Resolution cannot be empty</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-control">
+                                    <input type="text" name="cameraPort"
+                                        ng-model="device.specs.cameras.camera.aperture" placeholder="Aperture"
+                                        required>
+                                    <!-- Error Alert Icon -->
+                                    <div class="add-opt error"
+                                        ng-show="camera.aperture.$error.required && camera.aperture.$dirty">
+                                        <img src="./Icons/error-24px.png" />
+                                    </div>
+                                </div>
+                                <div ng-messages="camera.aperture.$error"
+                                    ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                                    ng-show="camera.aperture.$dirty">
+                                    <label ng-message="required" class="error">Aperture cannot be empty</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-control">
+                                    <input type="text" name="stabilization"
+                                        ng-model="device.specs.cameras.camera.stabilization"
+                                        placeholder="Stabilization" required>
+                                    <!-- Error Alert Icon -->
+                                    <div class="add-opt error"
+                                        ng-show="camera.stabilization.$error.required && camera.stabilization.$dirty">
+                                        <img src="./Icons/error-24px.png" />
+                                    </div>
+                                </div>
+                                <div ng-messages="camera.stabilization.$error"
+                                    ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                                    ng-show="camera.stabilization.$dirty">
+                                    <label ng-message="required" class="error">Stabilization cannot be empty</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-control">
+                                    <input type="text" name="video" ng-model="device.specs.cameras.camera.video"
+                                        placeholder="Video" required>
+                                    <!-- Error Alert Icon -->
+                                    <div class="add-opt error"
+                                        ng-show="camera.video.$error.required && camera.video.$dirty">
+                                        <img src="./Icons/error-24px.png" />
+                                    </div>
+                                </div>
+                                <div ng-messages="camera.video.$error"
+                                    ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                                    ng-show="camera.video.$dirty">
+                                    <label ng-message="required" class="error">Video cannot be empty</label>
+                                </div>
+                            </div>
+
+                            <div class="textarea-group">
+                                <div>
+                                    <textarea name="others" ng-model="device.specs.cameras.camera.others"
+                                        placeholder="Others"></textarea>
+                                    <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="camera.others.$error.required && camera.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="camera.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="camera.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                                </div>
+                            </div>
+                            <button ng-click="addCtrl.removeCam(cam.id)">Remove Camera</button>
+                        </div>
+                    </ng-form>
+                </ng-form>
+
+                <button ng-click="addCtrl.addCam()">Add Camera</button>
+            </div>
+            <!-- End Camera Specs -->
+
+            <!-- Start Software Specs -->
+
+            <div class="spec-group" class="container">
+                <ng-form name="software">
+                    <h4>SOFTWARE</h4>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="OS" ng-model="device.specs.software.OS" placeholder="OS" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="software.OS.$error.required && software.OS.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="software.OS.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="software.OS.$dirty">
+                            <label ng-message="required" class="error">OS cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="version" ng-model="device.specs.software.version"
+                                placeholder="Version" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="software.version.$error.required && software.version.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="software.version.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="software.version.$dirty">
+                            <label ng-message="required" class="error">Version cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="upgradable" ng-model="device.specs.software.upgradable"
+                                placeholder="upgradable" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="software.upgradable.$error.required && software.upgradable.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="software.upgradable.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="software.upgradable.$dirty">
+                            <label ng-message="required" class="error">Upgradable cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <div>
+                            <textarea name="others" ng-model="device.specs.software.others" placeholder="Others">
+                        </textarea>
+                            <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="software.others.$error.required && software.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="software.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="software.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                        </div>
+                    </div>
+
+                </ng-form>
+            </div>
+            <!-- End software Specs -->
+
+            <!-- Start Audio Specs -->
+
+            <div class="spec-group" class="container">
+                <ng-form name="audio">
+                    <h4>AUDIO</h4>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="stereoSpeakers" ng-model="device.specs.audio.stereoSpeakers"
+                                placeholder="stereoSpeakers" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="audio.stereoSpeakers.$error.required && audio.stereoSpeakers.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="audio.stereoSpeakers.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="audio.stereoSpeakers.$dirty">
+                            <label ng-message="required" class="error">stereoSpeakers cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="audioPort" ng-model="device.specs.audio.audioPort"
+                                placeholder="audioPort" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error"
+                                ng-show="audio.audioPort.$error.required && audio.audioPort.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="audio.audioPort.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="audio.audioPort.$dirty">
+                            <label ng-message="required" class="error">audioPort cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="DAC" ng-model="device.specs.audio.DAC" placeholder="DAC" required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="audio.DAC.$error.required && audio.DAC.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="audio.DAC.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="audio.DAC.$dirty">
+                            <label ng-message="required" class="error">DAC cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="mics" ng-model="device.specs.audio.mics" placeholder="mics"
+                                required>
+                            <!-- Error Alert Icon -->
+                            <div class="add-opt error" ng-show="audio.mics.$error.required && audio.mics.$dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="audio.mics.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="audio.mics.$dirty">
+                            <label ng-message="required" class="error">mics cannot be empty</label>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <div>
+                            <textarea name="others" ng-model="device.specs.audio.others"
+                                placeholder="Others"></textarea>
+                            <!-- Error Alert Icon
+                            <div class="add-opt error"
+                                ng-show="audio.others.$error.required && audio.others.dirty">
+                                <img src="./Icons/error-24px.png" />
+                            </div>
+                        </div>
+                        <div ng-messages="audio.others.$error"
+                            ng-model-options="{updateOn: 'default blur', debounce: {'default': 600, 'blur': 0}}"
+                            ng-show="audio.others.dirty">
+                            <label ng-message="required" class="error">Resolution field cannot be empty</label> -->
+                        </div>
+                    </div>
+
+                </ng-form>
+            </div>
+            <!-- End audio Specs -->
+
+        </ng-form>
+        <!--################ END SPECS FORM ###################-->
+
+
+        <input class="submit" type="submit" value="Add Device" ng-disabled="addDeviceForm.$invalid" />
     </form>
-</div>
+    </divid="add-device">

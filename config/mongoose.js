@@ -9,5 +9,12 @@ module.exports = () => {
     require('../app/models/question.server.model');
     require('../app/models/gadget.server.model');
     require('../app/models/answer.server.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.display.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.memory.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.camera.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.audio.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.performance.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.software.model');
+    require('../app/models/gadget-specs/phone-spec-schema/phone.power.model');
     return db;
 };

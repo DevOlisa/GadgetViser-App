@@ -1,31 +1,37 @@
 angular.module('Main')
-    .factory('GadgetFactory', ['$resource', '$http', '$q', function ($resource, $http, $q) {
+    .factory('GadgetFactory', ['$resource', '$http', '$q', 'NotificationDialog', function ($resource, $http, $q, NotificationDialog) {
         var service = {};
         var newGadget = true;
 
         service.addGadget = function (gadget) {
+            console.log(gadget)
             if (gadget.name) {
                 GadgetToSave = angular.copy(gadget);
                 GadgetToSave.link = (GadgetToSave.oem + '-' + GadgetToSave.name).toLowerCase().replace(/\s+/gi, '-');
                 return $http.post('http://localhost:3000/gadgets', GadgetToSave)
                     .then(function (response) {
-                        alert(GadgetToSave.name + ' was added to the database successfully!');
+                        NotificationDialog.alertUser(GadgetToSave.name + ' was added to the database successfully!');
+                        console.log(response);
                         return GadgetToSave;
+                    }, function(error) {
+                        return $q.reject(error);
                     });
             }
         };
 
-        service.like = function(gadget) {
+        service.like = function (gadget) {
             return $http.put('http://localhost:3000/gadgets', gadget)
-            .then(function(response) {
-                if (response && response.data.ok && response.data.nModified) {
-                    return response;
-                } else {
-                    $q.reject(response.data.error);
-                }
-            }, function(error) {
-                $q.reject(error);
-            })
+                .then(function (response) {
+                    if (response && response.status < 200) {
+                        return $q.reject(response);
+                    }
+                    if (response.status === 200 && response.data.nModified === 1) {
+                        console.log(response);
+                        return response;
+                    }
+                }, function (error) {
+                    return $q.reject(error);
+                })
         };
 
         service.getGadget = function (link) {

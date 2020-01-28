@@ -12,7 +12,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>6.5''</h3>
+                            <h3>{{::gadget.displaySpec.size}}''</h3>
                         </td>
                     </tr>
                     <tr>
@@ -25,7 +25,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>4K</h3>
+                            <h3>{{::gadget.displaySpec.resolution}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -38,7 +38,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>OLED</h3>
+                            <h3>{{::gadget.displaySpec.tech}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -51,7 +51,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>60Hz</h3>
+                            <h3>{{::gadget.displaySpec.refreshRate}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +64,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>21:9</h3>
+                            <h3>{{::gadget.displaySpec.aspectRatio}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -85,6 +85,128 @@
     <!-- Begin Specs Category Unit -->
     <div class="specs-category">
         <header>
+            <h4>CPU & PERFORMANCE</h4>
+        </header>
+
+        <div class="specs-category-main">
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.performanceSpec.CPU}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>CPU</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.performanceSpec.coreCount}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>CPU Cores</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.performanceSpec.clockSpeed}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Clock Speed</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.performanceSpec.GPU}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>GPU</span></td>
+                    </tr>
+                </table>
+            </div>
+            <button>More Details</button>
+
+        </div>
+        <div class="specs-category-extra">
+
+        </div>
+
+    </div>
+    <!-- End Specs Category Unit -->
+
+    <!-- Begin Specs Category Unit -->
+    <div class="specs-category">
+        <header>
+            <h4>SOFTWARE</h4>
+        </header>
+
+        <div class="specs-category-main">
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.softwareSpec.OS}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>OS</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.softwareSpec.version}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Version</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.softwareSpec.upgradable}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Upgradable</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <button>More Details</button>
+        </div>
+        <div class="specs-category-extra"></div>
+    </div>
+    <!-- End Specs Category Unit -->
+    
+    <!-- Begin Specs Category Unit -->
+    <div class="specs-category">
+        <header>
             <h4>MEMORY & STORAGE</h4>
         </header>
 
@@ -94,7 +216,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>64GB/128GB</h3>
+                            <h3>{{::gadget.memorySpec.storage}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -107,7 +229,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>UFS 2.1</h3>
+                            <h3>{{::gadget.memorySpec.type}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -120,7 +242,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>4/6GB RAM</h3>
+                            <h3>{{::gadget.memorySpec.memory}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -133,7 +255,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>Hybrid, 512GB</h3>
+                            <h3>{{::gadget.memorySpec.microSD}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -141,7 +263,7 @@
                     </tr>
                 </table>
             </div>
-            <!-- <button>More Details</button> -->
+            <button>More Details</button>
 
         </div>
         <div class="specs-category-extra">
@@ -163,7 +285,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>3300mAH</h3>
+                            <h3>{{::gadget.powerSpec.capacity}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -176,7 +298,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>Li-Po</h3>
+                            <h3>{{::gadget.powerSpec.batteryTech}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -189,7 +311,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>QC 4+(25W)</h3>
+                            <h3>{{::gadget.powerSpec.charging}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -202,7 +324,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h3>USB-C PD</h3>
+                            <h3>{{::gadget.powerSpec.port}}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -219,5 +341,72 @@
 
     </div>
     <!-- End Specs Category Unit -->
+    
+    <!-- Begin Specs Category Unit -->
+    <div class="specs-category">
+        <header>
+            <h4>SOUND &amp; AUDIO</h4>
+        </header>
+
+        <div class="specs-category-main">
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.audioSpec.stereoSpeakers}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Speakers</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.audioSpec.audioPort}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Audio Jack</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.audioSpec.DAC}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>DAC</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="specs-category-main-item">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>{{::gadget.audioSpec.mics}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Mics</span></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- <button>More Details</button> -->
+
+        </div>
+        <div class="specs-category-extra"></div>
+    </div>
+    <!-- End Specs Category Unit -->
+    
 </div>
 <!-- End Device specifications -->
