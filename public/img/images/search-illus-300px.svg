@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="300px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 30000 30000"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str2 {stroke:#333333;stroke-width:99.9213}
+    .str3 {stroke:#333333;stroke-width:799.961}
+    .str4 {stroke:#333333;stroke-width:499.961}
+    .str0 {stroke:#333333;stroke-width:208.346}
+    .str5 {stroke:#4D4D4D;stroke-width:208.346}
+    .str1 {stroke:#333333;stroke-width:208.346;stroke-linecap:round}
+    .fil0 {fill:none}
+    .fil1 {fill:#4D4D4D}
+    .fil2 {fill:#E6E6E6}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0" d="M100 100l30000 0 0 29800c0,110 -90,200 -200,200l-29600 0c-110,0 -200,-90 -200,-200l0 -29800z"/>
+  <path class="fil0 str0" d="M18212 18817l580 -581c370,-369 974,-369 1343,0l4924 4924c529,529 529,1395 0,1924l0 0c-529,529 -1394,529 -1923,0l-4924 -4924c-370,-370 -370,-974 0,-1343z"/>
+  <path class="fil0 str1" d="M22722 24986c515,-340 1029,-680 1389,-1050 359,-369 563,-767 767,-1165"/>
+  <line class="fil0 str2" x1="20567" y1="19158" x2="23511" y2= "22102" />
+  <line class="fil0 str2" x1="21798" y1="20837" x2="23813" y2= "22852" />
+  <line class="fil0 str2" x1="20680" y1="20165" x2="22023" y2= "21508" />
+  <line class="fil0 str2" x1="19784" y1="18823" x2="21127" y2= "20166" />
+  <line class="fil0 str3" x1="15811" y1="15857" x2="18497" y2= "18543" />
+  <circle id="frame" class="fil0 str4" transform="matrix(1.11913 -1.11913 1.11913 1.11913 11136.6 11203)" r="4141"/>
+  <circle id="eyeball" class="fil1 str5" transform="matrix(1.94875 -1.94875 1.94875 1.94875 10265.7 9595.3)" r="1450"/>
+  <ellipse class="fil2 str5" transform="matrix(-1.94875 -1.94875 1.94875 -1.94875 11516.9 8071.29)" rx="375" ry="300"/>
+  <line class="fil0 str2" x1="20484" y1="21924" x2="21962" y2= "23402" />
+ </g>
+</svg>

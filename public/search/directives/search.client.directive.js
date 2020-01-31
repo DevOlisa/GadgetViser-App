@@ -8,7 +8,6 @@ angular.module('Search')
                     $scope.$apply(function () {
                         SearchBarState.isSearchBarHidden = true;
                         console.log(SearchBarState.isSearchBarHidden);
-                        console.log("Got here");
                     });
                 }
             });

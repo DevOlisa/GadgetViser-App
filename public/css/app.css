@@ -4,23 +4,24 @@
 h2, .device-page-main #specifications .specs-category-main-item table h3 {
   font-family: 'Aller'; }
 
-.device-page-main-content #prices .store-list .store-item-unit .detail-condition {
-  font-family: 'Fira Sans Light'; }
+.device-page-main-content #prices .store-list .store-item-unit .detail-condition, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag {
+  font-family: 'Aller';
+  font-weight: 300; }
 
 .gad-shell-header-searchbar .search-results-wrapper .device-search-result-item-name, .device-page-main-content #prices .store-list .store-item-unit .detail-seller, .create-question-dialog textarea#answer-input {
   font-family: 'Aller'; }
 
 .gad-shell-header-searchbar .search-results-wrapper .news-search-result-item-title, .gad-shell-header-searchbar .search-results-wrapper .questions-search-result-item-title, .create-question-dialog .char-count {
-  font-family: 'Fira Sans Medium'; }
+  font-family: 'Aller'; }
 
-.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, .create-question-dialog .char-count.error, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, .has-form label, .has-form input[type=text], .has-form select, .has-form .alert-label {
+.gad-shell-dialog-content .seperator, .device-page-main-content #prices .controls-modal table .label, .device-page-main-content #prices .controls-modal table #questions .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .device-page-main-content #prices .controls-modal table .best-answer-tag, .device-page-main-content #prices .store-list .store-item-unit .detail-name, .device-page-main-content #prices .store-list .store-item-unit .detail-shipping, .create-question-dialog textarea, .create-question-dialog .char-count.error, #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3, .has-form label, .has-form input[type=text], .has-form select, .has-form .alert-label {
   font-family: 'Aller';
   font-weight: bold; }
 
 .device-page-main-content #prices .store-list .store-item-unit .detail-price {
   font-family: 'Fira Sans Extrabold'; }
 
-.gad-shell-header, #news .news-list-item {
+.gad-shell-header {
   box-shadow: 0 1px 3px 0 #2a2a2a30, 0 3px 5px 6px #5e5a450a; }
 
 .device-page #shadow {
@@ -33,7 +34,7 @@ html {
   margin: 0;
   padding: 0;
   font-family: 'Aller';
-  font-size: 0.8646em; }
+  font-size: 0.8646rem; }
 
 /*########### MEDIA QUERY DEPENDENT STYLES ###############*/
 /*########### END MEDIA QUERY DEPENDENT STYLES ############*/
@@ -54,14 +55,14 @@ html {
 
 #questions .main-content-question-answer .reply-pics-image, #questions .main-content-question footer .reply-pics-image-thumb {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border: 2px solid white;
-  border-radius: 13px; }
+  border-radius: 50%; }
 
 .highlight {
   display: none;
@@ -134,10 +135,10 @@ main[ng-view] .ng-leave-active {
 a {
   text-decoration: none;
   color: initial;
-  font-size: 0.8646em; }
+  font-size: 0.8646rem; }
 
 label {
-  font-size: 12px;
+  font-size: 0.7654rem;
   color: #aeadad; }
 
 input {
@@ -221,7 +222,8 @@ button {
     height: 100%;
     width: 100%;
     border-collapse: collapse; }
-  #gad-shell-notification-dialog .message, #gad-shell-notification-dialog .action {
+  #gad-shell-notification-dialog .message,
+  #gad-shell-notification-dialog .action {
     height: 100%; }
   #gad-shell-notification-dialog .message {
     padding-inline-start: 0; }
@@ -285,10 +287,9 @@ button {
         top: 0;
         height: 61px; }
   .gad-shell-header-searchbar {
-    position: absolute;
-    top: 0;
-    left: 700px;
-    right: 0;
+    display: none;
+    width: 100%;
+    height: auto;
     z-index: 3;
     opacity: 0;
     transition: 400ms ease-out; }
@@ -304,39 +305,25 @@ button {
       .gad-shell-header-searchbar > table tr:nth-child(1) {
         height: 61px; }
     .gad-shell-header-searchbar .main-search {
-      height: 61px; }
+      height: 61px;
+      border-bottom: 1px solid #cfcfcf;
+      box-sizing: content-box; }
       .gad-shell-header-searchbar .main-search input {
         font-family: "Aller";
-        font-size: 0.8646em;
-        background: url(../Icons/search.png) left center no-repeat;
-        background-size: 30px;
-        text-indent: 30px;
+        font-size: 0.8646rem;
         padding-inline-end: 10px;
+        padding-inline-start: 10px;
         opacity: 0;
         outline: none; }
-    .gad-shell-header-searchbar .search-control {
-      width: 30px;
-      opacity: 0; }
-      .gad-shell-header-searchbar .search-control img {
-        width: 24px; }
-      @media (min-width: 1024px) {
-        .gad-shell-header-searchbar .search-control {
-          display: none; } }
     .gad-shell-header-searchbar.expanded {
       display: block;
-      top: 0;
-      right: 0;
-      left: 0;
       background: white;
       opacity: 1;
       z-index: 12;
-      transition: all 200ms ease-out; }
+      transition: all 200ms ease-in; }
       .gad-shell-header-searchbar.expanded .main-search input {
         opacity: 1;
-        transition: opacity 400ms; }
-      .gad-shell-header-searchbar.expanded .search-control {
-        opacity: 1;
-        transition: opacity 500ms 300ms; }
+        transition: opacity 400ms 500ms; }
     .gad-shell-header-searchbar .search-results-wrapper {
       margin: 0 0 7px;
       padding: 5px 7px; }
@@ -451,18 +438,18 @@ button {
 
 .gad-shell-sidenav {
   width: 80%;
-  left: -81%;
   top: 60px;
   bottom: 0;
   z-index: 5;
   box-shadow: 3px 0px 0px -1px #b2916830;
   background-color: #fff;
   opacity: 0.4;
+  transform: translate(-100%, 0);
   transition: 200ms ease-in;
   border: 0.2px solid #dbdbdb;
   border-width: 0 0.2px 0 0; }
   .gad-shell-sidenav.extended {
-    left: 0;
+    transform: translate(0, 0);
     opacity: 1;
     transition: 300ms ease; }
   @media (min-width: 640px) {
@@ -482,7 +469,7 @@ button {
       padding: 3px 0;
       text-align: center;
       color: #707070;
-      font-size: 12px; }
+      font-size: 0.7654rem; }
       .gad-shell-sidenav-navlist .nav-items::before {
         content: '';
         display: block;
@@ -697,7 +684,7 @@ button {
       display: block;
       height: 30px;
       margin: auto;
-      font-size: 0.8646em;
+      font-size: 0.8646rem;
       color: #707070; }
     .gad-shell-dialog-content .content-wrapper {
       position: absolute;
@@ -803,7 +790,10 @@ button {
 #device-category #categories header {
   display: table;
   height: 30px; }
-  #device-category #categories header object, #device-category #categories header h2, #device-category #categories header .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #device-category #categories header h3 {
+  #device-category #categories header object,
+  #device-category #categories header h2,
+  #device-category #categories header .device-page-main #specifications .specs-category-main-item table h3,
+  .device-page-main #specifications .specs-category-main-item table #device-category #categories header h3 {
     display: inline-block;
     vertical-align: middle; }
 #device-category .featured-news-wrapper .featured-news-carousel {
@@ -856,38 +846,36 @@ button {
   margin: 0;
   padding: 0;
   list-style: none; }
-#news .news-list-item {
-  margin: 14px 0; }
-  #news .news-list-item .image {
-    height: 95px;
-    background: url("./images/129644_adapted_1440x2560.jpg") center no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-    filter: sepia(0.7) brightness(0.7);
-    transition: 400ms; }
-  #news .news-list-item .content {
-    height: auto;
-    padding: 14px 10px; }
-    #news .news-list-item .content header span {
-      display: inline-block;
-      margin: 8px 10px 5px 0;
-      font-size: 10px;
-      color: #aeadad; }
-    #news .news-list-item .content section {
-      display: none;
-      line-height: 1.538461538461538; }
-      #news .news-list-item .content section p {
-        font-size: 14px;
-        color: #3b3b3b; }
-      #news .news-list-item .content section .social-share-article button {
-        margin-right: 10px;
-        color: #ff5e00; }
-  #news .news-list-item.expand .image {
-    height: 197px;
-    transition: 400ms;
-    filter: none; }
-  #news .news-list-item.expand .content section {
-    display: initial; }
+#news .news-list-item .image {
+  height: 95px;
+  background: url("./images/129644_adapted_1440x2560.jpg") center no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  filter: saturate(0.2) brightness(0.7);
+  transition: 400ms; }
+#news .news-list-item .content {
+  height: auto;
+  padding: 14px 10px; }
+  #news .news-list-item .content header span {
+    display: inline-block;
+    margin: 8px 10px 5px 0;
+    font-size: 10px;
+    color: #aeadad; }
+  #news .news-list-item .content section {
+    display: none;
+    line-height: 1.538461538461538; }
+    #news .news-list-item .content section p {
+      font-size: 14px;
+      color: #3b3b3b; }
+    #news .news-list-item .content section .social-share-article button {
+      margin-right: 10px;
+      color: #ff5e00; }
+#news .news-list-item.expand .image {
+  height: 197px;
+  transition: 400ms;
+  filter: none; }
+#news .news-list-item.expand .content section {
+  display: initial; }
 
 /********* End News CSS Styles ********/
 /********* Begin View Device Page Styles ********/
@@ -1001,14 +989,14 @@ button {
             display: block;
             margin: 2px 0; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-name {
-            font-size: 0.8646em; }
+            font-size: 0.8646rem; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-condition {
-            font-size: 12px; }
+            font-size: 0.7654rem; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-seller {
-            font-size: 12px;
+            font-size: 0.7654rem;
             text-decoration: underline; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-shipping {
-            font-size: 12px; }
+            font-size: 0.7654rem; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-price {
             font-size: 20px; }
           .device-page-main-content #prices .store-list .store-item-unit .detail-store {
@@ -1071,11 +1059,20 @@ button {
         border: none;
         border-radius: 0px; }
 .device-page-main #questions .new-question {
-  width: 100%; }
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  overflow: hidden; }
   .device-page-main #questions .new-question img {
     display: block;
-    margin: auto;
-    width: 200px; }
+    margin: auto; }
+    .device-page-main #questions .new-question img.illus {
+      right: 102px;
+      top: -100px;
+      transform: rotateY(180deg);
+      position: absolute;
+      filter: drop-shadow(2px 4px 4px #777777) opacity(0.3);
+      width: 500px; }
   .device-page-main #questions .new-question table {
     height: 42px;
     width: 100%;
@@ -1091,8 +1088,13 @@ button {
         width: 42px;
         transform: rotateZ(180deg); }
   .device-page-main #questions .new-question-input {
-    border: 1px solid #cfcfcf;
-    border-radius: 3px; }
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    border-radius: 6px;
+    background-color: rgba(23, 23, 23, 0.25);
+    box-shadow: 0 0 3px 1px #8f717145;
+    right: 10px; }
 .device-page-main .devices-row {
   width: 100%;
   margin-top: 20px; }
@@ -1299,9 +1301,9 @@ button {
     #questions .main-controls-category {
       float: left; }
       #questions .main-controls-category-btn {
-        padding: 1px 10px;
-        border: 1px solid #cfcfcf;
-        border-radius: 3px; }
+        height: 30px;
+        padding: 1px 19px;
+        border-radius: 30px; }
         #questions .main-controls-category-btn.selected {
           background-color: orangered;
           color: white; }
@@ -1323,24 +1325,35 @@ button {
       box-shadow: 0 0 3px 0 #2a2a2a30, 0 3px 5px 6px #5e5a450a; }
       #questions .main-content-question h2, #questions .main-content-question .device-page-main #specifications .specs-category-main-item table h3, .device-page-main #specifications .specs-category-main-item table #questions .main-content-question h3 {
         font-size: 18px; }
+      #questions .main-content-question .time-ago {
+        font-size: 0.7654rem; }
       #questions .main-content-question .no-answers {
         margin: 12px 0 6px;
         color: #aeaeae; }
       #questions .main-content-question .label, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag {
-        font-size: 12px; }
+        font-size: 0.7654rem; }
       #questions .main-content-question .tag, #questions .main-content-question .main-content-question-answer .best-answer-tag, #questions .main-content-question-answer .main-content-question .best-answer-tag, #questions .main-content-question footer .number-answers {
         padding: 1px 4px;
-        background-color: #aeadad;
+        background-color: #0d497a;
         color: white;
         border-radius: 12px; }
       #questions .main-content-question-description {
-        margin-top: 8px;
-        max-height: 60px;
-        line-height: 1.428571428571429;
         overflow: hidden; }
-        #questions .main-content-question-description.show {
-          overflow: initial;
-          max-height: initial; }
+        #questions .main-content-question-description p {
+          font-size: 0.8646rem;
+          color: #3b3b3b;
+          line-height: 1.42;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 4;
+          overflow: hidden;
+          min-height: 35px; }
+          #questions .main-content-question-description p.show {
+            line-clamp: initial;
+            overflow: initial;
+            -webkit-line-clamp: initial;
+            display: initial;
+            transition: all 500ms ease-in; }
       #questions .main-content-question-answer {
         margin: 12px 0 6px; }
         #questions .main-content-question-answer .reply-pics-image {
@@ -1350,7 +1363,7 @@ button {
         #questions .main-content-question-answer .best-answer-tag {
           background-color: #707070; }
         #questions .main-content-question-answer .actions {
-          width: 90%;
+          width: 80%;
           margin: auto;
           overflow: hidden; }
           #questions .main-content-question-answer .actions-upvote, #questions .main-content-question-answer .actions-share {
@@ -1367,13 +1380,10 @@ button {
       #questions .main-content-question .more, #questions .main-content-question .more-answers {
         height: 50px;
         width: 100%;
-        margin-top: -20px;
-        padding-top: 20px;
-        color: #303030;
-        font-size: 12px;
-        background: linear-gradient(#ffffff24 10%, #ffffff 40%);
-        border: none;
-        border-radius: 0px; }
+        margin-top: -36px;
+        padding-top: 33px;
+        background: linear-gradient(#ffffff24, #ffffff);
+        border: none; }
         #questions .main-content-question .more-answers {
           height: 40px;
           margin: 4px 0;
@@ -1381,10 +1391,22 @@ button {
           background: #e7e7e7;
           border-radius: 3px; }
       #questions .main-content-question footer {
-        position: relative; }
+        position: relative;
+        height: 52px;
+        overflow: hidden; }
+        #questions .main-content-question footer::before {
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: #cfcfcf;
+          content: ""; }
 @keyframes fade {
   to {
     opacity: 0; } }
+        #questions .main-content-question footer .button-wrapper {
+          position: absolute;
+          bottom: 4px;
+          right: 0; }
         #questions .main-content-question footer .option-dialog {
           position: absolute;
           top: -10px;
@@ -1411,8 +1433,9 @@ button {
           margin: 0 3px 0 5px;
           padding: 2px; }
         #questions .main-content-question footer .reply-pics {
-          position: relative;
-          float: right; }
+          position: absolute;
+          left: 0;
+          bottom: 4px; }
           #questions .main-content-question footer .reply-pics-image-thumb {
             margin-right: -15px; }
             #questions .main-content-question footer .reply-pics-image-thumb:nth-child(3) {
@@ -1522,7 +1545,7 @@ button {
   .has-form .add-opt.toggle-visibility.moveLeft {
     right: 40px; }
 .has-form .alert-label {
-  font-size: 12px;
+  font-size: 0.7654rem;
   color: orangered;
   text-align: center; }
   .has-form .alert-label > * {
@@ -1544,7 +1567,7 @@ button {
   text-indent: 0px; }
 .has-form .overtext {
   margin: 0px auto 0px;
-  font-size: 0.8646em;
+  font-size: 0.8646rem;
   color: #aeadad; }
   @media (min-width: 360px) {
     .has-form .overtext {

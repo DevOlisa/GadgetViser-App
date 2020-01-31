@@ -22,6 +22,7 @@
  $pri :orangered;
  $sec :rgb(255, 94, 0);
  $ter :rgb(255, 247, 0);
+ $blue: #0d497a;
 
 
  //bg_color
@@ -45,11 +46,11 @@
  //Font Sizes Defaults
  @mixin font-size($size) {
      @if ($size==1) {
-         font-size: $base-font-size;
+         font-size: 0.7654rem; 
      }
 
      @else if ($size==2) {
-         font-size: 0.8646em;
+         font-size: 0.8646rem;
      }
 
      @else if ($size==3) {
@@ -73,7 +74,8 @@
  }
 
  %ffL {
-     font-family: 'Fira Sans Light';
+     font-family: 'Aller';
+     font-weight: 300;
  }
 
  %ffR {
@@ -81,7 +83,7 @@
  }
 
  %ffM {
-     font-family: 'Fira Sans Medium';
+     font-family: 'Aller';
  }
 
  %ffB {
@@ -153,14 +155,14 @@ html {
  //Profile pic style
  %profile-pics {
      display: inline-block;
-     width: 30px;
-     height: 30px;
+     width: 34px;
+     height: 34px;
      background-color: #fff;
      background-position: center;
      background-repeat: no-repeat;
      background-size: cover;
      border: 2px solid white;
-     border-radius: 13px;
+     border-radius: 50%;
  }
 
  //  Button Highlight

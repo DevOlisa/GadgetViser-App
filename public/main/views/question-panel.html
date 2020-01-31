@@ -1,10 +1,13 @@
 <article class="main-content-question">
     <h3>{{::questionData.title}}</h3>
+    <span class="label time-ago" am-time-ago="questionData.created | amUtc | amLocal"></span>
+    <span class="label number-answers" ng-if="questionData.answers.length > 1"> {{::questionData.answers.length}}
+        answers</span>
     <p class="no-answers" ng-if="questionData.answers.length === 0">
         No answers yet
     </p>
 
-    <div ng-if="questionData.answers.length > 0">
+    <div ng-repeat="answer in questionData.answers | limitTo : 3">
         <section class="main-content-question-answer">
             <header>
                 <table>
@@ -14,15 +17,16 @@
                         </td>
                         <td>
                             <h4>User</h4>
-                            <span class="best-answer-tag" am-time-ago="questionData.answers[0].created | amUtc | amLocal">Best Answer</span>
+                            <span class="best-answer-tag"
+                                am-time-ago="answer.created | amUtc | amLocal">Best Answer</span>
                         </td>
                     </tr>
                 </table>
             </header>
 
-            <div class="main-content-question-description" ng-class="{'show': visible}">
-                <p>
-                    {{::questionData.answers[0].content }}
+            <div class="main-content-question-description">
+                <p  ng-class="{'show': visible}">
+                    {{::answer.content }}
                 </p>
                 <!-- <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, incidunt tenetur,
@@ -30,7 +34,9 @@
                 </p> -->
             </div>
             <div class="actions" ng-show="visible">
-                <button class="actions-share">Share</button>
+                <button class="actions-share">
+                    <object type="image/svg+xml" data="Icons/share-48px.svg" width="36px"></object>
+                </button>
                 <button class="actions-upvote">
                     <img src="../Icons/upvote-24px.png" /><span>43</span></button>
                 <button class="actions-options"><img src="../Icons/option-48px.png" width="30px" /></button>
@@ -38,8 +44,7 @@
             </div>
         </section>
     </div>
-    <button class="more" ng-if="!visible && questionData.answers.length > 0" ng-click="showDescription()">Read
-        more</button>
+    <button class="more" ng-if="!visible && questionData.answers.length > 0" ng-click="showDescription()"></button>
     <button class="more-answers" ng-if="visible && questionData.answers.length > 1">
         See {{questionData.answers.length - 1}} More Answers</button>
 
@@ -49,14 +54,55 @@
         <div class="option-dialog" ng-show="options">
             <ul>
                 <li class="actions-report"><button>Report</button></li>
-                <li class="actions-follow"><button>Follow</button></li>
             </ul>
         </div>
         <!-- End Options dialog -->
-        <span class="label time-ago" am-time-ago="questionData.created | amUtc | amLocal"></span>
-        <span class="label number-answers" ng-if="questionData.answers.length > 1"> {{::questionData.answers.length}} answers</span>
-        <button ng-click="createReply(questionData)" focus-on="#answer-input" class="reply small">Reply </button>
-        <button  ng-click="socialShare()" class="share small">Share</button>
+        <div class="button-wrapper">
+        <button ng-click="createReply(questionData)" focus-on="#answer-input" class="reply small">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="42px" height="42px" version="1.1"
+                shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+                image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 4800 4800"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <metadata id="CorelCorpID_0Corel-Layer" />
+                    <path fill="none" stroke="gray" stroke-width="199.961" stroke-linejoin="round"
+                        d="M1142 2062l1114 -937 -76 540c787,84 1680,128 1216,2010 -204,-1214 -815,-1197 -1216,-1197l76 518 -1114 -934z" />
+                </g>
+            </svg>
+        </button>
+        <button class="follow-question-button">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="42px" height="42px" version="1.1"
+                shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+                image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 4800 4800">
+                <path fill="none" stroke="gray" stroke-width="199.961"
+                    d="M3000 3142c59,0 140,-58 108,-108l-179 -283 179 -685c103,-396 -334,-744 -743,-744l0 0c-409,0 -848,348 -743,744 59,222 118,444 177,666l-177 302c-30,51 48,108 108,108l1270 0z" />
+                <path fill="none" stroke="gray" stroke-width="199.961"
+                    d="M2494 3410c4,16 6,34 6,51 0,104 -72,188 -161,188 -90,0 -162,-84 -162,-188 0,-18 2,-35 7,-52" />
+                <path fill="none" stroke="gray" stroke-width="199.961"
+                    d="M1658 1123c-312,95 -590,604 -493,881l112 319" />
+                <path fill="none" stroke="gray" stroke-width="199.961"
+                    d="M3070 1123c312,95 590,604 493,881l-112 319" />
+            </svg>
+        </button>
+
+        <button ng-click="socialShare()" class="share small">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="42px" height="42px" version="1.1" viewBox="0 0 4800 4800">
+                <path fill="gray" stroke="gray" stroke-width="199.961" stroke-linejoin="round"
+                    d="M3224 2031l-1113 -938 76 541c-787,83 -1680,128 -1217,2010 205,-1214 816,-1197 1217,-1197l-76 518 1113 -934z" />
+                <path fill="none" stroke="gray" stroke-width="199.961" stroke-linejoin="round"
+                    d="M3883 2031l-1114 -938 76 541c-1275,189 -1675,689 0,813l-76 518 1114 -934z" />
+            </svg>
+        </button>
+        
+        <button ng-click="toggleOptions()">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="42px" height="42px" version="1.1"
+                viewBox="0 0 4800 4800">
+                <circle fill="#5D5C5C" cx="2381" cy="1448" r="283"/>
+                <circle fill="#5D5C5C" cx="2381" cy="2402" r="283"/>
+                <circle fill="#5D5C5C" cx="2381" cy="3389" r="283"/>
+            </svg>
+        </button>
+    </div>
+
         <div class="reply-pics">
             <span ng-if="questionData.answers.length > 0">
                 <span class="reply-pics-image-thumb"
@@ -66,7 +112,6 @@
                 <span class="reply-pics-image-thumb"
                     style="background-image: url(./img/220px-SubZeroMKXrender.png)"></span>
             </span>
-            <button ng-click="toggleOptions()"><img src="../Icons/option-48px.png" width="30px" /></button>
         </div>
     </footer>
 </article>

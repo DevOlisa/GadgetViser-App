@@ -6,7 +6,7 @@ viewBox="0 0 4800 4800"
  xmlns:xlink="http://www.w3.org/1999/xlink">
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <rect fill="none" x="3" y="3" width="4788" height="4800"/>
-  <path fill="none" stroke="gray" stroke-width="199.961" stroke-linejoin="round" d="M1142 2062l1114 -937 -76 540c787,84 1680,128 1216,2010 -204,-1214 -815,-1197 -1216,-1197l76 518 -1114 -934z"/>
+  <path fill="gray" stroke="gray" stroke-width="199.961" stroke-linejoin="round" d="M3224 2031l-1113 -938 76 541c-787,83 -1680,128 -1217,2010 205,-1214 816,-1197 1217,-1197l-76 518 1113 -934z"/>
+  <path fill="none" stroke="gray" stroke-width="199.961" stroke-linejoin="round" d="M3883 2031l-1114 -938 76 541c-1275,189 -1675,689 0,813l-76 518 1114 -934z"/>
  </g>
 </svg>

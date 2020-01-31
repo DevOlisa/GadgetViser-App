@@ -2,11 +2,11 @@ angular.module('Main')
     .config(function ($routeProvider, $stateProvider, $locationProvider, $urlRouterProvider, $sceDelegateProvider) {
         $stateProvider
             .state('home', {
-                url: '',
+                url: '/',
                 templateUrl: './main/views/home.html',
             })
             .state('home.phones', {
-                url: '/',
+                url: 'phones',
                 templateUrl: './main/views/device-category.html',
                 params: {
                     category: 'Phone'

@@ -115,7 +115,7 @@
                     </div>
 
                     <!-- GadgetViser Logo -->
-                    <a ui-sref="/">
+                    <a ui-sref="home.phones">
                         <img id="logo" src="icons/logo-48px.svg" alt="GadgetViser" title="GadgetViser Home">
                     </a>
                 </div>
@@ -156,6 +156,39 @@
                                 </div>
 
                                 <div ng-show="searchResult && !searching" class="search-results-wrapper">
+                                    <div style="text-align: center;" ng-if="searchResult.gadgets.length == 0 && searchResult.articles.length == 0 && searchResult.questions.length == 0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="200px" height="200px" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 30000 30000" style="display:block;margin: auto">
+                                         <g id="Layer_x0020_1">
+                                          <path fill="none" d="M100 100l30000 0 0 29800c0,110 -90,200 -200,200l-29600 0c-110,0 -200,-90 -200,-200l0 -29800z"/>
+                                          <g id="_2659151510400">
+                                           <g>
+                                            <g>
+                                             <path fill="none" stroke="#333333" stroke-width="208.346" d="M16880 17837l367 -367c233,-233 615,-233 848,0l3112 3112c334,334 334,880 0,1215l0 0c-335,334 -881,334 -1215,0l-3112 -3112c-233,-233 -233,-615 0,-848z"/>
+                                             <path fill="none" stroke="#333333" stroke-width="208.346" stroke-linecap="round" d="M19730 21735c325,-215 650,-430 878,-663 227,-233 356,-485 484,-737"/>
+                                            </g>
+                                            <g>
+                                             <line fill="none" stroke="#333333" stroke-width="99.9213" x1="18369" y1="18053" x2="20228" y2= "19913" />
+                                             <line fill="none" stroke="#333333" stroke-width="99.9213" x1="19146" y1="19114" x2="20419" y2= "20386" />
+                                             <line fill="none" stroke="#333333" stroke-width="99.9213" x1="18440" y1="18689" x2="19288" y2= "19537" />
+                                             <line fill="none" stroke="#333333" stroke-width="99.9213" x1="17874" y1="17841" x2="18722" y2= "18689" />
+                                            </g>
+                                           </g>
+                                           <g>
+                                            <line fill="none" stroke="#333333" stroke-width="799.961" x1="15364" y1="15967" x2="17061" y2= "17664" />
+                                            <g>
+                                             <circle fill="none" stroke="#333333" stroke-width="208.346" transform="matrix(0.707107 -0.707107 0.707107 0.707107 12410 13026.4)" r="4141"/>
+                                             <g>
+                                              <circle fill="#4D4D4D" stroke="#4D4D4D" stroke-width="208.346" transform="matrix(1.23129 -1.23129 1.23129 1.23129 11859.7 12010.6)" r="1450"/>
+                                              <ellipse fill="#E6E6E6" stroke="#4D4D4D" stroke-width="208.346" transform="matrix(-1.23129 -1.23129 1.23129 -1.23129 12650.2 11047.6)" rx="375" ry="300"/>
+                                             </g>
+                                            </g>
+                                           </g>
+                                          </g>
+                                         </g>
+                                        </svg>
+                                        <div style="font-size: 1.3rem">Oops!</div>
+                                        <div class="label">No Results Found</div>
+                                    </div>
                                     <div class="device-search-result" ng-if="searchResult.gadgets.length">
                                         <h3>Devices ({{searchResult.gadgets.length}})</h3>
                                         <div class="device-search-result-item" ng-repeat="item in searchResult.gadgets">
@@ -230,13 +263,13 @@
                             <span class="nav-items-text">Stories</span>
                         </a>
                     </li>
-                    <li class="nav-items" ui-sref="phones" ui-sref-active="active">
+                    <li class="nav-items" ui-sref="home.phones" ui-sref-active="active">
                         <a>
                             <img class="nav-items-image" aria-label="Phones" alt="phones" title="Phones" src="../icons/phone.png">
                             <span class="nav-items-text">Phones</span>
                         </a>
                     </li>
-                    <li class="nav-items" ui-sref="laptops" ui-sref-active="active">
+                    <li class="nav-items" ui-sref="home.laptops" ui-sref-active="active">
                         <a>
                             <div>
                                 <img class="nav-items-image" alt="laptops" title="Laptops"
@@ -362,12 +395,7 @@
                                   <rect fill="none" x="-10" y="3" width="4813" height="4800"/>
                                   <polyline fill="none" style=" animation: line-anim 200ms ease-in-out forwards 700ms; stroke-dashoffset: 21849.72265625px; stroke-dasharray: 21849.72265625px;" stroke="#99CC66" stroke-width="199.961" points="955,2400 1919,3415 3919,1315 "/>
                                 </svg>
-                                
-                                <script type="text/javascript" def>
-                                    const tick = document.querySelector('circle + path');
-                                    console.log(tick);
-                                    console.log(tick.getTotalLength());
-                                </script>
+
                             </div>
                         </div>
                     </td>
