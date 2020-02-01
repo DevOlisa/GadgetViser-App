@@ -1,3 +1,1 @@
-angular.module('Auth', ['ngRoute'])
-    .config(function ($routeProvider) {
-    });
+angular.module('Auth')

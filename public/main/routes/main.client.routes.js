@@ -1,5 +1,6 @@
 angular.module('Main')
     .config(function ($routeProvider, $stateProvider, $locationProvider, $urlRouterProvider, $sceDelegateProvider) {
+
         $stateProvider
             .state('home', {
                 url: '/',

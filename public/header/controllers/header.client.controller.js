@@ -5,7 +5,9 @@ angular.module('Header').controller('HeaderController', ['$scope', 'UserService'
     $scope.image = sessionStorage.getItem('image') || './icons/account.png' ; 
 
     $scope.user = UserService.getUser();
-    console.log($scope.user);
+    $scope.$on('userLoggedIn', function(e, args) {
+        alert('User logged in')
+    })
 
     self.showSearchBar = function () {
         SearchBarState.isSearchBarHidden = !SearchBarState.isSearchBarHidden;

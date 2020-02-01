@@ -36,8 +36,8 @@ angular.module('Auth')
                 }
             };
         }])
-    .controller('SignUpController', ['$scope', 'BgMask', 'AccountPageService', 'UserService',
-        function ($scope, BgMask, AccountPageService, UserService) {
+    .controller('SignUpController', ['$scope', 'BgMask', 'AccountPageService', 'AuthService', 'UserService',
+        function ($scope, BgMask, AccountPageService, AuthService, UserService) {
             var self = this;
             self.tab = 'signUp';
             self.switchTab = function () {
@@ -56,7 +56,8 @@ angular.module('Auth')
 
             $scope.submit = function () {
                 if ($scope.signUpForm.$invalid) return;
-                UserService.localSignUp($scope.user);
+                AuthService.login();
+                // UserService.localSignUp($scope.user);
                 console.log($scope.signUpForm);
             };
         }])

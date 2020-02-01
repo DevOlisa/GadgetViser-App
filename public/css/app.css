@@ -707,6 +707,8 @@ button {
             width: 55px;
             margin: 10px 15px; } }
         .gad-shell-dialog-content .oauth-action .action button {
+          height: auto;
+          min-height: 42px;
           width: auto;
           border: none; }
           .gad-shell-dialog-content .oauth-action .action button img {

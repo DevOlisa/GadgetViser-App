@@ -32,6 +32,8 @@
     <script type="text/javascript" src="./lib/@uirouter/angularjs/release/angular-ui-router.js"></script>
     <script src="./lib/angular-animate/angular-animate.js"></script>
     <script src="./lib/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="./lib/auth0-js/build/auth0.js"></script>
+    <script type="text/javascript" src="./lib/angular-auth0/dist/angular-auth0.js"></script>
     <script src="./lib/angular-cookies/angular-cookies.js"></script>
     <script src="./lib/angular-messages/angular-messages.js"></script>
     <script src="./lib/angular-resource/angular-resource.js"></script>
@@ -84,6 +86,7 @@
 
     <script src="./authorize/directives/auth.client.directives.js"></script>
     <script src="./authorize/services/auth.client.services.js"></script>
+    <script src="./authorize/services/auth.service.js"></script>
     <script src="./authorize/controllers/auth.client.controllers.js"></script>
 
     <script src="./header/controllers/header.client.controller.js"></script>
@@ -305,11 +308,11 @@
                     <!-- Begin Footer Links -->
                     <div class="footer-links">
                         <!-- Begin Social Connect -->
-                        <div class="social-connect" ng-click="openAccountDialog()">
-                            <div class="main-social-links">
+                        <div class="social-connect" >
+                            <div class="main-social-links" ng-click="login()">
                                 <img src="icons/Twitter.png" width="35px">
                             </div>
-                            <div class="main-social-links">
+                            <div class="main-social-links"ng-click="logout()">
                                 <img src="icons/Facebook.png" width="35px">
                             </div>
                         </div>

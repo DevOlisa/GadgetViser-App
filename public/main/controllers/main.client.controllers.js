@@ -1,10 +1,17 @@
 angular.module('Main')
-    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'NavState', 'QuestionDialogService', 'AnswerDialogService', 'NotificationDialog',
-        function ($scope, BgMask, SearchBarState, NavState, QuestionDialogService, AnswerDialogService, NotificationDialog) {
+    .controller('MainController', ['$scope', 'BgMask', 'SearchBarState', 'NavState', 'AuthService', 'QuestionDialogService', 'AnswerDialogService', 'NotificationDialog',
+        function ($scope, BgMask, SearchBarState, NavState, AuthService, QuestionDialogService, AnswerDialogService, NotificationDialog) {
             let self = this;
             self.NavState = NavState;
             $scope.isDialogOpen = false;
 
+            $scope.login = function() {
+                AuthService.login();
+            };
+
+            $scope.logout = function() {
+                AuthService.logout();
+            };
 
             $scope.closeAccountDialog = function () {
                 if ($scope.isDialogOpen === false) return;
@@ -24,8 +31,8 @@ angular.module('Main')
             $scope.SearchBarState = SearchBarState;
             $scope.SearchBarState = SearchBarState;
         }])
-    .controller('GadgetController', ['$scope', '$state', '$timeout', 'GadgetFactory', 'selectedGadget', 'QuestionService', 'QuestionDialogService', 'UserService', 'NotificationDialog',
-        function ($scope, $state, $timeout, GadgetFactory, selectedGadget, QuestionService, QuestionDialogService, UserService, NotificationDialog) {
+    .controller('GadgetController', ['$scope', '$state', '$timeout', 'GadgetFactory', 'selectedGadget', 'AuthService', 'QuestionService', 'QuestionDialogService', 'UserService', 'NotificationDialog',
+        function ($scope, $state, $timeout, GadgetFactory, selectedGadget, AuthService, QuestionService, QuestionDialogService, UserService, NotificationDialog) {
             let self = this,
                 userID = UserService.userID || sessionStorage.getItem('userId');
 
@@ -64,6 +71,10 @@ angular.module('Main')
             };
 
             self.likeGadget = function () {
+                if (AuthService.isAuthenticated === false) {
+                    NotificationDialog.alertUser({type: 'warning', message: 'You must be logged in!'});
+                    return;
+                }
                 if (!self.processingLike) {
                     let _selectedGadget = angular.copy($scope.gadget);
 
